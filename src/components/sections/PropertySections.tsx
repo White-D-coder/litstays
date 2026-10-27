@@ -12,8 +12,8 @@ export function IntroductionSection() {
           <h2 id="introduction-heading">A little further<br />from <em>the everyday.</em></h2>
         </Reveal>
         <Reveal className="intro-portrait">
-          <div className="image-frame intro-portrait-image">
-            <Image src="balcony.jpg" alt="A quiet balcony corner with woven chairs, a small table and a view into the trees at Villa Archway" fill sizes="(max-width: 700px) 85vw, 40vw" />
+          <div className="intro-portrait-image intro-leaf-canvas" aria-hidden="true">
+            <Image className="intro-leaf-image" src="/images/intro-leaves.webp" alt="" width={1000} height={1000} loading="lazy" unoptimized />
           </div>
           <p className="intro-photo-caption"><span>THE QUIETER CORNERS</span><em>Yours to settle into.</em></p>
         </Reveal>

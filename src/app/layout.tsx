@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import { site } from '@/lib/site-content';
 import './globals.css';
+import './intro-artwork.css';
 
 const serif = localFont({ src: [
   { path: '../../public/fonts/instrument-serif.woff2', style: 'normal', weight: '400' },

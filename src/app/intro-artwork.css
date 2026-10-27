@@ -1,0 +1,51 @@
+/* INTRODUCTION IMAGE CONTROLS
+   Sirf neeche ki values badlein. Heading/paragraph ki layout nahi badlegi.
+   Height: 92%, 80%, 500px, etc. Scale: 1 = normal; 1.1 = 10% bigger.
+   X: positive = right; negative = left. Y: positive = down; negative = up.
+   Rotation: positive = clockwise; negative = anticlockwise.
+*/
+.intro-leaf-canvas {
+  --intro-image-height: 92%;
+  --intro-image-scale: 1;
+  --intro-image-x: 0px;
+  --intro-image-y: 0px;
+  --intro-image-rotation: 0deg;
+}
+
+/* Reserved image area: the existing responsive height stays unchanged.
+   Artwork is clipped to its own column so it cannot cover the text. */
+.intro-leaf-canvas {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 0;
+  background: transparent;
+}
+
+.intro-leaf-canvas .intro-leaf-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: auto;
+  height: var(--intro-image-height);
+  max-width: none;
+  object-fit: contain;
+  object-position: center;
+  transform:
+    translate(-50%, -50%)
+    translate(var(--intro-image-x), var(--intro-image-y))
+    rotate(var(--intro-image-rotation))
+    scale(var(--intro-image-scale));
+  transform-origin: center;
+  pointer-events: none;
+}
+
+/* Optional: uncomment for separate phone/tablet settings.
+@media (max-width: 800px) {
+  .intro-leaf-canvas {
+    --intro-image-height: 85%;
+    --intro-image-x: 0px;
+    --intro-image-y: 0px;
+  }
+}
+*/
