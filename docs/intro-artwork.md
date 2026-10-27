@@ -1,6 +1,6 @@
 # Introduction leaf artwork
 
-The supplied leaf artwork replaces the introduction's balcony photograph. The headline, paragraphs, signature, captions, grid columns and reserved image height are unchanged.
+The supplied leaf artwork is preserved as an optional introduction asset. The current introduction restores the arched photo frame as a crossfade slideshow; see `intro-slideshow.md`. To use the leaf artwork again, render it with the `intro-leaf-canvas` and `intro-leaf-image` classes described here.
 
 ## Adjust the image
 

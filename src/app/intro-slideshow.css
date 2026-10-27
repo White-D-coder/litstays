@@ -1,0 +1,102 @@
+/* INTRO PHOTO CONTROLS
+   Photo order, hold time and crossfade speed: src/lib/intro-slides.ts.
+   These image-only adjustments leave the frame and text layout unchanged. */
+.intro-slideshow {
+  --intro-image-scale: 1;
+  --intro-image-x: 0px;
+  --intro-image-y: 0px;
+  --intro-image-position: center 60%;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.intro-slide-track,
+.intro-slide-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.intro-slide-layer {
+  opacity: 1;
+}
+
+.intro-slide-layer.is-incoming {
+  z-index: 1;
+  opacity: 0;
+  transition: opacity var(--intro-crossfade-duration, 1200ms) cubic-bezier(.4, 0, .2, 1);
+}
+
+.intro-slide-layer.is-incoming.is-fading {
+  opacity: 1;
+}
+
+.intro-slideshow .intro-slide-layer .intro-slide-image {
+  object-fit: cover;
+  object-position: var(--intro-image-position);
+  transform: translate(var(--intro-image-x), var(--intro-image-y)) scale(var(--intro-image-scale));
+  transition: none;
+}
+
+.intro-slideshow-controls {
+  position: absolute;
+  z-index: 2;
+  left: 22px;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  color: var(--ivory);
+}
+
+.intro-slide-count {
+  padding: 7px 10px;
+  background: rgba(14, 31, 13, .68);
+  font-size: 9px;
+  letter-spacing: .12em;
+  line-height: 1.5;
+}
+
+.intro-slide-count > span {
+  margin-inline: 7px;
+  opacity: .65;
+}
+
+.intro-slide-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.intro-slide-buttons > button {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(14, 31, 13, .78);
+  color: var(--ivory);
+  transition: background 220ms ease;
+}
+
+.intro-slide-buttons > button:hover {
+  background: var(--forest);
+}
+
+.intro-slide-buttons > button:disabled {
+  opacity: .55;
+  cursor: default;
+}
+
+@media (max-width: 600px) {
+  .intro-slideshow-controls { left: 14px; right: 12px; bottom: 13px; }
+  .intro-slide-count { font-size: 8px; padding: 6px 8px; }
+  .intro-slide-count > span { margin-inline: 5px; }
+  .intro-slide-buttons { gap: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-slide-layer.is-incoming { transition: none; }
+}

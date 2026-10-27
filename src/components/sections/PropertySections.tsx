@@ -2,26 +2,26 @@ import Image from 'next/image';
 import { site } from '@/lib/site-content';
 import { Reveal } from '../ui/Reveal';
 import { Arrow, BrandMark } from '../ui/Icons';
+import { IntroSlideshow } from './IntroSlideshow';
+import { IntroFade } from '../ui/IntroFade';
 
 export function IntroductionSection() {
   return (
     <section className="introduction section-padding" id="introduction" aria-labelledby="introduction-heading">
       <div className="intro-layout">
-        <Reveal className="intro-heading">
-          <div className="intro-heading-meta"><p className="eyebrow">A PLACE TO JUST BE</p><span>01 / THE FEELING</span></div>
-          <h2 id="introduction-heading">A little further<br />from <em>the everyday.</em></h2>
-        </Reveal>
+        <div className="intro-heading">
+          <IntroFade className="intro-heading-meta" duration={.8}><p className="eyebrow">A PLACE TO JUST BE</p><span>01 / THE FEELING</span></IntroFade>
+          <IntroFade as="h2" id="introduction-heading" delay={.12} duration={1.05}>A little further<br />from <em>the everyday.</em></IntroFade>
+        </div>
         <Reveal className="intro-portrait">
-          <div className="intro-portrait-image intro-leaf-canvas" aria-hidden="true">
-            <Image className="intro-leaf-image" src="/images/intro-leaves.webp" alt="" width={1000} height={1000} loading="lazy" unoptimized />
-          </div>
+          <IntroSlideshow />
           <p className="intro-photo-caption"><span>THE QUIETER CORNERS</span><em>Yours to settle into.</em></p>
         </Reveal>
-        <Reveal className="intro-copy" delay={.1}>
-          <p className="intro-lead">Some days call for a change of scenery.<br />Others, simply a change of pace.</p>
-          <p>Leave the full calendars behind. Come for the unhurried mornings, the conversations that wander, and the pleasure of having nowhere else to be.</p>
-          <div className="intro-signature"><BrandMark /><span>This is <em>The Lit Stays.</em></span></div>
-        </Reveal>
+        <div className="intro-copy">
+          <IntroFade as="p" className="intro-lead" delay={.2} duration={.9}>Some days call for a change of scenery.<br />Others, simply a change of pace.</IntroFade>
+          <IntroFade as="p" delay={.32} duration={1}>Leave the full calendars behind. Come for the unhurried mornings, the conversations that wander, and the pleasure of having nowhere else to be.</IntroFade>
+          <IntroFade className="intro-signature" delay={.4}><BrandMark /><span>This is <em>The Lit Stays.</em></span></IntroFade>
+        </div>
       </div>
     </section>
   );
