@@ -1,5 +1,5 @@
+import Image from 'next/image';
 import { faqs, type FAQItem } from '@/lib/faqs';
-import { BrandMark } from '../ui/Icons';
 import { FAQMore } from './FAQMore';
 
 function Question({ item, index }: { item: FAQItem; index: number }) {
@@ -17,7 +17,7 @@ export function FAQSection() {
   return <section id="faq" className="lit-faq-section lit-faq" aria-labelledby="faq-heading">
     <div className="lit-faq-intro">
       <p className="lit-faq-kicker">A little more to know</p>
-      <div className="lit-faq-title-row"><h2 id="faq-heading">Frequently asked questions.</h2><BrandMark className="lit-faq-title-icon"/></div>
+      <div className="lit-faq-title-row"><h2 id="faq-heading">Frequently asked questions.</h2><Image className="lit-faq-title-icon" src="/images/faq-villa.webp" alt="" aria-hidden="true" width={600} height={400} loading="lazy" unoptimized/></div>
       <p className="lit-faq-description">Everything you need to know before making yourself at home.</p>
     </div>
     <div className="lit-faq-items">
