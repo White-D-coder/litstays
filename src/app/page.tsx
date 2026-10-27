@@ -1,7 +1,8 @@
 import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/sections/HeroSection';
-import { IntroductionSection, BungalowSection, SpacesSection, FactsSection, LocationSection } from '@/components/sections/PropertySections';
+import { IntroductionSection, FactsSection, LocationSection } from '@/components/sections/PropertySections';
+import { VillaSpacesSection } from '@/components/sections/VillaSpacesSection';
 import { ExperienceSection } from '@/components/sections/ExperienceSection';
 import { GallerySection } from '@/components/sections/GallerySection';
 import { BookingSection } from '@/components/sections/BookingSection';
@@ -10,5 +11,5 @@ import { StayProvider } from '@/components/availability/StayProvider';
 import { FAQSection } from '@/components/sections/FAQSection';
 
 export default function Home() {
-  return <><Navbar/><main id="main"><HeroSection/><div className="page-surface"><IntroductionSection/><BungalowSection/><SpacesSection/><ExperienceSection/><FactsSection/><GallerySection/><LocationSection/><FAQSection/><StayProvider><AvailabilitySection/><BookingSection/></StayProvider><Footer/></div></main></>;
+  return <><Navbar/><main id="main"><HeroSection/><div className="page-surface"><IntroductionSection/><VillaSpacesSection/><ExperienceSection/><FactsSection/><GallerySection/><LocationSection/><FAQSection/><StayProvider><AvailabilitySection/><BookingSection/></StayProvider><Footer/></div></main></>;
 }

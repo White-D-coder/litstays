@@ -27,54 +27,6 @@ export function IntroductionSection() {
   );
 }
 
-export function BungalowSection() {
-  return (
-    <section className="bungalow section-padding" id="bungalow" aria-labelledby="bungalow-heading">
-      <div className="bungalow-spread">
-        <Reveal className="bungalow-main">
-          <div className="image-frame bungalow-photo">
-            <Image src="living.jpg" alt="Villa Archway’s light-filled living area with arched windows, natural tones and comfortable seating" fill sizes="(max-width: 600px) 100vw, 67vw" />
-          </div>
-          <div className="photo-caption"><span>VILLA ARCHWAY / THE LIVING SPACE</span><span>01 — 09</span></div>
-        </Reveal>
-        <Reveal delay={.12} className="bungalow-detail">
-          <span className="detail-prelude">A softer kind<br /><em>of welcome.</em></span>
-          <div className="image-frame">
-            <Image src="arrival.jpg" alt="An intimate entrance passage with potted plants and tall arched windows" fill sizes="(max-width: 600px) 52vw, 24vw" />
-          </div>
-          <p className="image-caption">Considered spaces.<br />Effortless days.</p>
-        </Reveal>
-      </div>
-      <div className="bungalow-story">
-        <Reveal className="bungalow-heading"><p className="eyebrow">THE BUNGALOW</p><h2 id="bungalow-heading">Designed for<br />time <em>well spent.</em></h2></Reveal>
-        <Reveal className="bungalow-description" delay={.08}>
-          <p>Arched windows. Warm interiors. Green views that invite you to pause. At Villa Archway, there’s space for everyone to come together—and a corner to make your own.</p>
-          <a href="#spaces" className="text-link dark-link">Find your favourite corner <Arrow diagonal /></a>
-        </Reveal>
-      </div>
-    </section>
-  );
-}
-
-export function SpacesSection() {
-  return (
-    <section className="spaces section-padding" id="spaces" aria-labelledby="spaces-heading">
-      <div className="spaces-top">
-        <Reveal className="spaces-heading"><p className="eyebrow">ROOM TO MAKE YOURSELF AT HOME</p><h2 id="spaces-heading">Find your<br /><em>own rhythm.</em></h2></Reveal>
-        <Reveal className="spaces-opening" delay={.08}><span className="spaces-chapter">02 / THE SPACES</span><p>For a quiet moment.<br />For everyone around the table.<br />For whatever the day becomes.</p></Reveal>
-      </div>
-      <div className="space-scene space-scene-pool">
-        <Reveal className="space-scene-copy"><span className="space-scene-label">01 / OUT IN THE OPEN</span><h3>A little less<br />{' '}on the <em>agenda.</em></h3><p>Take a dip. Stay a while. Repeat.<br />The afternoon can find its own pace.</p><a href="#gallery" className="text-link dark-link">A closer look <Arrow diagonal /></a></Reveal>
-        <Reveal className="space-scene-visual" delay={.08}><div className="image-frame"><Image src="pool.jpg" alt="The private pool at Villa Archway with blue water, warm walls and tropical plants" fill sizes="(max-width: 700px) 100vw, 63vw" /></div><span className="space-scene-caption">THE PRIVATE POOL</span></Reveal>
-      </div>
-      <div className="space-scene space-scene-bedroom">
-        <Reveal className="space-scene-copy"><span className="space-scene-label">02 / A SOFTER START</span><h3>Rest comes<br />{' '}<em>naturally.</em></h3><p>A greener view. An unhurried morning.<br />Bedrooms to retreat to, at your own pace.</p><span className="space-scene-aside">No alarm. No agenda. Just you.</span></Reveal>
-        <Reveal className="space-scene-visual" delay={.08}><div className="image-frame"><Image src="bedroom.jpg" alt="Warm bedroom interiors with a broad arched window overlooking the trees" fill sizes="(max-width: 700px) 90vw, 44vw" /></div><span className="space-scene-caption">THE BEDROOMS</span></Reveal>
-      </div>
-    </section>
-  );
-}
-
 export function FactsSection() {
   const details = [
     { label: 'Private villa', value: '01', note: 'Entirely yours' },
