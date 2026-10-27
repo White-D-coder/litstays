@@ -1,0 +1,34 @@
+{
+  "name": "the-lit-stays",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/dev.mjs",
+    "build": "next build",
+    "start": "node --import tsx --env-file-if-exists=.env.local scripts/serve.mjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint .",
+    "test:e2e": "playwright test",
+    "test": "node --import tsx --test tests/availability.test.ts",
+    "images:prepare": "node scripts/prepare-images.mjs"
+  },
+  "dependencies": {
+    "next": "16.4.3",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "motion": "^12.23.24",
+    "google-auth-library": "11.3.1",
+    "tsx": "4.23.15"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "16.4.3",
+    "lighthouse": "^13.0.0",
+    "sharp": "^0.35.5",
+    "typescript": "^5.9.0"
+  }
+}

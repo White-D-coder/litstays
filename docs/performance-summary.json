@@ -1,0 +1,74 @@
+{
+  "mobile": {
+    "lighthouseVersion": "13.5.0",
+    "fetchTime": "2026-10-27T19:53:39.236Z",
+    "scores": {
+      "performance": 88,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": {
+        "value": 846.26345,
+        "display": "0.8 s"
+      },
+      "largest-contentful-paint": {
+        "value": 3904.5269,
+        "display": "3.9 s"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "display": "0"
+      },
+      "total-blocking-time": {
+        "value": 65.5,
+        "display": "70 ms"
+      },
+      "speed-index": {
+        "value": 846.26345,
+        "display": "0.8 s"
+      },
+      "total-byte-weight": {
+        "value": 814339,
+        "display": "Total size was 795 KiB"
+      }
+    }
+  },
+  "desktop": {
+    "lighthouseVersion": "13.5.0",
+    "fetchTime": "2026-10-27T19:56:31.352Z",
+    "scores": {
+      "performance": 100,
+      "accessibility": 100,
+      "best-practices": 100,
+      "seo": 100
+    },
+    "metrics": {
+      "first-contentful-paint": {
+        "value": 217.81280000000004,
+        "display": "0.2 s"
+      },
+      "largest-contentful-paint": {
+        "value": 807.6256,
+        "display": "0.8 s"
+      },
+      "cumulative-layout-shift": {
+        "value": 0,
+        "display": "0"
+      },
+      "total-blocking-time": {
+        "value": 0,
+        "display": "0 ms"
+      },
+      "speed-index": {
+        "value": 251.47765708081084,
+        "display": "0.3 s"
+      },
+      "total-byte-weight": {
+        "value": 861475,
+        "display": "Total size was 841 KiB"
+      }
+    }
+  }
+}
