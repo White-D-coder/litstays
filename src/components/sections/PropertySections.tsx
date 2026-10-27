@@ -6,19 +6,21 @@ import { Arrow, BrandMark } from '../ui/Icons';
 export function IntroductionSection() {
   return (
     <section className="introduction section-padding" id="introduction" aria-labelledby="introduction-heading">
-      <Reveal className="intro-masthead">
-        <p className="eyebrow"><span className="tiny-line" /> A PLACE TO JUST BE</p>
-        <span className="section-number">01 / THE FEELING</span>
-      </Reveal>
-      <Reveal className="intro-statement">
-        <span className="intro-side-note" aria-hidden="true">LEAVE A LITTLE ROOM FOR LIFE.</span>
-        <h2 id="introduction-heading">A little further from<br /><em>the everyday.</em></h2>
-      </Reveal>
-      <div className="intro-afterword">
-        <Reveal className="intro-signature"><BrandMark /><span>This is<br /><em>The Lit Stays.</em></span></Reveal>
+      <div className="intro-layout">
+        <Reveal className="intro-heading">
+          <div className="intro-heading-meta"><p className="eyebrow">A PLACE TO JUST BE</p><span>01 / THE FEELING</span></div>
+          <h2 id="introduction-heading">A little further<br />from <em>the everyday.</em></h2>
+        </Reveal>
+        <Reveal className="intro-portrait">
+          <div className="image-frame intro-portrait-image">
+            <Image src="balcony.jpg" alt="A quiet balcony corner with woven chairs, a small table and a view into the trees at Villa Archway" fill sizes="(max-width: 700px) 85vw, 40vw" />
+          </div>
+          <p className="intro-photo-caption"><span>THE QUIETER CORNERS</span><em>Yours to settle into.</em></p>
+        </Reveal>
         <Reveal className="intro-copy" delay={.1}>
-          <p>Some days call for a change of scenery.<br />Others, simply a change of pace.</p>
+          <p className="intro-lead">Some days call for a change of scenery.<br />Others, simply a change of pace.</p>
           <p>Leave the full calendars behind. Come for the unhurried mornings, the conversations that wander, and the pleasure of having nowhere else to be.</p>
+          <div className="intro-signature"><BrandMark /><span>This is <em>The Lit Stays.</em></span></div>
         </Reveal>
       </div>
     </section>
@@ -55,10 +57,22 @@ export function BungalowSection() {
 }
 
 export function SpacesSection() {
-  return <section className="spaces section-padding" id="spaces" aria-labelledby="spaces-heading">
-    <Reveal><div className="section-kicker"><span className="tiny-line"/><p className="eyebrow">ROOM TO MAKE YOURSELF AT HOME</p><span className="section-number">02 / THE SPACES</span></div><div className="section-title-row"><h2 id="spaces-heading">Find your <em>own rhythm.</em></h2><p>For a quiet moment.<br/>For everyone around the table.<br/>For whatever the day becomes.</p></div></Reveal>
-    <div className="spaces-grid"><Reveal className="space-bedroom"><div className="image-frame"><Image src="bedroom.jpg" alt="A restful bedroom with a broad arched window overlooking greenery" fill sizes="(max-width: 700px) 100vw, 48vw"/></div><div className="space-caption"><span className="space-index">01</span><div><h3>Rest comes naturally.</h3><p>Bedrooms to retreat to, at your own pace.</p></div></div></Reveal><Reveal className="space-pool" delay={.12}><div className="image-frame"><Image src="pool.jpg" alt="The private pool at Villa Archway, framed by warm walls and tropical plants" fill sizes="(max-width: 700px) 100vw, 37vw"/></div><div className="space-caption"><span className="space-index">02</span><div><h3>A little less on the agenda.</h3><p>Take a dip. Stay a while. Repeat.</p></div></div></Reveal></div>
-  </section>;
+  return (
+    <section className="spaces section-padding" id="spaces" aria-labelledby="spaces-heading">
+      <div className="spaces-top">
+        <Reveal className="spaces-heading"><p className="eyebrow">ROOM TO MAKE YOURSELF AT HOME</p><h2 id="spaces-heading">Find your<br /><em>own rhythm.</em></h2></Reveal>
+        <Reveal className="spaces-opening" delay={.08}><span className="spaces-chapter">02 / THE SPACES</span><p>For a quiet moment.<br />For everyone around the table.<br />For whatever the day becomes.</p></Reveal>
+      </div>
+      <div className="space-scene space-scene-pool">
+        <Reveal className="space-scene-copy"><span className="space-scene-label">01 / OUT IN THE OPEN</span><h3>A little less<br />{' '}on the <em>agenda.</em></h3><p>Take a dip. Stay a while. Repeat.<br />The afternoon can find its own pace.</p><a href="#gallery" className="text-link dark-link">A closer look <Arrow diagonal /></a></Reveal>
+        <Reveal className="space-scene-visual" delay={.08}><div className="image-frame"><Image src="pool.jpg" alt="The private pool at Villa Archway with blue water, warm walls and tropical plants" fill sizes="(max-width: 700px) 100vw, 63vw" /></div><span className="space-scene-caption">THE PRIVATE POOL</span></Reveal>
+      </div>
+      <div className="space-scene space-scene-bedroom">
+        <Reveal className="space-scene-copy"><span className="space-scene-label">02 / A SOFTER START</span><h3>Rest comes<br />{' '}<em>naturally.</em></h3><p>A greener view. An unhurried morning.<br />Bedrooms to retreat to, at your own pace.</p><span className="space-scene-aside">No alarm. No agenda. Just you.</span></Reveal>
+        <Reveal className="space-scene-visual" delay={.08}><div className="image-frame"><Image src="bedroom.jpg" alt="Warm bedroom interiors with a broad arched window overlooking the trees" fill sizes="(max-width: 700px) 90vw, 44vw" /></div><span className="space-scene-caption">THE BEDROOMS</span></Reveal>
+      </div>
+    </section>
+  );
 }
 
 export function FactsSection() {
