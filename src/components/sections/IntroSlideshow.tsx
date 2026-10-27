@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from 'react';
 import { introSlides, introSlideshow } from '@/lib/intro-slides';
-import { Arrow } from '../ui/Icons';
 
 function subscribeVisibility(callback: () => void) {
   document.addEventListener('visibilitychange', callback);
@@ -14,7 +13,6 @@ function subscribeReducedMotion(callback: () => void) {
   media.addEventListener('change', callback);
   return () => media.removeEventListener('change', callback);
 }
-const subscribeHydration = () => () => {};
 
 export function IntroSlideshow() {
   const [active, setActive] = useState(0);
@@ -23,12 +21,10 @@ export function IntroSlideshow() {
   const [ready, setReady] = useState<number[]>([]);
   const [failed, setFailed] = useState<number[]>([]);
   const [visible, setVisible] = useState(false);
-  const [paused, setPaused] = useState(false);
   const [hovered, setHovered] = useState(false);
   const frame = useRef<HTMLDivElement>(null);
   const incomingRef = useRef<number | null>(null);
   const paintFrames = useRef<number[]>([]);
-  const hydrated = useSyncExternalStore(subscribeHydration, () => true, () => false);
   const tabVisible = useSyncExternalStore(subscribeVisibility, () => !document.hidden, () => false);
   const reduced = useSyncExternalStore(subscribeReducedMotion, () => window.matchMedia('(prefers-reduced-motion: reduce)').matches, () => true);
 
@@ -64,7 +60,7 @@ export function IntroSlideshow() {
     setFading(false); setIncoming(next);
   }, [active, failed]);
 
-  const playing = visible && tabVisible && !reduced && !paused && !hovered;
+  const playing = visible && tabVisible && !reduced && !hovered;
   useEffect(() => {
     if (!playing || incoming !== null || !ready.includes(active)) return;
     const timer = setTimeout(requestNext, introSlideshow.holdMs);
@@ -102,7 +98,7 @@ export function IntroSlideshow() {
     onPointerEnter={event => { if (event.pointerType === 'mouse') setHovered(true); }}
     onPointerLeave={() => setHovered(false)}
   >
-    <div className="intro-slide-track" aria-live={paused ? 'polite' : 'off'}>
+    <div className="intro-slide-track" aria-live="off">
       {displayed.map(index => <div
         key={introSlides[index].id}
         className={`intro-slide-layer${index === incoming ? ' is-incoming' : ''}${index === incoming && fading ? ' is-fading' : ''}`}
@@ -115,12 +111,5 @@ export function IntroSlideshow() {
         <Image className="intro-slide-image" src={`${introSlides[index].id}.jpg`} alt={introSlides[index].alt} fill sizes="(max-width: 800px) 85vw, 40vw" loading={index === incoming ? 'eager' : 'lazy'} onLoad={() => onLoaded(index)} onError={() => { if (index === incomingRef.current) discardIncoming(); }} />
       </div>)}
     </div>
-    {hydrated && <div className="intro-slideshow-controls">
-      <span className="intro-slide-count" aria-hidden="true">{String(active + 1).padStart(2, '0')} <span>/</span> {String(introSlides.length).padStart(2, '0')}</span>
-      <div className="intro-slide-buttons">
-        {!reduced && <button type="button" aria-label={paused ? 'Play photo slideshow' : 'Pause photo slideshow'} onClick={() => setPaused(current => !current)}>{paused ? <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg> : <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true"><path d="M9 5v14M15 5v14"/></svg>}</button>}
-        <button type="button" aria-label="Next slideshow photograph" disabled={incoming !== null} onClick={() => { setPaused(true); requestNext(); }}><Arrow /></button>
-      </div>
-    </div>}
   </div>;
 }

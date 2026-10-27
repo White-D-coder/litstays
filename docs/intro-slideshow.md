@@ -13,7 +13,7 @@ Edit `src/lib/intro-slides.ts`:
 
 The current photo remains visible while the next image loads and decodes. Only then does the incoming image fade over it. A failed incoming image is skipped while the previous photo remains on screen. Only the current and incoming slides are mounted.
 
-Autoplay runs while the frame is in view and the browser tab is visible. Hovering pauses it temporarily. The pause button stops it explicitly, and manual next-photo navigation keeps it paused. Reduced-motion preferences disable autoplay and opacity transitions; the next-photo button still works.
+Autoplay runs while the frame is in view and the browser tab is visible. Hovering pauses it temporarily. The photos have no visible counter or navigation buttons. Reduced-motion preferences keep the first photo static and disable opacity transitions.
 
 ## Image position
 
