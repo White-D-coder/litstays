@@ -9,6 +9,7 @@ import './gallery-journal.css';
 import './site-refinements.css';
 import './editorial-update.css';
 import './room-for-you.css';
+import './gallery-masonry.css';
 import { HeadingSelection } from '@/components/ui/HeadingSelection';
 
 const serif = localFont({ src: '../../public/fonts/cormorant-garamond.woff2', style: 'normal', weight: '300 700', variable: '--font-serif', display: 'swap', preload: true });

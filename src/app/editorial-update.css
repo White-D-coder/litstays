@@ -149,3 +149,32 @@ h1 em,h2 em,h3 em { font-weight: 400; display: inline; max-width: none; white-sp
 @media (prefers-reduced-motion: reduce) {
   .villa-under-page,.villa-turn-sheet { display: none !important; }
 }
+
+/* Keep the whole spread usable on shorter laptop and phone screens too. */
+@media (min-width: 701px) and (max-height: 820px) {
+  .villa-spaces { --villa-photo-height: clamp(240px, 42svh, 340px); }
+  .villa-explorer { padding-block: 6px; }
+  .villa-heading h2 { font-size: 45px; }
+  .villa-heading .eyebrow { margin-bottom: 9px; }
+  .villa-heading-row { margin-bottom: 15px; }
+  .villa-introduction > p { font-size: 11px; line-height: 1.6; }
+  .villa-explorer-top { margin-bottom: 10px; }
+  .villa-story { padding: 20px 25px; gap: 12px; }
+  .villa-story h3 { font-size: 34px; margin-bottom: 13px; }
+  .villa-story-main > p { font-size: 12px; line-height: 1.65; }
+  .villa-story-note { font-size: 19px; }
+  .villa-explorer-footer { margin-top: 10px; }
+}
+@media (max-width: 700px) and (max-height: 780px) {
+  .villa-spaces { --villa-photo-height: 280px; }
+  .villa-explorer { padding-block: 6px; }
+  .villa-heading h2 { font-size: 31px; }
+  .villa-heading-row { gap: 8px; margin-bottom: 10px; }
+  .villa-introduction > p { font-size: 10px; line-height: 1.5; }
+  .villa-explore-label { font-size: 16px; }
+  .villa-explorer-top { gap: 7px; margin-bottom: 9px; }
+  .villa-story { padding: 13px 12px; gap: 10px; }
+  .villa-story h3 { font-size: 24px; margin-bottom: 10px; }
+  .villa-story-main > p { font-size: 10.5px; line-height: 1.55; }
+  .villa-story-note { font-size: 14px; }
+}
