@@ -10,7 +10,7 @@ export function FAQMore({ children }: { children: ReactNode }) {
   useEffect(() => {
     const element = disclosure.current;
     if (!element) return;
-    const phone = window.matchMedia('(max-width: 640px)');
+    element.dataset.scrollReveal = 'true';
     let lastY = Math.max(0, window.scrollY);
     let frame: number | undefined;
     const section = element.closest('section');
@@ -34,7 +34,7 @@ export function FAQMore({ children }: { children: ReactNode }) {
         element.open = false;
         section?.querySelectorAll<HTMLDetailsElement>('.lit-faq-item[open]').forEach(item => { item.open = false; });
         if (restoreFocus) element.querySelector('summary')?.focus({ preventScroll: true });
-      } else if (phone.matches && top >= 0 && top <= window.innerHeight * .75 && !element.open) {
+      } else if (top >= -100 && top <= window.innerHeight * .9 && !element.open) {
         const summaryFocused = document.activeElement === element.querySelector('summary');
         openedByClick.current = false;
         element.open = true;
@@ -48,8 +48,8 @@ export function FAQMore({ children }: { children: ReactNode }) {
       frame = undefined; lastY = Math.max(0, window.scrollY);
       window.addEventListener('scroll', scroll, { passive: true });
     };
-    configure(); phone.addEventListener('change', configure);
-    return () => { window.removeEventListener('scroll', scroll); phone.removeEventListener('change', configure); section?.removeEventListener('toggle', toggled, true); if (frame !== undefined) window.cancelAnimationFrame(frame); };
+    configure();
+    return () => { window.removeEventListener('scroll', scroll); section?.removeEventListener('toggle', toggled, true); if (frame !== undefined) window.cancelAnimationFrame(frame); };
   }, []);
 
   return <details ref={disclosure} className="lit-faq-more" onToggle={event => {

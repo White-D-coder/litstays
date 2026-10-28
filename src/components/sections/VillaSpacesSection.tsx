@@ -67,7 +67,7 @@ export function VillaSpacesSection() {
     function measure() {
       if (!element || !spread) return;
       element.style.setProperty('--villa-book-height', `${spread.offsetHeight}px`);
-      element.dataset.scrollBook = String(!reduced.matches && spread.offsetHeight < window.innerHeight - 115);
+      element.dataset.scrollBook = String(!reduced.matches);
     }
     function update() {
       frame = 0;
@@ -87,11 +87,20 @@ export function VillaSpacesSection() {
     const scroll = () => { if (!frame) frame = requestAnimationFrame(update); };
     const observer = new ResizeObserver(measure);
     observer.observe(spread);
+    const preload = () => images.current.forEach(image => {
+      if (!image) return;
+      image.loading = 'eager';
+      void image.decode().catch(() => {});
+    });
+    const nearby = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { preload(); nearby.disconnect(); }
+    }, { rootMargin: '400px' });
+    nearby.observe(element);
     measure();
     window.addEventListener('resize', measure);
     window.addEventListener('scroll', scroll, { passive: true });
     reduced.addEventListener('change', measure);
-    return () => { observer.disconnect(); window.removeEventListener('resize', measure); window.removeEventListener('scroll', scroll); reduced.removeEventListener('change', measure); cancelAnimationFrame(frame); };
+    return () => { observer.disconnect(); nearby.disconnect(); window.removeEventListener('resize', measure); window.removeEventListener('scroll', scroll); reduced.removeEventListener('change', measure); cancelAnimationFrame(frame); };
   }, [select]);
 
   function onTabKey(event: KeyboardEvent<HTMLButtonElement>, index: number) {
