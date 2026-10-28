@@ -1,0 +1,64 @@
+/* Photo order and timing: src/lib/gallery-slides.ts. */
+.gallery-journal {
+  --journal-ivory: #f3efdf;
+  --journal-caption-x: 32px;
+  --journal-caption-y: 31px;
+}
+.gallery-journal-slide { display: block; position: absolute; inset: 0; opacity: 1; }
+.gallery-journal-slide.is-incoming { z-index: 1; opacity: 0; transition: opacity var(--journal-crossfade, 1400ms) cubic-bezier(.4, 0, .2, 1); }
+.gallery-journal-slide.is-incoming.is-fading { opacity: 1; }
+.gallery-journal .gallery-journal-slide img { object-position: center; }
+.gallery-journal .gallery-item-featured img { object-position: center 56%; }
+.gallery-photo-wash { position: absolute; inset: 0; background: var(--journal-ivory); opacity: 0; pointer-events: none; }
+.gallery-journal-slide.is-incoming.is-fading .gallery-photo-wash { animation: journal-ivory-dissolve var(--journal-crossfade, 1400ms) ease both; }
+.gallery-journal .gallery-image-shade { background: linear-gradient(0deg, rgba(7, 21, 11, .86), rgba(7, 21, 11, .2) 38%, transparent 65%); }
+.gallery-journal-caption {
+  display: block;
+  position: absolute;
+  left: var(--journal-caption-x);
+  right: 80px;
+  bottom: var(--journal-caption-y);
+  color: var(--journal-ivory);
+  text-shadow: 0 1px 18px rgba(7, 21, 11, .2);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 350ms ease, transform 600ms var(--ease);
+}
+.gallery-journal-category { display: block; font-size: 8px; line-height: 1.6; letter-spacing: .15em; text-transform: uppercase; margin-bottom: 12px; color: inherit; opacity: .85; }
+.gallery-journal-title { display: block; font-family: var(--font-serif), Georgia, serif; font-size: clamp(31px, 3vw, 46px); line-height: 1.08; letter-spacing: -.015em; }
+.gallery-journal-caption > em { display: block; font-family: var(--font-serif), Georgia, serif; font-size: clamp(19px, 1.65vw, 25px); line-height: 1.35; margin-top: 10px; }
+.gallery-journal-slide.is-incoming .gallery-journal-caption { opacity: 0; transform: translateY(9px); transition: opacity 900ms ease 180ms, transform 1100ms var(--ease) 180ms; }
+.gallery-journal-slide.is-incoming.is-fading .gallery-journal-caption { opacity: 1; transform: translateY(0); }
+.gallery-journal.is-transitioning .gallery-journal-slide:not(.is-incoming) .gallery-journal-caption { opacity: 0; transform: translateY(-6px); }
+.gallery-journal .gallery-item-compact { --journal-caption-x: 24px; --journal-caption-y: 24px; }
+.gallery-journal .gallery-item-compact .gallery-journal-title { font-size: clamp(25px, 2vw, 32px); }
+.gallery-journal .gallery-item-compact .gallery-journal-category { font-size: 7px; margin-bottom: 9px; }
+.gallery-journal .gallery-expand { z-index: 2; background: var(--journal-ivory); }
+
+@keyframes journal-ivory-dissolve { 0%, 100% { opacity: 0; } 40% { opacity: .16; } }
+
+@media (max-width: 1100px) {
+  .gallery-journal { --journal-caption-x: 25px; --journal-caption-y: 25px; }
+  .gallery-journal-title { font-size: 36px; }
+  .gallery-journal .gallery-item-compact { --journal-caption-x: 20px; --journal-caption-y: 22px; }
+}
+@media (max-width: 700px) {
+  .gallery-journal { --journal-caption-x: 23px; --journal-caption-y: 25px; }
+  .gallery-journal-caption { right: 65px; }
+  .gallery-journal-title { font-size: 36px; }
+  .gallery-journal-category { font-size: 7px; margin-bottom: 10px; }
+  .gallery-journal .gallery-item-compact { --journal-caption-x: 16px; --journal-caption-y: 20px; }
+  .gallery-journal .gallery-item-compact .gallery-journal-caption { right: 15px; bottom: 62px; }
+  .gallery-journal .gallery-item-compact .gallery-journal-title { font-size: 26px; line-height: 1.1; }
+  .gallery-journal .gallery-item-compact .gallery-journal-category { display: none; }
+  .gallery-journal .gallery-item-compact .gallery-image-shade { background: linear-gradient(0deg, rgba(7, 21, 11, .9), rgba(7, 21, 11, .45) 60%, rgba(7, 21, 11, .05)); }
+}
+@media (max-width: 360px) {
+  .gallery-journal-title { font-size: 32px; }
+  .gallery-journal .gallery-item-compact { --journal-caption-x: 12px; }
+  .gallery-journal .gallery-item-compact .gallery-journal-title { font-size: 23px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gallery-journal-slide, .gallery-journal-caption { transition: none !important; transform: none !important; }
+  .gallery-photo-wash { animation: none !important; }
+}

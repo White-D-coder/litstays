@@ -5,6 +5,7 @@ import './globals.css';
 import './intro-artwork.css';
 import './intro-slideshow.css';
 import './villa-spaces.css';
+import './gallery-journal.css';
 
 const serif = localFont({ src: [
   { path: '../../public/fonts/instrument-serif.woff2', style: 'normal', weight: '400' },
