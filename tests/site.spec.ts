@@ -138,7 +138,7 @@ test('FAQ matches the supplied disclosure pattern and shows the owner-provided a
   await expect(meals).toHaveAttribute('open', '');
   await expect(checkIn).not.toHaveAttribute('open', '');
   await expect(meals.locator('.lit-faq-answer')).toContainText('₹1,400 per person');
-  await page.mouse.wheel(0, 220);
+  await faq.locator('.lit-faq-more > summary').click();
   await expect(faq.locator('.lit-faq-more')).toHaveAttribute('open', '');
   await expect(faq.getByText('Is parking available?', { exact: true })).toBeVisible();
   const parking = faq.locator('.lit-faq-item').filter({ hasText: 'Is parking available?' });

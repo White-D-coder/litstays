@@ -49,7 +49,7 @@ test('scrolling up restores the initial four FAQ questions', async ({ page }) =>
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/#faq');
   const more = page.locator('.lit-faq-more');
-  await page.mouse.wheel(0, 180);
+  await more.locator(':scope > summary').click();
   await expect(more).toHaveAttribute('open', '');
   await page.waitForTimeout(550);
   await page.evaluate(() => {

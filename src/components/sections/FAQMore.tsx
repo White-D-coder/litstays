@@ -10,7 +10,7 @@ export function FAQMore({ children }: { children: ReactNode }) {
   useEffect(() => {
     const element = disclosure.current;
     if (!element) return;
-    element.dataset.scrollReady = 'true';
+    const phone = window.matchMedia('(max-width: 640px)');
     let lastY = Math.max(0, window.scrollY);
     let frame: number | undefined;
     const section = element.closest('section');
@@ -32,13 +32,11 @@ export function FAQMore({ children }: { children: ReactNode }) {
       if (delta < 0) {
         const restoreFocus = element.contains(document.activeElement);
         element.open = false;
-        element.dataset.folded = 'true';
         section?.querySelectorAll<HTMLDetailsElement>('.lit-faq-item[open]').forEach(item => { item.open = false; });
         if (restoreFocus) element.querySelector('summary')?.focus({ preventScroll: true });
-      } else if (top >= -100 && top <= window.innerHeight * .95 && !element.open) {
+      } else if (phone.matches && top >= 0 && top <= window.innerHeight * .75 && !element.open) {
         const summaryFocused = document.activeElement === element.querySelector('summary');
         openedByClick.current = false;
-        element.dataset.folded = 'false';
         element.open = true;
         if (summaryFocused) element.querySelector<HTMLElement>('.lit-faq-item > summary')?.focus({ preventScroll: true });
       }
@@ -50,8 +48,8 @@ export function FAQMore({ children }: { children: ReactNode }) {
       frame = undefined; lastY = Math.max(0, window.scrollY);
       window.addEventListener('scroll', scroll, { passive: true });
     };
-    configure();
-    return () => { window.removeEventListener('scroll', scroll); section?.removeEventListener('toggle', toggled, true); if (frame !== undefined) window.cancelAnimationFrame(frame); };
+    configure(); phone.addEventListener('change', configure);
+    return () => { window.removeEventListener('scroll', scroll); phone.removeEventListener('change', configure); section?.removeEventListener('toggle', toggled, true); if (frame !== undefined) window.cancelAnimationFrame(frame); };
   }, []);
 
   return <details ref={disclosure} className="lit-faq-more" onToggle={event => {
