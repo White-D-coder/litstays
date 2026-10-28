@@ -41,8 +41,7 @@ export function FactsSection() {
       <Reveal className="amenities-copy">
         <p className="eyebrow">VILLA ARCHWAY, AT A GLANCE</p>
         <h2 id="facts-heading">Room for you. <em>And your kind of together.</em></h2>
-        <p className="amenities-description">Your own private villa, room to unwind, and the comforts that make settling in feel effortless. From a quiet bedroom to an afternoon by the pool, there’s a little space for everyone.</p>
-        <p className="amenities-note">Every stay is exclusive to your group. Share your plans with us to find the right fit.</p>
+        <p className="amenities-description">Every stay is exclusive to your group. Settle into a quiet bedroom, take an afternoon dip in your private pool, and make a little space for everyone.</p>
         <a href={site.listing} target="_blank" rel="noopener noreferrer" className="text-link amenities-link">Full property details <Arrow diagonal/></a>
       </Reveal>
       <Reveal className="amenities-grid-wrap" delay={.08}>

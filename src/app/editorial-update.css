@@ -16,7 +16,10 @@ h1 em,h2 em,h3 em { font-weight: 400; display: inline; max-width: none; white-sp
 /* Heading, tabs, scrapbook and footer stay together in the same sticky viewport. */
 .villa-spaces { --villa-photo-height: clamp(390px, 33vw, 500px); --villa-page-distance: max(320px, 68svh); padding-block: 18px 25px; }
 .villa-explorer { background: var(--ivory); padding-block: 12px; }
-.villa-book-track[data-scroll-book="true"] { height: calc(var(--villa-book-height) + var(--villa-page-distance) * 4); }
+.villa-book-track[data-scroll-book="true"] { height: auto; }
+@media (prefers-reduced-motion: no-preference) {
+  .villa-book-track::after { content: ''; display: block; height: calc(var(--villa-page-distance) * 4); }
+}
 .villa-book-track[data-scroll-book="true"] .villa-explorer { top: max(90px, calc((100svh - var(--villa-book-height) + 90px) / 2)); }
 .villa-heading-row { grid-template-columns: 1.25fr 1fr; gap: 7%; margin-bottom: 20px; }
 .villa-heading h2 { font-size: clamp(42px, 4vw, 62px); max-width: 17ch; line-height: 1; }
@@ -40,6 +43,8 @@ h1 em,h2 em,h3 em { font-weight: 400; display: inline; max-width: none; white-sp
 .experience-story .eyebrow,.experience-intro,.moment-number,.moment-plus,.moment-description p { color: var(--muted); }
 .experience-story h2 { max-width: 18ch; font-size: clamp(42px, 4.1vw, 62px); }
 .moment::after { background: var(--inset-rule); }
+.experience { margin-top: 24px; margin-bottom: clamp(36px, 4vw, 60px); }
+.moment button:focus-visible { outline-width: 1px; outline-offset: 4px; border-radius: 3px; }
 .facts { background: var(--forest); color: #f3efdf; }
 .facts-layout { column-gap: 7%; row-gap: 26px; }
 .facts-sheet h2 { font-size: clamp(45px, 4.2vw, 64px); line-height: 1.05; max-width: 18ch; }

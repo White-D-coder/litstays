@@ -97,10 +97,17 @@ export function VillaSpacesSection() {
     }, { rootMargin: '400px' });
     nearby.observe(element);
     measure();
+    // Reserve scroll space in CSS, then settle deep links after measuring the spread.
+    const anchorFrame = requestAnimationFrame(() => {
+      const target = document.getElementById(window.location.hash.slice(1));
+      if (target && element.compareDocumentPosition(target) & Node.DOCUMENT_POSITION_FOLLOWING) {
+        target.scrollIntoView({ behavior: 'instant', block: 'start' });
+      }
+    });
     window.addEventListener('resize', measure);
     window.addEventListener('scroll', scroll, { passive: true });
     reduced.addEventListener('change', measure);
-    return () => { observer.disconnect(); nearby.disconnect(); window.removeEventListener('resize', measure); window.removeEventListener('scroll', scroll); reduced.removeEventListener('change', measure); cancelAnimationFrame(frame); };
+    return () => { observer.disconnect(); nearby.disconnect(); window.removeEventListener('resize', measure); window.removeEventListener('scroll', scroll); reduced.removeEventListener('change', measure); cancelAnimationFrame(frame); cancelAnimationFrame(anchorFrame); };
   }, [select]);
 
   function onTabKey(event: KeyboardEvent<HTMLButtonElement>, index: number) {
@@ -116,6 +123,7 @@ export function VillaSpacesSection() {
   }
 
   return <section id="bungalow" className="villa-spaces section-padding" aria-labelledby="bungalow-heading">
+    <noscript><style>{'.villa-book-track::after { display: none !important; } .villa-explorer { position: static !important; }'}</style></noscript>
     <div className="villa-book-track" ref={track}><div className="villa-explorer" ref={book}>
     <div className="villa-heading-row">
       <div className="villa-heading">
