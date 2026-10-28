@@ -1,0 +1,54 @@
+/* Matching botanical artwork, kept behind the section content.
+   Adjust opacity, dimensions, inset and rotation here. */
+.experience-story {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+.experience-story::before,
+.lit-faq-section::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  background: url('/images/intro-leaves.webp') center / contain no-repeat;
+  pointer-events: none;
+}
+.experience-story::before {
+  width: clamp(320px, 37vw, 560px);
+  height: 115%;
+  right: -95px;
+  bottom: -80px;
+  opacity: .06;
+  transform: rotate(-18deg) scaleX(-1);
+}
+.lit-faq-section {
+  position: relative;
+  isolation: isolate;
+}
+.lit-faq-section::before {
+  width: clamp(300px, 36vw, 500px);
+  height: 560px;
+  top: 20px;
+  left: 0;
+  opacity: .05;
+  transform: rotate(180deg) scaleX(-1);
+}
+@media (max-width: 900px) {
+  .lit-faq-section::before {
+    width: min(100%, 420px);
+    height: 430px;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg) scaleX(-1);
+  }
+}
+@media (max-width: 600px) {
+  .experience-story::before {
+    width: 340px;
+    height: 480px;
+    right: -95px;
+    bottom: -70px;
+    opacity: .05;
+  }
+  .lit-faq-section::before { height: 370px; opacity: .045; }
+}
