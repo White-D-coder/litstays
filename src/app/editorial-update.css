@@ -1,0 +1,175 @@
+/* Upright typography. Headings wrap as a single paragraph and can be selected together. */
+body { font-synthesis: none; }
+h1,h2,h3 { font-weight: 600; font-style: normal; text-wrap: balance; }
+h1 *,h2 *,h3 * { font-style: normal !important; }
+em,.menu-bottom,.hero-footnote > span,.booking-signature > span,.villa-explore-label,.villa-story-note,.villa-page-number,.space-scene-aside { font-style: normal; }
+h1 em,h2 em,h3 em { font-weight: 400; display: inline; max-width: none; white-space: normal; }
+.hero h1 { max-width: 13ch; font-size: clamp(70px, 7.8vw, 125px); line-height: .98; letter-spacing: -.035em; }
+.intro-heading h2 { font-size: clamp(48px, 4.8vw, 74px); line-height: 1.04; }
+.intro-heading h2 em { white-space: normal; }
+.intro-signature > span,.intro-photo-caption > em { font-weight: 500; }
+.intro-heading,.intro-copy { position: relative; z-index: 1; }
+.intro-portrait { position: relative; isolation: isolate; }
+.intro-leaf-watermark { position: absolute; width: 150%; height: 120%; max-width: none; left: -40%; top: -10%; object-fit: contain; transform: rotate(180deg) scaleX(-1); opacity: .085; pointer-events: none; z-index: -1; }
+.intro-portrait > .intro-slideshow,.intro-photo-caption { position: relative; }
+
+/* Heading, tabs, scrapbook and footer stay together in the same sticky viewport. */
+.villa-spaces { --villa-photo-height: clamp(280px, 35svh, 400px); padding-block: 18px 25px; }
+.villa-explorer { background: var(--ivory); padding-block: 12px; }
+.villa-book-track[data-scroll-book="true"] { height: calc(var(--villa-book-height) + 48vh); }
+.villa-book-track[data-scroll-book="true"] .villa-explorer { top: max(90px, calc((100svh - var(--villa-book-height) + 90px) / 2)); }
+.villa-heading-row { grid-template-columns: 1.25fr 1fr; gap: 7%; margin-bottom: 20px; }
+.villa-heading h2 { font-size: clamp(42px, 4vw, 62px); max-width: 17ch; line-height: 1; }
+.villa-heading .eyebrow { font-size: 8px; margin-bottom: 12px; }
+.villa-location { font-size: 8px; margin-bottom: 9px; }
+.villa-introduction > p { font-size: 12px; line-height: 1.7; }
+.villa-explorer-top { margin-bottom: 14px; gap: 15px; }
+.villa-explore-label { font-size: 21px; }
+.villa-tabs > button { padding: 9px 13px; font-size: 10px; }
+.villa-story { padding: 24px 30px; gap: 15px; }
+.villa-story h3 { font-size: clamp(30px, 2.9vw, 43px); line-height: 1.05; margin-bottom: 13px; }
+.villa-story-main > p { font-size: 13px; line-height: 1.7; max-width: 37ch; }
+.villa-story-note { font-size: 19px; }
+.villa-page-number { font-size: 66px; font-weight: 400; }
+.villa-explorer-footer { margin-top: 13px; }
+.villa-explorer-footer > p > em { font-size: 17px; }
+.villa-book-hint { font-size: 6px; margin-top: 3px; }
+
+/* Swap the two sections' palettes, preserving the existing content and controls. */
+.experience { background: var(--ivory); color: var(--forest); }
+.experience-story .eyebrow,.experience-intro,.moment-number,.moment-plus,.moment-description p { color: var(--muted); }
+.experience-story h2 { max-width: 18ch; font-size: clamp(42px, 4.1vw, 62px); }
+.moment::after { background: var(--inset-rule); }
+.facts { background: var(--forest); color: #f3efdf; }
+.facts-layout { column-gap: 7%; row-gap: 26px; }
+.facts-sheet h2 { font-size: clamp(45px, 4.2vw, 64px); line-height: 1.05; max-width: 18ch; }
+.facts-sheet h2 em { font-size: 1em; display: inline; max-width: none; }
+.facts-sheet > .eyebrow,.facts-sheet-footer > p,.facts-portrait > .image-caption { color: #bbc5ae; }
+.facts-inventory dt { display: flex; align-items: center; gap: 20px; }
+.facts-inventory dt > svg { width: 60px; height: 60px; flex-shrink: 0; color: #e5e8d6; }
+.facts-inventory dt > .fact-label { display: block; font-size: 14px; color: #f3efdf; margin: 0; }
+.fact-label > span { display: block; font-size: 10px; color: #b7c1aa; margin-top: 4px; }
+.facts-inventory > div { padding-block: 13px; }
+.facts-inventory > div::after { background: rgba(243,239,223,.2); }
+.facts-inventory dd { font-size: 36px; }
+.facts-sheet-footer > .text-link { color: #f3efdf; }
+
+/* Six-frame masonry; frame arrangements still change on each refresh. */
+.gallery-heading h2 { font-size: clamp(47px, 5vw, 76px); }
+.gallery-journal { grid-template-columns: 1.25fr 1fr .85fr; grid-template-rows: repeat(3,minmax(0,1fr)); grid-template-areas: "a b c" "a e c" "d e f"; height: clamp(650px, 58vw, 850px); }
+.gallery-journal[data-layout="1"] { grid-template-columns: .85fr 1fr 1.25fr; grid-template-rows: repeat(3,minmax(0,1fr)); grid-template-areas: "c b a" "c e a" "f e d"; }
+.gallery-journal[data-layout="2"] { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: repeat(3,minmax(0,1fr)); grid-template-areas: "b a a" "c c e" "d f e"; }
+.gallery-journal > .reveal,.gallery-journal[data-layout] > .reveal { grid-column: auto; grid-row: auto; width: auto; height: auto; min-height: 0; }
+.gallery-journal > .journal-tile-0,.gallery-journal[data-layout] > .journal-tile-0 { grid-area: a; }
+.gallery-journal > .journal-tile-1,.gallery-journal[data-layout] > .journal-tile-1 { grid-area: b; }
+.gallery-journal > .journal-tile-2,.gallery-journal[data-layout] > .journal-tile-2 { grid-area: c; }
+.gallery-journal > .journal-tile-3,.gallery-journal[data-layout] > .journal-tile-3 { grid-area: d; }
+.gallery-journal > .journal-tile-4,.gallery-journal[data-layout] > .journal-tile-4 { grid-area: e; }
+.gallery-journal > .journal-tile-5,.gallery-journal[data-layout] > .journal-tile-5 { grid-area: f; }
+.gallery-journal-title { font-size: clamp(29px, 2.7vw, 40px); font-weight: 500; }
+.gallery-journal-caption > em { font-size: 20px; }
+.gallery-journal .gallery-item-compact .gallery-journal-title { font-size: clamp(24px, 2vw, 31px); }
+.gallery-journal .gallery-item-compact .gallery-journal-category { display: none; }
+.gallery-journal-caption { right: 59px; }
+
+/* Questions reveal automatically on downward scrolling, then fold on the way back. */
+.lit-faq-title-row h2 { display: block; max-width: 15ch; font-size: clamp(45px, 4.2vw, 62px); line-height: 1.05; text-align: left; }
+.lit-faq-title-row h2 > span { display: inline; }
+.lit-faq-title-row .faq-asked-word { display: inline-flex; align-items: center; vertical-align: middle; width: auto; }
+.lit-faq-title-icon { position: static; width: 145px; margin-left: -6px; transform: translateY(-5px); }
+.lit-faq-more[data-scroll-ready="true"]:not([data-folded="true"]):not([open]) > summary { display: none; }
+.lit-faq-more > .lit-faq-item:last-child > summary::after { display: none; }
+.lit-faq-more > .lit-faq-item:last-child { margin-bottom: 0; padding-bottom: 0; }
+.lit-faq-question { font-weight: 500; }
+.availability-intro h2,.booking h2 { max-width: 17ch; line-height: 1.03; }
+
+@media (max-width: 1100px) {
+  .villa-explorer-top { flex-direction: row; align-items: center; }
+  .villa-tabs { margin-left: 0; }
+  .villa-heading-row { gap: 5%; }
+  .villa-story { padding: 22px; }
+  .villa-story h3 { font-size: 34px; }
+}
+@media (max-width: 800px) {
+  .hero h1 { font-size: clamp(70px, 11vw, 98px); }
+  .villa-heading-row { grid-template-columns: 1.15fr 1fr; }
+  .villa-heading h2 { font-size: 42px; }
+  .villa-explorer-top { flex-direction: column; align-items: stretch; gap: 9px; }
+  .villa-tabs { justify-content: space-between; }
+}
+@media (max-width: 700px) {
+  .hero h1 { max-width: 11.5ch; font-size: clamp(61px, 13vw, 87px); }
+  .intro-heading h2 { font-size: clamp(43px, 9vw, 63px); }
+  .intro-leaf-watermark { width: 145%; left: -30%; opacity: .08; }
+  .villa-spaces { --villa-photo-height: 300px; }
+  .villa-explorer { padding-block: 8px; }
+  .villa-book-track[data-scroll-book="true"] .villa-explorer { top: max(84px, calc((100svh - var(--villa-book-height) + 84px) / 2)); }
+  .villa-heading-row { grid-template-columns: 1fr; gap: 11px; margin-bottom: 14px; }
+  .villa-heading h2 { font-size: 38px; max-width: 19ch; }
+  .villa-heading .eyebrow { margin-bottom: 8px; font-size: 7px; }
+  .villa-introduction { max-width: none; padding-bottom: 0; }
+  .villa-location { display: none; }
+  .villa-introduction > p { font-size: 11px; line-height: 1.65; }
+  .villa-explore-label { font-size: 18px; }
+  .villa-explorer-top { margin-bottom: 11px; }
+  .villa-tabs { display: grid; grid-template-columns: repeat(4,1fr); gap: 4px; }
+  .villa-tabs > button { padding: 8px 4px; font-size: 9px; gap: 4px; }
+  .villa-panel { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
+  .villa-photo { aspect-ratio: auto; }
+  .villa-story { padding: 17px 14px; min-height: 0; gap: 12px; background: linear-gradient(90deg,#d9d6c6,#f3efe3 7%,#eeeadd); }
+  .villa-story h3 { font-size: 25px; margin-bottom: 11px; }
+  .villa-story-main > p { font-size: 11px; line-height: 1.6; }
+  .villa-story-kicker { font-size: 6px; letter-spacing: .1em; }
+  .villa-story-note { font-size: 15px; line-height: 1.3; }
+  .villa-page-number { font-size: 48px; right: 10px; top: 5px; }
+  .villa-page-watermark { width: 90px; height: 100px; }
+  .villa-turn-sheet { inset: 0 0 0 auto; width: 50%; height: auto; aspect-ratio: auto; }
+  .villa-sheet-story { display: flex; }
+  .villa-under-page { display: block; inset: 0 auto 0 0; width: 50%; height: auto; aspect-ratio: auto; }
+  .villa-under-page.villa-under-story { display: flex; inset: 0 0 0 auto; width: 50%; height: auto; aspect-ratio: auto; padding: 17px 14px; }
+  .villa-under-story > :not(.villa-mobile-under-image) { display: revert; }
+  .villa-mobile-sheet-image,.villa-under-story > .villa-mobile-under-image { display: none !important; }
+  .villa-explorer-footer { margin-top: 10px; flex-direction: row; align-items: center; gap: 10px; }
+  .villa-explorer-footer > p { font-size: 8px; }
+  .villa-explorer-footer > p > em { font-size: 11px; margin-left: 0; }
+  .villa-explorer-footer .text-link { font-size: 8px; gap: 7px; max-width: 125px; }
+  .villa-explorer-footer .text-link svg { width: 15px; }
+  .experience-story h2 { font-size: 43px; }
+  .facts-inventory dt { gap: 16px; }
+  .facts-inventory dt > svg { width: 52px; height: 52px; }
+  .facts-sheet h2 { font-size: 43px; }
+  .facts-inventory dt > .fact-label { font-size: 14px; }
+  .facts-inventory dd { font-size: 33px; }
+  .gallery-journal,.gallery-journal[data-layout="1"],.gallery-journal[data-layout="2"] { grid-template-columns: 1fr 1fr; grid-template-rows: repeat(5,minmax(0,1fr)); height: 790px; grid-template-areas: "a b" "a c" "d c" "e f" "e f"; }
+  .gallery-journal[data-layout="1"] { grid-template-areas: "b a" "c a" "c d" "f e" "f e"; }
+  .gallery-journal[data-layout="2"] { grid-template-areas: "a a" "b c" "d c" "e f" "e f"; }
+  .gallery-journal[data-layout] > .reveal { height: auto; }
+  .gallery-journal { --journal-caption-x: 15px; --journal-caption-y: 18px; }
+  .gallery-journal-title,.gallery-journal .gallery-item-compact .gallery-journal-title { font-size: 25px; line-height: 1; }
+  .gallery-journal .gallery-item-compact .gallery-journal-caption { right: 10px; bottom: 49px; left: 13px; }
+  .gallery-journal .gallery-item-featured .gallery-journal-caption { right: 12px; bottom: 50px; }
+  .gallery-journal .gallery-journal-caption > em,.gallery-journal .gallery-journal-category { display: none; }
+  .gallery-journal .gallery-image-shade { background: linear-gradient(0deg,rgba(7,21,11,.9),rgba(7,21,11,.3) 65%,transparent); }
+  .gallery-heading h2 { font-size: 45px; }
+  .lit-faq-title-row h2 { display: inline-block; font-size: 43px; max-width: 15ch; }
+  .lit-faq-title-icon { width: 115px; }
+  .lit-faq-question { font-size: 20px; }
+}
+@media (max-width: 360px) {
+  .hero h1 { font-size: 59px; }
+  .villa-heading h2 { font-size: 35px; }
+  .villa-story { padding: 15px 11px; }
+  .villa-story h3 { font-size: 23px; }
+  .villa-story-main > p { font-size: 10px; }
+  .villa-story-note { font-size: 14px; }
+  .villa-under-page.villa-under-story { padding: 15px 11px; }
+  .villa-tabs > button { font-size: 8px; }
+  .facts-inventory dt > svg { width: 45px; height: 45px; }
+  .facts-inventory dt { gap: 12px; }
+  .facts-inventory dd { font-size: 29px; }
+  .gallery-journal-title,.gallery-journal .gallery-item-compact .gallery-journal-title { font-size: 23px; }
+  .lit-faq-title-row h2 { font-size: 40px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .villa-under-page,.villa-turn-sheet { display: none !important; }
+}

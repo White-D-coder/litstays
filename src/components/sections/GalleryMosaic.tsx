@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore, type CSSProperties } from 'react';
 import { galleryScenes, galleryMotion } from '@/lib/gallery-slides';
-import { photos, type Photo } from '@/lib/site-content';
+import { photos } from '@/lib/site-content';
 import { Arrow } from '../ui/Icons';
 import { Reveal } from '../ui/Reveal';
 
@@ -70,18 +70,19 @@ export function GalleryMosaic({ paused, onSelect }: { paused: boolean; onSelect:
     while (failed.includes(next) && next !== active) next = (next + 1) % galleryScenes.length;
     if (next === active) return;
     incomingRef.current = next;
+    setReady(current => current.filter(key => !key.startsWith(`${next}-`)));
     setFading(false); setIncoming(next);
   }, [active, failed]);
 
   const playing = visible && tabVisible && !reduced && !paused && !hovered && !focused;
   useEffect(() => {
-    if (!playing || incoming !== null || !galleryScenes[active].photos.every(photo => ready.includes(photo.id))) return;
+    if (!playing || incoming !== null || !galleryScenes[active].photos.every((_, slot) => ready.includes(`${active}-${slot}`))) return;
     const timer = setTimeout(requestNext, galleryMotion.holdMs);
     return () => clearTimeout(timer);
   }, [playing, incoming, active, ready, requestNext]);
   useEffect(() => {
-    if (incoming === null || fading || !galleryScenes[incoming].photos.every(photo => ready.includes(photo.id))) return;
-    // Paint all three decoded replacement images before fading the scene in.
+    if (incoming === null || fading || !galleryScenes[incoming].photos.every((_, slot) => ready.includes(`${incoming}-${slot}`))) return;
+    // Paint all six decoded replacement images before fading the scene in.
     paints.current = [requestAnimationFrame(() => {
       paints.current.push(requestAnimationFrame(() => {
         if (incomingRef.current === incoming) setFading(true);
@@ -95,8 +96,9 @@ export function GalleryMosaic({ paused, onSelect }: { paused: boolean; onSelect:
     return () => clearTimeout(timer);
   }, [incoming, fading, reduced, complete, discardIncoming]);
 
-  function onLoaded(photo: Photo) {
-    setReady(current => current.includes(photo.id) ? current : [...current, photo.id]);
+  function onLoaded(scene: number, slot: number) {
+    const key = `${scene}-${slot}`;
+    setReady(current => current.includes(key) ? current : [...current, key]);
   }
 
   const displayed = incoming === null ? [active] : [active, incoming];
@@ -106,9 +108,9 @@ export function GalleryMosaic({ paused, onSelect }: { paused: boolean; onSelect:
     onPointerLeave={() => setHovered(false)}
     onFocusCapture={() => setFocused(true)}
     onBlurCapture={event => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setFocused(false); }}>
-    {[0, 1, 2].map(slot => {
+    {[0, 1, 2, 3, 4, 5].map(slot => {
       const current = galleryScenes[active].photos[slot];
-      return <Reveal key={slot} className={slot === 0 ? 'gallery-feature' : 'gallery-supporting'} delay={slot * .07}>
+      return <Reveal key={slot} className={`journal-tile-${slot} ${slot === 0 ? 'gallery-feature' : 'gallery-supporting'}`} delay={slot * .04}>
         <button className={`gallery-item ${slot === 0 ? 'gallery-item-featured' : 'gallery-item-compact'}`}
           aria-label={`Open photograph: ${current.caption}`} data-photo={current.id}
           onClick={event => onSelect(photos.indexOf(current), event.currentTarget)}>
@@ -119,8 +121,8 @@ export function GalleryMosaic({ paused, onSelect }: { paused: boolean; onSelect:
               return <span key={scene} aria-hidden={isIncoming}
                 className={`gallery-journal-slide${isIncoming ? ' is-incoming' : ''}${isIncoming && fading ? ' is-fading' : ''}`}
                 onTransitionEnd={event => { if (event.target === event.currentTarget && event.propertyName === 'opacity' && isIncoming && fading) complete(); }}>
-                <Image src={`${photo.id}.jpg`} alt={photo.alt} fill sizes={slot === 0 ? '(max-width: 700px) 100vw, 55vw' : '(max-width: 700px) 45vw, 38vw'} loading={isIncoming ? 'eager' : 'lazy'}
-                  onLoad={() => onLoaded(photo)} onError={() => { if (isIncoming) discardIncoming(); }} />
+                <Image src={`${photo.id}.jpg`} alt={photo.alt} fill sizes="(max-width: 700px) 48vw, 40vw" loading={isIncoming ? 'eager' : 'lazy'}
+                  onLoad={() => onLoaded(scene, slot)} onError={() => { if (isIncoming) discardIncoming(); }} />
                 <span className="gallery-photo-wash" />
                 <span className="gallery-image-shade" />
                 <span className="gallery-journal-caption"><span className="gallery-journal-category">{photo.category}</span><span className="gallery-journal-title">{photo.caption}</span>{slot === 0 && <em>{galleryScenes[scene].note}</em>}</span>

@@ -7,10 +7,10 @@ import { Arrow, BrandMark } from '../ui/Icons';
 import { IntroFade } from '../ui/IntroFade';
 
 const spaces = [
-  { photo: photos[0], label: 'Living room', prelude: 'ROOM FOR GOOD COMPANY', title: <>A softer kind<br /><em>of welcome.</em></>, description: 'Light-filled arches. Warm, considered interiors. A place to gather, settle in, and let the conversation wander.', note: 'Together feels effortless here.' },
-  { photo: photos[2], label: 'Private pool', prelude: 'OUT IN THE OPEN', title: <>A little less<br />on the <em>agenda.</em></>, description: 'Take a dip. Stay a while. Repeat. Your own private pool, with room for the afternoon to find its own pace.', note: 'A moment, entirely your own.' },
-  { photo: photos[1], label: 'Bedrooms', prelude: 'A SOFTER START', title: <>Rest comes<br /><em>naturally.</em></>, description: 'A greener view. An unhurried morning. Three bedrooms to retreat to, with a quiet corner to make your own.', note: 'No alarm. No agenda. Just you.' },
-  { photo: photos[8], label: 'The arrival', prelude: 'LEAVE THE EVERYDAY AT THE DOOR', title: <>Considered spaces.<br /><em>Effortless days.</em></>, description: 'A sunlit passage, potted greens, and a softer welcome. From the first step inside, there’s permission to slow down.', note: 'You’re right where you need to be.' },
+  { photo: photos[0], label: 'Living room', prelude: 'ROOM FOR GOOD COMPANY', title: <>A softer kind <em>of welcome.</em></>, description: 'Light-filled arches. Warm, considered interiors. A place to gather, settle in, and let the conversation wander.', note: 'Together feels effortless here.' },
+  { photo: photos[2], label: 'Private pool', prelude: 'OUT IN THE OPEN', title: <>A little less on the <em>agenda.</em></>, description: 'Take a dip. Stay a while. Repeat. Your own private pool, with room for the afternoon to find its own pace.', note: 'A moment, entirely your own.' },
+  { photo: photos[1], label: 'Bedrooms', prelude: 'A SOFTER START', title: <>Rest comes <em>naturally.</em></>, description: 'A greener view. An unhurried morning. Three bedrooms to retreat to, with a quiet corner to make your own.', note: 'No alarm. No agenda. Just you.' },
+  { photo: photos[8], label: 'The arrival', prelude: 'LEAVE THE EVERYDAY AT THE DOOR', title: <>Considered spaces. <em>Effortless days.</em></>, description: 'A sunlit passage, potted greens, and a softer welcome. From the first step inside, there’s permission to slow down.', note: 'You’re right where you need to be.' },
 ];
 
 function BookStory({ index }: { index: number }) {
@@ -107,10 +107,11 @@ export function VillaSpacesSection() {
   }
 
   return <section id="bungalow" className="villa-spaces section-padding" aria-labelledby="bungalow-heading">
+    <div className="villa-book-track" ref={track}><div className="villa-explorer" ref={book}>
     <div className="villa-heading-row">
       <div className="villa-heading">
         <IntroFade><p className="eyebrow">VILLA ARCHWAY / THE BUNGALOW</p></IntroFade>
-        <IntroFade as="h2" id="bungalow-heading" delay={.08} duration={.95}>Designed for<br />time <em>well spent.</em></IntroFade>
+        <IntroFade as="h2" id="bungalow-heading" delay={.08} duration={.95}>Designed for time <em>well spent.</em></IntroFade>
       </div>
       <IntroFade className="villa-introduction" delay={.16}>
         <span className="villa-location">A PRIVATE VILLA. A SLOWER PACE.</span>
@@ -118,7 +119,6 @@ export function VillaSpacesSection() {
       </IntroFade>
     </div>
 
-    <div className="villa-book-track" ref={track}><div className="villa-explorer" ref={book}>
       <div className="villa-explorer-top" id="spaces">
         <p className="villa-explore-label">Find your favourite corner</p>
         <div className="villa-tabs" role="tablist" aria-label="Explore Villa Archway’s spaces">

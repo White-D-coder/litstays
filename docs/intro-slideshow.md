@@ -23,4 +23,4 @@ Edit `src/app/intro-slideshow.css`. `--intro-image-scale`, `--intro-image-x`, `-
 
 `src/components/ui/IntroFade.tsx` fades each existing text element in once on entering the viewport. Delays and durations are set on the `IntroFade` calls in `IntroductionSection`, in `src/components/sections/PropertySections.tsx`. The animation uses opacity and a gentle 10 px translation, without changing font size, line breaks or document layout. Reduced motion shows the text immediately. Without JavaScript, the text and first photo remain visible.
 
-The earlier leaf artwork and its adjustment CSS remain in the project as optional assets; this photo-frame version uses `IntroSlideshow` instead.
+The supplied leaf artwork is now a low-contrast, inverted watermark behind the photo frame. Its opacity, size and rotation are defined by `.intro-leaf-watermark` in `src/app/editorial-update.css`. The photograph and text layout remain independent.

@@ -14,7 +14,7 @@ test('journal photographs and ivory captions crossfade together and open the mat
   await page.waitForTimeout(900);
   const before = await journal.boundingBox();
   const incoming = journal.locator('.gallery-journal-slide.is-incoming.is-fading');
-  await expect(incoming).toHaveCount(3, { timeout: galleryMotion.holdMs + 5000 });
+  await expect(incoming).toHaveCount(6, { timeout: galleryMotion.holdMs + 5000 });
   expect(await incoming.locator('img').evaluateAll(images => images.every(image => (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
   await page.waitForTimeout(300);
   const opacity = await incoming.first().evaluate(element => Number(getComputedStyle(element).opacity));

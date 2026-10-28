@@ -7,11 +7,10 @@ import './intro-slideshow.css';
 import './villa-spaces.css';
 import './gallery-journal.css';
 import './site-refinements.css';
+import './editorial-update.css';
+import { HeadingSelection } from '@/components/ui/HeadingSelection';
 
-const serif = localFont({ src: [
-  { path: '../../public/fonts/instrument-serif.woff2', style: 'normal', weight: '400' },
-  { path: '../../public/fonts/instrument-serif-italic.woff2', style: 'italic', weight: '400' },
-], variable: '--font-serif', display: 'swap', preload: true });
+const serif = localFont({ src: '../../public/fonts/cormorant-garamond.woff2', style: 'normal', weight: '300 700', variable: '--font-serif', display: 'swap', preload: true });
 const sans = localFont({ src: '../../public/fonts/manrope.woff2', weight: '400 700', variable: '--font-sans', display: 'swap', preload: true });
 
 export const metadata: Metadata = {
@@ -31,5 +30,5 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#0E1F0D', colorScheme: 'light' };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" className={`${serif.variable} ${sans.variable}`}><body><a href="#main" className="skip-link">Skip to content</a>{children}</body></html>;
+  return <html lang="en" className={`${serif.variable} ${sans.variable}`}><body><HeadingSelection/><a href="#main" className="skip-link">Skip to content</a>{children}</body></html>;
 }

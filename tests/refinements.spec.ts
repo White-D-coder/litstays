@@ -9,7 +9,7 @@ test('scrolling the villa book turns a photo page instead of crossfading it', as
   await page.evaluate(() => {
     const track = document.querySelector<HTMLElement>('.villa-book-track')!;
     const spread = track.querySelector<HTMLElement>('.villa-explorer')!;
-    const top = track.getBoundingClientRect().top + scrollY - 90;
+    const top = track.getBoundingClientRect().top + scrollY - parseFloat(getComputedStyle(spread).top);
     window.scrollTo({ top: top + (track.offsetHeight - spread.offsetHeight) * .32, behavior: 'instant' });
   });
   await expect(page.getByRole('tab', { name: 'Private pool', exact: true })).toHaveAttribute('aria-selected', 'true');
@@ -21,7 +21,8 @@ test('scrolling the villa book turns a photo page instead of crossfading it', as
   await expect(sheet).toHaveCount(0, { timeout: 2500 });
   await page.evaluate(() => {
     const track = document.querySelector<HTMLElement>('.villa-book-track')!;
-    window.scrollTo({ top: track.getBoundingClientRect().top + scrollY - 90, behavior: 'instant' });
+    const spread = track.querySelector<HTMLElement>('.villa-explorer')!;
+    window.scrollTo({ top: track.getBoundingClientRect().top + scrollY - parseFloat(getComputedStyle(spread).top), behavior: 'instant' });
   });
   await expect(page.getByRole('tab', { name: 'Living room', exact: true })).toHaveAttribute('aria-selected', 'true');
   await expect(sheet).toHaveCSS('animation-name', 'villa-page-backward');
@@ -48,7 +49,7 @@ test('scrolling up restores the initial four FAQ questions', async ({ page }) =>
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/#faq');
   const more = page.locator('.lit-faq-more');
-  await more.locator(':scope > summary').click();
+  await page.mouse.wheel(0, 180);
   await expect(more).toHaveAttribute('open', '');
   await page.waitForTimeout(550);
   await page.evaluate(() => {

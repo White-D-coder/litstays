@@ -11,3 +11,14 @@ export function BrandMark(props: SVGProps<SVGSVGElement>) {
 export function InstagramIcon() {
   return <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor"/></svg>;
 }
+
+export function PropertyIcon({ kind, ...props }: SVGProps<SVGSVGElement> & { kind: 'villa' | 'bed' | 'bath' | 'pool' | 'guests' }) {
+  const paths = {
+    villa: <><path d="m4 16 20-12 20 12M8 14v29h32V14M4 44h40M19 43V28h10v15M15 18h5v5h-5zm13 0h5v5h-5z"/><path d="M38 9V4h-6v2"/></>,
+    bed: <><path d="M5 39V12m38 27V23H5m0 11h38M9 23v-7h10v7m4 0v-7h15v7M5 34v7m38-7v7"/></>,
+    bath: <><path d="M5 23h38l-3 14H9L6 26M12 37v6m24-6v6M11 23V10a6 6 0 0 1 12 0v3M19 13h8M31 15v3m6-5v3"/></>,
+    pool: <><path d="M4 33q5-5 10 0t10 0 10 0 10 0M4 42q5-5 10 0t10 0 10 0 10 0M13 29V9a5 5 0 0 1 10 0m6 20V9a5 5 0 0 1 10 0M13 14h16m-16 8h16"/></>,
+    guests: <><circle cx="24" cy="14" r="6"/><path d="M13 40v-6a11 11 0 0 1 22 0v6M8 13a5 5 0 1 0 0 10m32-10a5 5 0 1 1 0 10M3 39v-6a8 8 0 0 1 7-8m35 14v-6a8 8 0 0 0-7-8"/></>,
+  };
+  return <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{paths[kind]}</svg>;
+}

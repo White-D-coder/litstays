@@ -23,7 +23,7 @@ export function HeroSection() {
       <div className="hero-shade"/>
       <LazyMotion features={domAnimation}><m.div className="hero-content" style={reduced ? undefined : { opacity, y }}>
         <p className="eyebrow hero-enter">PRIVATE STAYS. PERSONAL MOMENTS.</p>
-        <h1 id="hero-heading"><span className="line-mask"><span>Some places</span></span>{' '}<span className="line-mask"><span>stay <em>with you.</em></span></span></h1>
+        <h1 id="hero-heading">Some places stay <em>with you.</em></h1>
         <p className="hero-description hero-enter">A place to slow down. Room to reconnect.<br/>A little time that’s entirely your own.</p>
         <div className="hero-actions hero-enter"><a href="#enquire" className="button button-ivory">Enquire about your stay <Arrow diagonal/></a><a href="#bungalow" className="text-link">Explore the bungalow <Arrow/></a></div>
       </m.div></LazyMotion>

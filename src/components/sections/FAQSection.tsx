@@ -17,7 +17,7 @@ export function FAQSection() {
   return <section id="faq" className="lit-faq-section lit-faq" aria-labelledby="faq-heading">
     <div className="lit-faq-intro">
       <p className="lit-faq-kicker">A little more to know</p>
-      <div className="lit-faq-title-row"><h2 id="faq-heading"><span>Frequently </span><span className="faq-asked-word">asked <Image className="lit-faq-title-icon" src="/images/faq-villa.webp" alt="" aria-hidden="true" width={600} height={400} loading="lazy" unoptimized/></span><span>questions.</span></h2></div>
+      <div className="lit-faq-title-row"><h2 id="faq-heading">Frequently <span className="faq-asked-word">asked <Image className="lit-faq-title-icon" src="/images/faq-villa.webp" alt="" aria-hidden="true" width={600} height={400} loading="lazy" unoptimized/></span> questions.</h2></div>
       <p className="lit-faq-description">Everything you need to know before making yourself at home.</p>
     </div>
     <div className="lit-faq-items">
