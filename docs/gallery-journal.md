@@ -10,4 +10,4 @@ Autoplay pauses while off screen, while the browser tab is hidden, during hover 
 
 Six-frame masonry arrangements advance on each refresh in the same browser tab. The smaller gaps, ivory caption hover treatment, and removal of photo hover zoom are defined in `src/app/site-refinements.css`.
 
-The current six-frame grid and palette overrides are in `src/app/editorial-update.css`. Each incoming image must decode in its own frame before the next scene begins.
+The current six-frame grid is in `src/app/gallery-masonry.css`; captions and transitions remain in `src/app/gallery-journal.css`. Each incoming image must decode in its own frame before the next scene begins.
