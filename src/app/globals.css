@@ -37,7 +37,7 @@ input:focus-visible,textarea:focus-visible{outline:1px solid var(--sage);outline
 .button-green:hover{background:#263823}
 .image-frame{position:relative;overflow:hidden;background:var(--sage)}
 .image-frame img{transition:transform 1s var(--ease);filter:saturate(.85)}
-.image-frame:hover img{transform:scale(1.025)}
+
 .image-caption,.photo-caption{font-size:10px;color:var(--muted);line-height:1.6;letter-spacing:.015em}
 .photo-caption{display:flex;justify-content:space-between;gap:15px;padding-top:13px}
 .section-kicker{display:flex;align-items:center;gap:13px;margin-bottom:43px}

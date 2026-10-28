@@ -33,6 +33,16 @@ export function GalleryMosaic({ paused, onSelect }: { paused: boolean; onSelect:
   const reduced = useSyncExternalStore(subscribeReducedMotion, () => window.matchMedia('(prefers-reduced-motion: reduce)').matches, () => true);
 
   useEffect(() => {
+    let layout = Math.floor(Math.random() * 3);
+    try {
+      const previous = sessionStorage.getItem('lit-journal-layout');
+      if (previous !== null) layout = (Number(previous) + 1) % 3;
+      sessionStorage.setItem('lit-journal-layout', String(layout));
+    } catch { /* The gallery still works when browser storage is unavailable. */ }
+    if (frame.current) frame.current.dataset.layout = String(layout);
+  }, []);
+
+  useEffect(() => {
     if (!frame.current || !('IntersectionObserver' in window)) return;
     const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: .1 });
     observer.observe(frame.current);

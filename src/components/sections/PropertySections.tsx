@@ -54,5 +54,15 @@ export function FactsSection() {
 }
 
 export function LocationSection() {
-  return <section className="location section-padding" id="location" aria-labelledby="location-heading"><Reveal className="location-copy"><p className="eyebrow">A CHANGE OF SCENERY</p><h2 id="location-heading">A little closer<br/>to <em>somewhere else.</em></h2><p>Set in a gated community in Virar East, Villa Archway offers a green backdrop for a few days at a different pace.</p><div className="location-address"><span className="location-dot"/><span>{site.location}<small>INDIA</small></span></div><a className="text-link dark-link" href={site.directions} target="_blank" rel="noopener noreferrer">Explore the area <Arrow diagonal/></a><p className="location-note">Exact arrival directions are shared by your host.</p></Reveal><Reveal className="location-visual"><div className="image-frame"><Image src="aerial.jpg" alt="Aerial view of Villa Archway surrounded by lush trees with hills in the distance" fill sizes="(max-width: 700px) 100vw, 48vw"/></div><div className="location-stamp"><BrandMark/><span>A LITTLE OUT OF THE ORDINARY</span></div></Reveal></section>;
+  return <section className="location-retreat section-padding" id="location" aria-labelledby="location-heading">
+    <div className="location-retreat-header">
+      <Reveal><p className="eyebrow">A CHANGE OF SCENERY</p><h2 id="location-heading">A little closer to<br/><em>somewhere else.</em></h2></Reveal>
+      <Reveal className="location-retreat-intro"><p>Set in a gated community in Virar East, Villa Archway offers a green backdrop for a few days at a different pace.</p><span>LESS HURRY. MORE HERE.</span></Reveal>
+    </div>
+    <Reveal className="location-landscape">
+      <Image src="aerial.jpg" alt="Villa Archway nestled among green trees, with hills in the distance" fill sizes="(max-width: 700px) 100vw, 88vw"/>
+      <span className="location-landscape-label">A LITTLE OUT OF THE ORDINARY</span>
+      <div className="location-arrival-card"><BrandMark className="location-watermark"/><span className="eyebrow">YOUR CHANGE OF PACE</span><h3>{site.location}</h3><p>Exact arrival directions are shared by your host.</p><a href={site.directions} target="_blank" rel="noopener noreferrer" className="text-link">Explore the area <Arrow diagonal/></a></div>
+    </Reveal>
+  </section>;
 }

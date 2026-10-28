@@ -2,8 +2,7 @@
 
 import { useEffect, useRef, type ReactNode } from 'react';
 
-// Preserves the supplied HomeFAQMore behavior: four initial questions,
-// manual desktop expansion, and directional scroll expansion on phones.
+// Four initial questions; scrolling back up restores this compact view.
 export function FAQMore({ children }: { children: ReactNode }) {
   const disclosure = useRef<HTMLDetailsElement>(null);
   const openedByClick = useRef(false);
@@ -14,9 +13,11 @@ export function FAQMore({ children }: { children: ReactNode }) {
     const phone = window.matchMedia('(max-width: 640px)');
     let lastY = Math.max(0, window.scrollY);
     let frame: number | undefined;
-    let nearby = !('IntersectionObserver' in window);
-    const observer = 'IntersectionObserver' in window ? new IntersectionObserver(([entry]) => { nearby = entry.isIntersecting; }) : null;
-    observer?.observe(element);
+    const section = element.closest('section');
+    let ignoreUntil = 0;
+    // Accordion resizing and focus restoration must not count as an upward gesture.
+    const toggled = () => { ignoreUntil = performance.now() + 450; };
+    section?.addEventListener('toggle', toggled, true);
 
     const update = () => {
       frame = undefined;
@@ -24,18 +25,20 @@ export function FAQMore({ children }: { children: ReactNode }) {
       const delta = y - lastY;
       if (Math.abs(delta) < 8) return;
       lastY = y;
-      if (!phone.matches || !nearby) return;
+      if (performance.now() < ignoreUntil) return;
+      const sectionRect = section?.getBoundingClientRect();
+      if (!sectionRect || sectionRect.bottom < 0 || sectionRect.top > window.innerHeight) return;
       const top = element.getBoundingClientRect().top;
-      if (top < 0 || top > window.innerHeight) return;
-      if (delta > 0 && top <= window.innerHeight * .75 && !element.open) {
+      if (delta < 0) {
+        const restoreFocus = element.contains(document.activeElement);
+        element.open = false;
+        section?.querySelectorAll<HTMLDetailsElement>('.lit-faq-item[open]').forEach(item => { item.open = false; });
+        if (restoreFocus) element.querySelector('summary')?.focus({ preventScroll: true });
+      } else if (phone.matches && top >= 0 && top <= window.innerHeight * .75 && !element.open) {
         const summaryFocused = document.activeElement === element.querySelector('summary');
         openedByClick.current = false;
         element.open = true;
         if (summaryFocused) element.querySelector<HTMLElement>('.lit-faq-item > summary')?.focus({ preventScroll: true });
-      } else if (delta < 0 && element.open) {
-        const restoreFocus = element.contains(document.activeElement);
-        element.open = false;
-        if (restoreFocus) element.querySelector('summary')?.focus({ preventScroll: true });
       }
     };
     const scroll = () => { if (frame === undefined) frame = window.requestAnimationFrame(update); };
@@ -43,10 +46,10 @@ export function FAQMore({ children }: { children: ReactNode }) {
       window.removeEventListener('scroll', scroll);
       if (frame !== undefined) window.cancelAnimationFrame(frame);
       frame = undefined; lastY = Math.max(0, window.scrollY);
-      if (phone.matches) window.addEventListener('scroll', scroll, { passive: true });
+      window.addEventListener('scroll', scroll, { passive: true });
     };
     configure(); phone.addEventListener('change', configure);
-    return () => { window.removeEventListener('scroll', scroll); phone.removeEventListener('change', configure); observer?.disconnect(); if (frame !== undefined) window.cancelAnimationFrame(frame); };
+    return () => { window.removeEventListener('scroll', scroll); phone.removeEventListener('change', configure); section?.removeEventListener('toggle', toggled, true); if (frame !== undefined) window.cancelAnimationFrame(frame); };
   }, []);
 
   return <details ref={disclosure} className="lit-faq-more" onToggle={event => {

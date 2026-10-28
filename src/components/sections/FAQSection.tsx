@@ -3,7 +3,7 @@ import { faqs, type FAQItem } from '@/lib/faqs';
 import { FAQMore } from './FAQMore';
 
 function Question({ item, index }: { item: FAQItem; index: number }) {
-  return <details name="lit-stays-faq" className={`lit-faq-item${index < 5 ? ' lit-faq-item--divided' : ''}`}>
+  return <details name="lit-stays-faq" className="lit-faq-item">
     <summary>
       <span className="lit-faq-number">{String(index + 1).padStart(2, '0')}</span>
       <span className="lit-faq-question">{item.question}</span>
@@ -17,7 +17,7 @@ export function FAQSection() {
   return <section id="faq" className="lit-faq-section lit-faq" aria-labelledby="faq-heading">
     <div className="lit-faq-intro">
       <p className="lit-faq-kicker">A little more to know</p>
-      <div className="lit-faq-title-row"><h2 id="faq-heading">Frequently asked questions.</h2><Image className="lit-faq-title-icon" src="/images/faq-villa.webp" alt="" aria-hidden="true" width={600} height={400} loading="lazy" unoptimized/></div>
+      <div className="lit-faq-title-row"><h2 id="faq-heading"><span>Frequently </span><span className="faq-asked-word">asked <Image className="lit-faq-title-icon" src="/images/faq-villa.webp" alt="" aria-hidden="true" width={600} height={400} loading="lazy" unoptimized/></span><span>questions.</span></h2></div>
       <p className="lit-faq-description">Everything you need to know before making yourself at home.</p>
     </div>
     <div className="lit-faq-items">

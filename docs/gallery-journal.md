@@ -7,3 +7,5 @@ Edit `src/lib/gallery-slides.ts` to change the three photo sets, featured notes,
 Styles are in `src/app/gallery-journal.css`. `--journal-ivory` controls the warm ivory text and subtle transition wash. `--journal-caption-x` and `--journal-caption-y` position the captions. Each photograph remains clickable and opens its matching image in the existing gallery.
 
 Autoplay pauses while off screen, while the browser tab is hidden, during hover or keyboard focus, and while the photo dialog is open. Reduced motion and no-JavaScript browsing retain the original three photographs and captions without autoplay.
+
+Frame arrangements advance on each refresh in the same browser tab: large left, large right, then large above two smaller frames. The smaller gaps, ivory caption hover treatment, and removal of photo hover zoom are defined in `src/app/site-refinements.css`.
