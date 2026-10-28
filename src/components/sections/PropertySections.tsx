@@ -28,27 +28,28 @@ export function IntroductionSection() {
 }
 
 export function FactsSection() {
-  const details = [
-    { icon: 'villa' as const, label: 'Private villa', value: '01', note: 'Entirely yours' },
-    { icon: 'bed' as const, label: 'Bedrooms', value: String(site.propertyDetails.bedrooms).padStart(2, '0'), note: 'Room to unwind' },
-    { icon: 'bath' as const, label: 'Bathrooms', value: String(site.propertyDetails.bathrooms).padStart(2, '0'), note: 'A little more ease' },
-    { icon: 'pool' as const, label: 'Swimming pool', value: 'Private', note: 'Take a moment' },
-    { icon: 'guests' as const, label: 'Guest capacity', value: `Up to ${site.propertyDetails.guestCapacity}`, note: 'Your favourite people' },
+  const amenities = [
+    { icon: 'villa' as const, label: 'Private villa' },
+    { icon: 'bed' as const, label: `${site.propertyDetails.bedrooms} bedrooms` },
+    { icon: 'bath' as const, label: `${site.propertyDetails.bathrooms} bathrooms` },
+    { icon: 'pool' as const, label: 'Private pool' },
+    { icon: 'guests' as const, label: `Up to ${site.propertyDetails.guestCapacity} guests` },
+    { icon: 'wifi' as const, label: 'Wi-Fi access' },
   ];
-  return (
-    <section className="facts section-padding" id="property-details" aria-labelledby="facts-heading">
-      <div className="facts-layout">
-        <Reveal className="facts-portrait">
-          <div className="image-frame"><Image src="exterior.jpg" alt="The softly illuminated arches and balconies of Villa Archway at dusk" fill sizes="(max-width: 600px) 100vw, 40vw" /><span className="facts-image-caption">ONE VILLA. ALL YOURS.</span></div>
-          <p className="image-caption">Your own little corner of the world.</p>
-        </Reveal>
-        <Reveal className="facts-sheet" delay={.1}>
-          <p className="eyebrow">VILLA ARCHWAY, AT A GLANCE</p>
-          <h2 id="facts-heading">Room for you. <em>And your kind of together.</em></h2>
-          <dl className="facts-inventory">{details.map(detail => <div key={detail.label}><dt><PropertyIcon kind={detail.icon}/><span className="fact-label">{detail.label}<span>{detail.note}</span></span></dt><dd>{detail.value}</dd></div>)}</dl>
-          <div className="facts-sheet-footer"><p>Every stay is exclusive to your group. Share your plans with us to find the right fit.</p><a href={site.listing} target="_blank" rel="noopener noreferrer" className="text-link dark-link">Full property details <Arrow diagonal/></a></div>
-        </Reveal>
-      </div>
-    </section>
-  );
+  return <section className="facts facts-amenities section-padding" id="property-details" aria-labelledby="facts-heading">
+    <div className="amenities-layout">
+      <Reveal className="amenities-copy">
+        <p className="eyebrow">VILLA ARCHWAY, AT A GLANCE</p>
+        <h2 id="facts-heading">Room for you. <em>And your kind of together.</em></h2>
+        <p className="amenities-description">Your own private villa, room to unwind, and the comforts that make settling in feel effortless. From a quiet bedroom to an afternoon by the pool, there’s a little space for everyone.</p>
+        <p className="amenities-note">Every stay is exclusive to your group. Share your plans with us to find the right fit.</p>
+        <a href={site.listing} target="_blank" rel="noopener noreferrer" className="text-link amenities-link">Full property details <Arrow diagonal/></a>
+      </Reveal>
+      <Reveal className="amenities-grid-wrap" delay={.08}>
+        <ul className="amenities-grid" aria-label="Villa Archway comforts">
+          {amenities.map(amenity => <li key={amenity.icon}><PropertyIcon kind={amenity.icon}/><span>{amenity.label}</span></li>)}
+        </ul>
+      </Reveal>
+    </div>
+  </section>;
 }

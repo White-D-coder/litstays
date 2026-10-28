@@ -1,0 +1,45 @@
+/* Reference composition: copy on the left, six large icons on the right.
+   Colours inherit the existing forest-green and ivory property section. */
+.facts-amenities { padding-block: clamp(52px, 5.3vw, 80px); }
+.amenities-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.12fr;
+  gap: clamp(42px, 7vw, 110px);
+  align-items: center;
+}
+.amenities-copy > .eyebrow { color: #bbc5ae; font-size: 9px; margin-bottom: 20px; }
+.amenities-copy h2 { font-size: clamp(43px, 4.2vw, 64px); line-height: 1.04; max-width: 17ch; margin-bottom: 26px; }
+.amenities-copy h2 em { display: inline; font-size: 1em; max-width: none; }
+.amenities-description { font-size: 14px; line-height: 1.85; max-width: 45ch; color: #d2d7c7; }
+.amenities-note { font-size: 12px; line-height: 1.8; max-width: 44ch; color: #bbc5ae; margin-top: 17px; }
+.amenities-link { margin-top: 26px; font-size: 12px; gap: 20px; color: #f3efdf; }
+.amenities-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 24px; row-gap: 52px; list-style: none; padding: 0; margin: 0; }
+.amenities-grid > li { display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; gap: 21px; }
+.amenities-grid > li > svg { width: 66px; height: 66px; flex-shrink: 0; color: #e5e8d6; }
+.amenities-grid > li > span { color: #f3efdf; font-size: 15px; line-height: 1.5; font-weight: 500; }
+
+@media (max-width: 1000px) {
+  .amenities-layout { grid-template-columns: .95fr 1.05fr; gap: 35px; }
+  .amenities-copy h2 { font-size: 48px; }
+  .amenities-grid { column-gap: 16px; row-gap: 42px; }
+  .amenities-grid > li > svg { width: 58px; height: 58px; }
+  .amenities-grid > li > span { font-size: 13px; }
+}
+@media (max-width: 700px) {
+  .facts-amenities { padding-block: 42px 48px; }
+  .amenities-layout { grid-template-columns: 1fr; gap: 37px; }
+  .amenities-copy > .eyebrow { margin-bottom: 15px; font-size: 8px; }
+  .amenities-copy h2 { font-size: clamp(40px, 9.7vw, 54px); max-width: 20ch; margin-bottom: 20px; }
+  .amenities-description { font-size: 13px; max-width: 48ch; }
+  .amenities-note { margin-top: 13px; font-size: 11px; }
+  .amenities-link { margin-top: 17px; font-size: 11px; }
+  .amenities-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 13px; row-gap: 32px; }
+  .amenities-grid > li { gap: 14px; }
+  .amenities-grid > li > svg { width: 53px; height: 53px; }
+  .amenities-grid > li > span { font-size: 11px; line-height: 1.6; }
+}
+@media (max-width: 360px) {
+  .amenities-grid { column-gap: 9px; }
+  .amenities-grid > li > svg { width: 47px; height: 47px; }
+  .amenities-grid > li > span { font-size: 10px; }
+}
