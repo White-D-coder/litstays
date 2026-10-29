@@ -11,5 +11,21 @@ import { StayProvider } from '@/components/availability/StayProvider';
 import { FAQSection } from '@/components/sections/FAQSection';
 
 export default function Home() {
-  return <><Navbar/><main id="main"><HeroSection/><div className="page-surface"><IntroductionSection/><VillaSpacesSection/><ExperienceSection/><FactsSection/><GallerySection/><FAQSection/><StayProvider><AvailabilitySection/><BookingSection/></StayProvider><Footer/></div></main></>;
+  return <><Navbar/><main id="main">
+    <StayProvider>
+      <HeroSection/>
+      <div className="page-surface">
+        <IntroductionSection/>
+        <VillaSpacesSection/>
+        <FactsSection/>
+        <ExperienceSection/>
+        <GallerySection/>
+        <FAQSection/>
+        <AvailabilitySection/>
+        <BookingSection/>
+        <Footer/>
+        </div>
+        </StayProvider>
+        </main>
+        </>;
 }

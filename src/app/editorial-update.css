@@ -65,10 +65,10 @@ h1 em,h2 em,h3 em { font-weight: 400; display: inline; max-width: none; white-sp
 .gallery-journal-caption > em { font-size: 20px; }
 
 /* Questions reveal automatically on downward scrolling, then fold on the way back. */
-.lit-faq-title-row h2 { display: block; max-width: 15ch; font-size: clamp(45px, 4.2vw, 62px); line-height: 1.05; text-align: left; }
-.lit-faq-title-row h2 > span { display: inline; }
-.lit-faq-title-row .faq-asked-word { display: inline-flex; align-items: center; vertical-align: middle; width: auto; }
-.lit-faq-title-icon { position: static; width: 145px; margin-left: -6px; transform: translateY(-5px); }
+.lit-faq-title-row h2 { display: block; max-width: none; font-size: clamp(45px, 4.2vw, 62px); line-height: 1.05; text-align: left; }
+.lit-faq-title-row .faq-heading-line { display: block; white-space: nowrap; }
+.lit-faq-title-row .faq-questions-line { display: flex; align-items: center; gap: 8px; width: max-content; max-width: 100%; white-space: nowrap; }
+.lit-faq-title-icon { position: static; width: 145px; max-width: 40%; margin: 0; transform: none; }
 .lit-faq-more > .lit-faq-item:last-child > summary::after { display: none; }
 .lit-faq-more > .lit-faq-item:last-child { margin-bottom: 0; padding-bottom: 0; }
 .lit-faq-question { font-weight: 500; }
@@ -132,7 +132,7 @@ h1 em,h2 em,h3 em { font-weight: 400; display: inline; max-width: none; white-sp
   .facts-inventory dt > .fact-label { font-size: 14px; }
   .facts-inventory dd { font-size: 33px; }
   .gallery-heading h2 { font-size: 45px; }
-  .lit-faq-title-row h2 { display: inline-block; font-size: 43px; max-width: 15ch; }
+  .lit-faq-title-row h2 { display: inline-block; font-size: 43px; max-width: none; }
   .lit-faq-title-icon { width: 115px; }
   .lit-faq-question { font-size: 20px; }
 }
