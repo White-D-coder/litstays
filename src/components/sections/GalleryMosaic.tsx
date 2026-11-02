@@ -29,10 +29,13 @@ export function GalleryMosaic({ paused, onSelect }: { paused: boolean; onSelect:
   const frame = useRef<HTMLDivElement>(null);
   const incomingRef = useRef<number | null>(null);
   const paints = useRef<number[]>([]);
+  const layoutInitialized = useRef(false);
   const tabVisible = useSyncExternalStore(subscribeVisibility, () => !document.hidden, () => false);
   const reduced = useSyncExternalStore(subscribeReducedMotion, () => window.matchMedia('(prefers-reduced-motion: reduce)').matches, () => true);
 
   useEffect(() => {
+    if (layoutInitialized.current) return;
+    layoutInitialized.current = true;
     let layout = Math.floor(Math.random() * 3);
     try {
       const previous = sessionStorage.getItem('lit-journal-layout');
@@ -120,14 +123,16 @@ export function GalleryMosaic({ paused, onSelect }: { paused: boolean; onSelect:
               return <span key={scene} aria-hidden={isIncoming}
                 className={`gallery-journal-slide${isIncoming ? ' is-incoming' : ''}${isIncoming && fading ? ' is-fading' : ''}`}
                 onTransitionEnd={event => { if (event.target === event.currentTarget && event.propertyName === 'opacity' && isIncoming && fading) complete(); }}>
-                <Image src={`${photo.id}.jpg`} alt={photo.alt} fill sizes="(max-width: 700px) 48vw, 40vw" loading={isIncoming ? 'eager' : 'lazy'}
+                <Image src={`${photo.id}.jpg`} alt={photo.alt} fill sizes="(max-width: 1000px) 46vw, 30vw" loading={isIncoming ? 'eager' : 'lazy'}
                   onLoad={() => onLoaded(scene, slot)} onError={() => { if (isIncoming) discardIncoming(); }} />
                 <span className="gallery-photo-wash" />
                 <span className="gallery-image-shade" />
-                <span className="gallery-journal-caption"><span className="gallery-journal-category">{photo.category}</span><span className="gallery-journal-title">{photo.caption}</span>{slot === 0 && <em>{galleryScenes[scene].note}</em>}</span>
               </span>;
             })}
-            <span className="gallery-expand" aria-hidden="true"><Arrow diagonal /></span>
+          </span>
+          <span className="gallery-journal-caption">
+            <span className="gallery-journal-meta"><span className="gallery-journal-category">{current.category}</span><span className="gallery-journal-number" aria-hidden="true">0{slot + 1}</span></span>
+            <span className="gallery-journal-caption-row"><span className="gallery-journal-title">{current.caption}</span><span className="gallery-expand" aria-hidden="true"><Arrow diagonal /></span></span>
           </span>
         </button>
       </Reveal>;

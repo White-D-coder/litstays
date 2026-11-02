@@ -3,7 +3,7 @@ import { galleryMotion, galleryScenes } from '../src/lib/gallery-slides';
 
 test.use({ reducedMotion: 'no-preference' });
 
-test('journal photographs and ivory captions crossfade together and open the matching photograph', async ({ page }) => {
+test('journal photographs crossfade with fixed captions and open the matching photograph', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1100 });
   await page.goto('/#gallery');
   const journal = page.locator('.gallery-journal');
@@ -13,6 +13,8 @@ test('journal photographs and ivory captions crossfade together and open the mat
   await expect(journal).toHaveAttribute('data-scene', '0');
   await page.waitForTimeout(900);
   const before = await journal.boundingBox();
+  const caption = journal.locator('.gallery-journal-caption').first();
+  const captionBefore = await caption.boundingBox();
   const incoming = journal.locator('.gallery-journal-slide.is-incoming.is-fading');
   await expect(incoming).toHaveCount(galleryScenes[1].photos.length, { timeout: galleryMotion.holdMs + 5000 });
   expect(await incoming.locator('img').evaluateAll(images => images.every(image => (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 0))).toBe(true);
@@ -20,9 +22,13 @@ test('journal photographs and ivory captions crossfade together and open the mat
   const opacity = await incoming.first().evaluate(element => Number(getComputedStyle(element).opacity));
   expect(opacity).toBeGreaterThan(0);
   expect(opacity).toBeLessThan(1);
-  await expect(incoming.first().locator('.gallery-journal-caption')).toHaveCSS('color', 'rgb(243, 239, 223)');
+  await expect(incoming.locator('.gallery-journal-caption')).toHaveCount(0);
+  await expect(caption).toHaveCSS('transform', 'none');
+  await expect(caption).toHaveCSS('transition-duration', '0s');
+  expect(await caption.boundingBox()).toEqual(captionBefore);
   await expect(journal).toHaveAttribute('data-scene', '1', { timeout: 3000 });
   expect(await journal.boundingBox()).toEqual(before);
+  expect(await caption.boundingBox()).toEqual(captionBefore);
   await expect(journal.getByRole('button', { name: 'Open photograph: Room for good company', exact: true })).toBeVisible();
   await expect(journal.getByRole('button', { name: 'Open photograph: Nowhere to rush to', exact: true })).toBeVisible();
   await journal.getByRole('button', { name: 'Open photograph: Take the afternoon off', exact: true }).click();

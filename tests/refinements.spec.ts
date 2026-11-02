@@ -29,7 +29,7 @@ test('scrolling the villa book turns a photo page instead of crossfading it', as
   expect(await sheet.evaluate(element => (element.getAnimations()[0].effect as KeyframeEffect).getKeyframes().at(0)?.transform)).toBe('rotateY(-180deg)');
 });
 
-test('gallery refresh changes the frame arrangement and hover highlights text without zooming photos', async ({ page }) => {
+test('gallery refresh changes the frame arrangement while captions remain fixed on hover', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/#gallery');
   const journal = page.locator('.gallery-journal');
@@ -37,12 +37,16 @@ test('gallery refresh changes the frame arrangement and hover highlights text wi
   const first = await journal.getAttribute('data-layout');
   await page.reload();
   await expect(journal).toHaveAttribute('data-layout', String((Number(first) + 1) % 3));
-  expect(await journal.evaluate(element => parseFloat(getComputedStyle(element).gap))).toBeLessThanOrEqual(13);
   const photo = journal.getByRole('button').first();
+  await photo.scrollIntoViewIfNeeded();
+  const caption = photo.locator('.gallery-journal-caption');
+  const before = await caption.boundingBox();
   await photo.hover();
   await expect(photo.locator('img')).toHaveCSS('transform', 'none');
-  await expect(photo.locator('.gallery-journal-caption')).toHaveCSS('background-color', 'rgb(243, 239, 223)');
-  await expect(photo.locator('.gallery-journal-caption')).toHaveCSS('color', 'rgb(14, 31, 13)');
+  await expect(caption).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+  await expect(caption).toHaveCSS('color', 'rgb(14, 31, 13)');
+  await expect(caption).toHaveCSS('transform', 'none');
+  expect(await caption.boundingBox()).toEqual(before);
 });
 
 test('scrolling up restores the initial four FAQ questions', async ({ page }) => {

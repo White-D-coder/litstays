@@ -7,7 +7,7 @@ test('merged villa explorer switches decoded photos and supports keyboard tabs w
   await expect(section.getByRole('heading', { level: 2 })).toHaveText('Designed for time well spent.');
   await expect(page.locator('section#spaces')).toHaveCount(0);
   const tabs = section.getByRole('tablist');
-  const stage = section.locator('.villa-stage');
+  const stage = section.locator('[data-villa-stage]');
   await stage.scrollIntoViewIfNeeded();
   await page.waitForTimeout(900);
   const before = await stage.boundingBox();
