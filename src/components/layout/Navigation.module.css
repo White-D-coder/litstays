@@ -18,8 +18,10 @@
   .footer :global(.footer-bottom) > a { margin-left: 0; }
 }
 @media (max-width: 360px) {
-  .header :global(.wordmark) > span { font-size: 24px; }
-  .header :global(.wordmark) > svg { width: 23px; }
+  .header { gap: 8px; }
+  .header :global(.wordmark) { gap: 7px; }
+  .header :global(.wordmark) > span { font-size: 22px; }
+  .header :global(.wordmark) > svg { width: 20px; }
   .header :global(.wordmark-sub) { display: none; }
-  .header :global(.nav-enquire) { font-size: 13px; gap: 6px; }
+  .header :global(.nav-enquire) { font-size: 13px; gap: 6px; white-space: nowrap; }
 }

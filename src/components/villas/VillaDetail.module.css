@@ -21,21 +21,6 @@
 .discover > span { font-size: 24px; line-height: 1; }
 /* This opaque sheet scrolls over the hero; the sentinel stays in document flow. */
 .content { position: relative; z-index: 1; background: var(--ivory); border-radius: 28px 28px 0 0; box-shadow: 0 -15px 60px rgba(var(--ink-rgb), .1); }
-.overview { padding-block: 86px 0; scroll-margin-top: 80px; }
-.overviewTop { display: grid; grid-template-columns: 1.5fr .7fr; gap: 12%; align-items: start; }
-.overviewIntro h2 { max-width: 15ch; font-size: clamp(54px, 5.2vw, 82px); line-height: 1.02; }
-.overviewIntro > p { max-width: 43ch; margin-top: 28px; color: var(--muted); font-size: 18px; line-height: 1.8; }
-.quote { padding: 8px 0 0 36px; border-left: 1px solid var(--rule); }
-.price { display: flex; align-items: baseline; gap: 4px; font: 400 clamp(48px, 4.2vw, 66px)/1 var(--font-serif), Georgia, serif; letter-spacing: -.035em; white-space: nowrap; }
-.currency { font: 400 .5em/1 var(--font-sans), sans-serif; letter-spacing: 0; }
-.priceLabel { margin-top: 10px; font-size: 16px; }
-.priceRequest { font: 400 44px/1.05 var(--font-serif), Georgia, serif; letter-spacing: -.025em; max-width: 9ch; }
-.deposit { margin-top: 25px; font-size: 16px; line-height: 1.8; }
-.deposit > span { color: var(--muted); }
-.quoteNote { margin-top: 18px; color: var(--muted); font-size: 14px; line-height: 1.8; }
-.overviewFoot { display: flex; align-items: center; justify-content: space-between; gap: 30px; margin-top: 48px; padding-block: 25px; border-block: 1px solid var(--rule); }
-.overviewFoot > p { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; max-width: none; font-size: 15px; }
-.overviewFoot > p > span { color: var(--sage); }
 .comforts { display: grid; grid-template-columns: 1fr 1fr; gap: 7%; align-items: center; padding-block: 40px 95px; }
 .comfortVisual { position: relative; height: clamp(510px, 43vw, 640px); overflow: hidden; border-radius: 3px 3px 150px 3px; background: var(--sand); }
 .comfortVisual img { object-fit: cover; }
@@ -48,8 +33,6 @@
 .amenityList details[open] summary > span { transform: rotate(45deg); }
 .amenityList details > p { font-size: 15px; line-height: 1.8; color: var(--muted); padding-bottom: 18px; }
 @media (max-width: 1100px) {
-  .overviewTop { gap: 7%; grid-template-columns: 1.3fr .8fr; }
-  .overviewFoot { align-items: flex-start; flex-direction: column; gap: 16px; }
   .comforts { gap: 5%; }
   .amenityList { gap: 0 20px; }
   .comfortContent h2 { font-size: 58px; }
@@ -60,13 +43,6 @@
   .heroFacts { gap: 8px 12px; }
   .heroFacts > span + span { padding-left: 12px; }
   .heroFacts > span:last-child { flex-basis: 100%; border: 0; padding: 0; }
-  .overview { padding-top: 60px; }
-  .overviewTop { grid-template-columns: 1fr; gap: 32px; }
-  .overviewIntro h2 { max-width: 17ch; font-size: 65px; }
-  .quote { border-left: 0; padding: 25px 0 0; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 1fr 1fr; align-items: start; gap: 18px 24px; }
-  .deposit { margin: 0; }
-  .quoteNote { grid-column: 1 / -1; margin: 0; }
-  .overviewFoot { margin-top: 33px; }
   .comforts { grid-template-columns: 1fr; gap: 35px; padding-block: 20px 65px; }
   .comfortVisual { height: 480px; border-bottom-right-radius: 100px; }
   .comfortContent h2 { margin-bottom: 22px; }
@@ -85,17 +61,6 @@
   .stayBar > a { min-height: 38px; padding-top: 6px; border-top: 1px solid var(--rule); width: 100%; justify-content: space-between; }
   .discover { margin-top: 18px; }
   .content { border-radius: 20px 20px 0 0; }
-  .overview { padding-top: 44px; }
-  .overviewIntro h2 { font-size: clamp(48px, 12vw, 61px); max-width: 13ch; }
-  .overviewIntro > p { font-size: 17px; line-height: 1.75; margin-top: 22px; }
-  .quote { gap: 10px 20px; }
-  .price { font-size: 48px; }
-  .priceRequest { font-size: 36px; }
-  .priceLabel { font-size: 15px; }
-  .deposit { font-size: 15px; line-height: 1.7; }
-  .quoteNote { font-size: 14px; }
-  .overviewFoot { padding-block: 22px; gap: 16px; }
-  .overviewFoot > p { font-size: 14px; gap: 7px 10px; }
   .comforts { padding-bottom: 50px; }
   .comfortVisual { height: 365px; border-bottom-right-radius: 80px; }
   .comfortContent h2 { font-size: 52px; }
@@ -110,3 +75,50 @@
   .discover { margin-top: 12px; }
 }
 @media (prefers-reduced-motion: reduce) { .amenityList summary > span { transition: none; } }
+
+/* A quiet introduction, followed by four useful details rather than a card. */
+.overview { padding-block: 70px 0; scroll-margin-top: 80px; }
+.overviewIntro { text-align: center; margin-inline: auto; max-width: 950px; }
+.location { font-size: 16px; line-height: 1.6; color: var(--muted); }
+.location > span { padding-inline: 10px; }
+.overviewIntro h2 { margin-top: 24px; font-size: clamp(58px, 6vw, 88px); line-height: .99; letter-spacing: -.035em; }
+.overviewIntro h2 > span, .overviewIntro h2 > em { display: block; }
+.overviewDescription { max-width: 48ch; margin: 25px auto 0; font-size: 18px; line-height: 1.8; color: var(--muted); }
+.staySummary { display: grid; grid-template-columns: 1fr 1.2fr; gap: 7%; margin-top: 45px; padding: 30px 0; border-block: 1px solid var(--rule); }
+.stayFacts, .rates { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin: 0; }
+.stayFacts { padding-right: 25px; border-right: 1px solid var(--rule); }
+.stayFacts dt, .rates dt { font-size: 15px; line-height: 1.6; color: var(--muted); }
+.stayFacts dd, .rates dd { margin: 12px 0 0; }
+.stayFacts dd { font: 400 46px/1 var(--font-serif), Georgia, serif; }
+.stayFacts .outdoorFact { font-size: 34px; line-height: 1.15; }
+.price { display: flex; align-items: baseline; gap: 4px; font: 400 46px/1 var(--font-serif), Georgia, serif; letter-spacing: -.025em; white-space: nowrap; }
+.currency { font: 400 .5em/1 var(--font-sans), sans-serif; letter-spacing: 0; }
+.priceRequest { display: block; font: 400 34px/1.1 var(--font-serif), Georgia, serif; }
+.deposit { margin-top: 10px; font-size: 14px; line-height: 1.6; color: var(--muted); }
+.quoteNote { font-size: 14px; line-height: 1.8; color: var(--muted); margin-top: 18px; }
+@media (max-width: 1100px) {
+  .staySummary { gap: 5%; }
+  .stayFacts, .rates { gap: 20px; }
+  .stayFacts { padding-right: 20px; }
+  .stayFacts .outdoorFact { font-size: 30px; }
+}
+@media (max-width: 800px) {
+  .overview { padding-top: 55px; }
+  .overviewIntro h2 { font-size: 65px; }
+  .staySummary { grid-template-columns: 1fr; gap: 28px; margin-top: 32px; }
+  .stayFacts { border-right: 0; padding-right: 0; padding-bottom: 27px; border-bottom: 1px solid var(--rule); }
+  .stayFacts .outdoorFact { font-size: 36px; }
+}
+@media (max-width: 600px) {
+  .overview { padding-top: 43px; }
+  .location { font-size: 14px; }
+  .location > span { padding-inline: 6px; }
+  .overviewIntro h2 { font-size: clamp(46px, 12vw, 62px); margin-top: 22px; }
+  .overviewDescription { font-size: 17px; line-height: 1.75; margin-top: 23px; }
+  .staySummary { padding-block: 25px; }
+  .stayFacts dd { font-size: 42px; }
+  .stayFacts .outdoorFact { font-size: 31px; }
+  .price { font-size: 42px; }
+  .stayFacts dt, .rates dt { font-size: 14px; }
+  .priceRequest { font-size: 32px; }
+}

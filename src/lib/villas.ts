@@ -23,7 +23,7 @@ export type Villa = {
   description: string;
   heroImage?: { src: string; alt: string; width: number; height: number; position?: string; mobilePosition?: string; mobileScale?: number; responsive?: boolean; foregroundMask?: string; sky?: string };
   photos?: VillaPhoto[];
-  brochure: { href: string; filename: string; cover: string; pages: number };
+  brochure: { href: string; filename: string; cover: string; pages: number; previewBase: string };
   stayPrice?: number;
   refundableDeposit?: number;
   priceIncludes?: string;
@@ -48,7 +48,7 @@ export const villas: Villa[] = [
     description: 'Balinese spaces, poolside afternoons and time with your favourite people. A private two-bedroom escape.',
     heroImage: { src: '/avante/optimized/avante-38-1920.webp', alt: 'Villa Avante’s illuminated entrance and balconies under a blue evening sky', width: 1920, height: 1282, position: 'center top', mobilePosition: '51% top', responsive: true, foregroundMask: '/images/avante-hero-mask.svg', sky: '#075491' },
     photos: avantePhotos,
-    brochure: { href: '/Avante.pdf', filename: 'Avante.pdf', cover: '/brochures/avante-cover.webp', pages: 18 },
+    brochure: { href: '/Avante.pdf', filename: 'Avante.pdf', cover: '/brochures/avante-cover.webp', pages: 18, previewBase: '/brochures/avante' },
     stayPrice: 18000,
     refundableDeposit: 8000,
     priceIncludes: 'The price includes the stay and amenities only.',
@@ -79,7 +79,7 @@ export const villas: Villa[] = [
     description: 'A private Jacuzzi, rain dance and a garden to slow down in. A two-bedroom retreat without a pool.',
     heroImage: { src: '/aurania/optimized/aurania-8806-1920.webp', alt: 'Villa Aurania’s red-roofed exterior and entrance courtyard surrounded by trees', width: 1920, height: 1280, position: 'center top', mobilePosition: '58% top', responsive: true, foregroundMask: '/images/aurania-hero-mask.svg', sky: '#bbb6ba' },
     photos: auraniaPhotos,
-    brochure: { href: '/Villa%20Aurania.pdf', filename: 'Villa Aurania.pdf', cover: '/brochures/aurania-cover.webp', pages: 16 },
+    brochure: { href: '/Villa%20Aurania.pdf', filename: 'Villa Aurania.pdf', cover: '/brochures/aurania-cover.webp', pages: 16, previewBase: '/brochures/aurania' },
     stayPrice: 12000,
     refundableDeposit: 3000,
     priceIncludes: 'The price includes the stay and amenities only.',
@@ -111,7 +111,7 @@ export const villas: Villa[] = [
     description: 'Three bedrooms, a private pool and room for up to 20 guests. Arched windows, green views and a rooftop under the stars.',
     heroImage: { src: '/archway/optimized/archway-54-1920.webp', alt: 'Villa Archway’s sunlit arched facade and balconies beside a tall palm', width: 1920, height: 1288, position: 'center top', mobilePosition: '48% top', responsive: true, foregroundMask: '/images/archway-hero-mask.svg', sky: '#509bd0' },
     photos: archwayPhotos,
-    brochure: { href: '/Archway.pdf', filename: 'Archway.pdf', cover: '/brochures/archway-cover.webp', pages: 20 },
+    brochure: { href: '/Archway.pdf', filename: 'Archway.pdf', cover: '/brochures/archway-cover.webp', pages: 20, previewBase: '/brochures/archway' },
     food: villaDining,
     amenities: [
       { name: 'Private swimming pool', detail: 'Your own little escape by the water.' },

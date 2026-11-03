@@ -4,11 +4,11 @@ import { Navbar } from '../layout/Navbar';
 import { Footer } from '../layout/Footer';
 import { Arrow, BrandMark } from '../ui/Icons';
 import { Reveal } from '../ui/Reveal';
-import { formatRupees, type Villa } from '@/lib/villas';
+import type { Villa } from '@/lib/villas';
 import { site } from '@/lib/site-content';
 import { VillaGallery } from './VillaGallery';
 import { VillaDining } from './VillaDining';
-import { PdfBrochure } from './PdfBrochure';
+import { VillaBrochureBook } from './VillaBrochureBook';
 import villaImageLoader from '@/lib/villa-image-loader';
 import styles from './VillaDetail.module.css';
 
@@ -20,6 +20,7 @@ export function VillaDetail({ villa }: { villa: Villa }) {
     '--hero-sky': villa.heroImage?.sky || 'var(--forest)',
   } as CSSProperties;
   const comfortPhoto = villa.photos?.[2];
+  const [opening, ...closing] = villa.introduction.split('. ');
 
   return <>
     <Navbar homePath="/" currentPath={`/villas/${villa.slug}/`} enquiryHref={site.instagramMessage} />
@@ -51,19 +52,25 @@ export function VillaDetail({ villa }: { villa: Villa }) {
 
       <div className={styles.content} id="villa-content">
         <section className={`${styles.overview} section-padding`} id="villa-details" aria-labelledby="overview-heading">
-          <div className={styles.overviewTop}>
-            <div className={styles.overviewIntro}><h2 id="overview-heading">{villa.introduction}</h2><p>{villa.description}</p></div>
+          <div className={styles.overviewIntro}>
+            <p className={styles.location}>{villa.style} <span aria-hidden="true">·</span> {villa.location}</p>
+            <h2 id="overview-heading"><span>{opening}{closing.length ? '.' : ''}</span>{closing.length ? <> <em>{closing.join('. ')}</em></> : null}</h2>
+            <p className={styles.overviewDescription}>{villa.description}</p>
+          </div>
+          <div className={styles.staySummary}>
+            <dl className={styles.stayFacts}><div><dt>Bedrooms</dt><dd>{String(villa.bedrooms).padStart(2, '0')}</dd></div><div><dt>Your outdoors</dt><dd className={styles.outdoorFact}>{villa.hasPool ? 'Private pool' : 'Private Jacuzzi'}</dd></div></dl>
             <aside className={styles.quote} aria-label={`${villa.name} stay quotation`}>
-              <div>{villa.stayPrice !== undefined ? <><p className={styles.price}><span className={styles.currency}>₹</span>{villa.stayPrice.toLocaleString('en-IN')}</p><p className={styles.priceLabel}>Your villa stay</p></> : <p className={styles.priceRequest}>Price on request</p>}</div>
-              <div>{villa.refundableDeposit !== undefined ? <p className={styles.deposit}>{formatRupees(villa.refundableDeposit)} extra deposit<br/><span>Refundable on checkout.</span></p> : <p className={styles.deposit}>Share your dates for a quotation.</p>}</div>
+              <dl className={styles.rates}>
+                <div><dt>Villa stay</dt><dd>{villa.stayPrice !== undefined ? <span className={styles.price}><span className={styles.currency}>₹</span>{villa.stayPrice.toLocaleString('en-IN')}</span> : <span className={styles.priceRequest}>Price on request</span>}</dd></div>
+                {villa.refundableDeposit !== undefined && <div><dt>Extra deposit</dt><dd><span className={styles.price}><span className={styles.currency}>₹</span>{villa.refundableDeposit.toLocaleString('en-IN')}</span></dd><p className={styles.deposit}>Refundable on checkout.</p></div>}
+              </dl>
               {villa.priceIncludes && <p className={styles.quoteNote}>Stay & amenities included. Food extra.</p>}
+              {villa.stayPrice === undefined && <p className={styles.quoteNote}>Share your dates for a quotation.</p>}
             </aside>
           </div>
-          <div className={styles.overviewFoot}>
-            <p>{villa.bedrooms} bedrooms <span aria-hidden="true">/</span> {villa.hasPool ? 'Private pool' : 'Private Jacuzzi · no pool'} <span aria-hidden="true">/</span> {villa.location}</p>
-            <PdfBrochure brochure={{ ...villa.brochure, title: `${villa.name} brochure` }} minimal viewLabel="View villa brochure" />
-          </div>
         </section>
+
+        <VillaBrochureBook name={villa.name} brochure={villa.brochure} />
 
         {villa.photos?.length ? <VillaGallery name={villa.name} photos={villa.photos} /> : null}
 

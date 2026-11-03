@@ -244,6 +244,148 @@ test('each villa brochure previews the correct PDF on the page and downloads the
   }
 });
 
+test('the scrapbook below each introduction turns through the actual brochure spreads', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  for (const villa of villas) {
+    await page.goto(`/villas/${villa.slug}/`);
+    const section = page.locator('#villa-brochure');
+    const book = section.getByRole('group', { name: `${villa.name} brochure pages` });
+    const images = section.locator('#brochure-active-pages').getByRole('img');
+    await expect(images).toHaveCount(2);
+    await expect(images.nth(0)).toHaveAttribute('src', `${villa.brochure.previewBase}/page-01.webp`);
+    await expect(images.nth(1)).toHaveAttribute('src', `${villa.brochure.previewBase}/page-02.webp`);
+    expect(await page.evaluate(() => {
+      const introduction = document.querySelector('#villa-details')!;
+      const brochure = document.querySelector('#villa-brochure')!;
+      const gallery = document.querySelector('#villa-photos')!;
+      return !!(introduction.compareDocumentPosition(brochure) & Node.DOCUMENT_POSITION_FOLLOWING) && !!(brochure.compareDocumentPosition(gallery) & Node.DOCUMENT_POSITION_FOLLOWING);
+    })).toBe(true);
+    await expect(section.getByRole('button', { name: 'Previous brochure pages' })).toBeDisabled();
+    await section.getByRole('button', { name: 'Next brochure pages' }).click();
+    await expect(section.getByRole('status')).toHaveText(`3–4 / ${villa.brochure.pages}`);
+    await expect(images.nth(0)).toHaveAttribute('src', `${villa.brochure.previewBase}/page-03.webp`);
+    await expect(section.locator('[data-page-turn]')).toHaveCount(1);
+    await expect(section.locator('[data-page-turn]')).toHaveCount(0, { timeout: 2500 });
+    await book.focus();
+    await page.keyboard.press('End');
+    await expect(section.getByRole('status')).toHaveText(`${villa.brochure.pages - 1}–${villa.brochure.pages} / ${villa.brochure.pages}`);
+    await expect(section.getByRole('button', { name: 'Next brochure pages' })).toBeDisabled();
+    await page.keyboard.press('Home');
+    await expect(section.getByRole('status')).toHaveText(`1–2 / ${villa.brochure.pages}`);
+  }
+});
+
+test('the brochure scrapbook supports mobile swipes, reduced motion and viewport changes', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/villas/villa-avante/');
+  const section = page.locator('#villa-brochure');
+  const book = section.getByRole('group', { name: 'Villa Avante brochure pages' });
+  await expect(book).toHaveAttribute('data-page-mode', 'single');
+  await expect(section.locator('#brochure-active-pages').getByRole('img')).toHaveCount(1);
+  await book.focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(section.getByRole('status')).toHaveText('2 / 18');
+  await expect(section.locator('[data-page-turn]')).toHaveCount(0);
+  await book.evaluate(element => {
+    const start = new Touch({ identifier: 1, target: element, clientX: 280, clientY: 400 });
+    const end = new Touch({ identifier: 1, target: element, clientX: 70, clientY: 405 });
+    element.dispatchEvent(new TouchEvent('touchstart', { touches: [start], bubbles: true }));
+    element.dispatchEvent(new TouchEvent('touchend', { changedTouches: [end], bubbles: true }));
+  });
+  await expect(section.getByRole('status')).toHaveText('3 / 18');
+  await book.focus();
+  await page.keyboard.press('End');
+  await expect(section.getByRole('status')).toHaveText('18 / 18');
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await expect(section.getByRole('status')).toHaveText('17–18 / 18');
+  await expect(section.locator('#brochure-active-pages').getByRole('img')).toHaveCount(2);
+  for (const width of [768, 390, 320]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    const bounds = await book.boundingBox();
+    expect(bounds!.x).toBeGreaterThanOrEqual(0);
+    expect(bounds!.x + bounds!.width).toBeLessThanOrEqual(width);
+  }
+});
+
+test('a failed brochure page keeps the current spread and offers the original PDF', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.route('**/brochures/avante/page-03.webp', route => route.abort());
+  await page.goto('/villas/villa-avante/');
+  const section = page.locator('#villa-brochure');
+  await section.getByRole('button', { name: 'Next brochure pages' }).click();
+  await expect(section.getByRole('alert')).toContainText('Open the PDF to keep reading.');
+  await expect(section.getByRole('status')).toHaveText('1–2 / 18');
+  await expect(section.getByRole('button', { name: 'Next brochure pages' })).toBeEnabled();
+  await section.getByRole('button', { name: 'View Villa Avante brochure' }).click();
+  await expect(page.getByRole('dialog', { name: 'Villa Avante brochure' })).toBeVisible();
+});
+
+for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844 }]) {
+  test(`brochure turns on five scroll steps then releases into manual navigation at ${viewport.width}px`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    await page.emulateMedia({ reducedMotion: 'no-preference' });
+    await page.goto('/villas/villa-avante/');
+    await page.evaluate(() => document.fonts.ready);
+    const section = page.locator('#villa-brochure');
+    const track = section.locator('[data-navigation]');
+    const book = section.getByRole('group', { name: 'Villa Avante brochure pages' });
+    await expect(track).toHaveAttribute('data-scroll-enabled', 'true');
+    const geometry = await track.evaluate(element => {
+      const reader = element.firstElementChild!;
+      return {
+        start: element.getBoundingClientRect().top + scrollY - parseFloat(getComputedStyle(reader).top),
+        step: parseFloat((element as HTMLElement).style.getPropertyValue('--scroll-step-distance')),
+      };
+    });
+    const pageStep = viewport.width > 700 ? 2 : 1;
+    let pinnedTop = 0;
+    let releaseTop = 0;
+    for (let turn = 1; turn <= 5; turn++) {
+      const before = await page.evaluate(y => {
+        scrollTo({ top: y, behavior: 'instant' });
+        return document.querySelector('#villa-brochure [data-page-mode]')!.getBoundingClientRect().top;
+      }, geometry.start + turn * geometry.step + 10);
+      if (turn === 5) releaseTop = before;
+      const first = turn * pageStep + 1;
+      await expect(section.getByRole('status')).toHaveText(`${first}${pageStep === 2 ? `–${first + 1}` : ''} / 18`);
+      await expect(section.locator('[data-page-turn]')).toHaveCount(0, { timeout: 2500 });
+      if (turn === 1) pinnedTop = (await book.boundingBox())!.y;
+      if (turn > 1 && turn < 5) expect(Math.abs((await book.boundingBox())!.y - pinnedTop)).toBeLessThan(2);
+      if (turn < 5) await expect(track).toHaveAttribute('data-navigation', 'scroll');
+    }
+    await expect(track).toHaveAttribute('data-navigation', 'manual');
+    await expect(track).toHaveAttribute('data-scroll-enabled', 'false');
+    expect(Math.abs((await book.boundingBox())!.y - releaseTop)).toBeLessThan(2);
+    if (viewport.width === 1440) expect((await book.boundingBox())!.width).toBeCloseTo(1080, 0);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+    await section.getByRole('button', { name: 'Next brochure pages' }).click();
+    await expect(section.getByRole('status')).toHaveText(pageStep === 2 ? '13–14 / 18' : '7 / 18');
+    await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+    await expect(track).toHaveAttribute('data-navigation', 'manual');
+    await expect(section.getByRole('status')).toHaveText(pageStep === 2 ? '13–14 / 18' : '7 / 18');
+  });
+}
+
+test('choosing a brochure page manually ends the scroll sequence without an extra scroll gap', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/villas/villa-avante/');
+  const section = page.locator('#villa-brochure');
+  const track = section.locator('[data-navigation]');
+  await expect(track).toHaveAttribute('data-scroll-enabled', 'true');
+  const y = await track.evaluate(element => element.getBoundingClientRect().top + scrollY - parseFloat(getComputedStyle(element.firstElementChild!).top) + parseFloat((element as HTMLElement).style.getPropertyValue('--scroll-step-distance')) + 10);
+  await page.evaluate(y => scrollTo({ top: y, behavior: 'instant' }), y);
+  await expect(section.getByRole('status')).toHaveText('3–4 / 18');
+  await section.getByRole('group', { name: 'Villa Avante brochure pages' }).focus();
+  await page.keyboard.press('ArrowRight');
+  await expect(section.getByRole('status')).toHaveText('5–6 / 18');
+  await expect(track).toHaveAttribute('data-navigation', 'manual');
+  expect(await track.evaluate(element => Math.abs(element.getBoundingClientRect().height - element.firstElementChild!.getBoundingClientRect().height))).toBeLessThan(1);
+});
+
 test('all three villas share brochure-priced dining, deferred food PDFs and reduced-motion support', async ({ page, request }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   const response = await request.head('/TLS%20-%20Food%20Package.pdf');
