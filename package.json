@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "test:e2e": "playwright test",
     "test": "node --import tsx --test tests/availability.test.ts",
-    "images:prepare": "node scripts/prepare-images.mjs"
+    "images:prepare": "node scripts/prepare-images.mjs",
+    "branding:prepare": "python3 scripts/prepare-branding.py"
   },
   "dependencies": {
     "next": "16.4.3",

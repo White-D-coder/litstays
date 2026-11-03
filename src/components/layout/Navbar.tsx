@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { navigation } from '@/lib/site-content';
-import { Arrow, BrandMark } from '../ui/Icons';
+import { Arrow } from '../ui/Icons';
+import { BrandLogo } from '../ui/BrandLogo';
 import styles from './Navigation.module.css';
 
 export function Navbar({ homePath = '', currentPath, light = false, enquiryHref = '#enquire' }: { homePath?: string; currentPath?: string; light?: boolean; enquiryHref?: string }) {
@@ -27,13 +28,13 @@ export function Navbar({ homePath = '', currentPath, light = false, enquiryHref 
   const href = (value: string) => value.startsWith('#') ? `${homePath}${value}` : value;
   return <>
     <header className={`navbar ${styles.header} ${light || scrolled ? 'is-scrolled' : ''}`}>
-      <a className="wordmark" href={href('#home')}><BrandMark /><span>the lit stays<span className="wordmark-sub" aria-hidden="true">A LITTLE CLOSER TO YOURSELF</span></span></a>
+      <a className="wordmark" href={href('#home')} aria-label="The Lit Stays home"><BrandLogo /></a>
       <nav className="desktop-navigation" aria-label="Main navigation">{navigation.map(link => <a href={href(link.href)} key={link.href} aria-current={link.href === currentPath ? 'page' : undefined}>{link.label}</a>)}</nav>
       <a className="nav-enquire" href={enquiryHref} target={enquiryHref.startsWith('http') ? '_blank' : undefined} rel={enquiryHref.startsWith('http') ? 'noopener noreferrer' : undefined}>Plan your stay <Arrow diagonal /></a>
       <button className="menu-toggle" ref={toggle} aria-label="Open navigation menu" aria-expanded={open} aria-controls="mobile-menu" onClick={() => { dialog.current?.showModal(); setOpen(true); }}><span/><span/></button>
     </header>
     <dialog id="mobile-menu" className="mobile-menu" ref={dialog} aria-label="Site navigation" onCancel={close} onClose={() => setOpen(false)}>
-      <div className="menu-top"><span className="serif">the lit stays</span><button autoFocus aria-label="Close navigation menu" onClick={close}>Close <span aria-hidden="true">×</span></button></div>
+      <div className="menu-top"><a className={styles.menuBrand} href={href('#home')} aria-label="The Lit Stays home" onClick={close}><BrandLogo tone="sand" /></a><button autoFocus aria-label="Close navigation menu" onClick={close}>Close <span aria-hidden="true">×</span></button></div>
       <p className="eyebrow">YOUR OWN LITTLE ESCAPE</p>
       <nav aria-label="Mobile navigation">{navigation.map((link, i) => <a href={href(link.href)} key={link.href} aria-current={link.href === currentPath ? 'page' : undefined} onClick={close}><span>{String(i + 1).padStart(2, '0')}</span>{link.label}<Arrow diagonal/></a>)}<a href={enquiryHref} target={enquiryHref.startsWith('http') ? '_blank' : undefined} rel={enquiryHref.startsWith('http') ? 'noopener noreferrer' : undefined} onClick={close}><span>{String(navigation.length + 1).padStart(2, '0')}</span>Plan your stay<Arrow diagonal/></a></nav>
       <p className="menu-bottom">Some places stay with you.</p>

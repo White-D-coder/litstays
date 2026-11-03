@@ -5,7 +5,8 @@ export function Arrow({ diagonal = false, ...props }: SVGProps<SVGSVGElement> & 
 }
 
 export function BrandMark(props: SVGProps<SVGSVGElement>) {
-  return <svg viewBox="0 0 54 58" fill="none" aria-hidden="true" {...props}><path d="M12 50V23a15 15 0 0 1 30 0v27M18 50V24a9 9 0 0 1 18 0v26M6 50h42M27 4V0M7 13 3 9m44 4 4-4" stroke="currentColor" strokeWidth="1"/><path d="M24 50V31h5v15h8v4z" fill="currentColor"/></svg>;
+  const { style, ...rest } = props;
+  return <svg viewBox="0 0 306 439" aria-hidden="true" {...rest} style={{ maskImage: 'url("/brand/mark.png")', maskSize: 'contain', maskPosition: 'center', maskRepeat: 'no-repeat', ...style }}><rect width="306" height="439" fill="currentColor" /></svg>;
 }
 
 export function InstagramIcon() {

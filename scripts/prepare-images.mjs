@@ -20,6 +20,5 @@ for (const [name, url] of Object.entries(sources)) {
   if (name === 'aerial') await Promise.all([480, 960, 1440, 1920].map(width => sharp(input).rotate().resize({ width, height: Math.round(width * 16 / 9), fit: 'cover', position: 'centre' }).webp({ quality: 72, effort: 6 }).toFile(path.join(directory, `aerial-mobile-${width}.webp`))));
   console.log(`Prepared ${name}: 4 responsive WebP sizes`);
 }
-const icon = await readFile('public/icon.svg');
-await sharp(icon).resize(180, 180).png().toFile('public/apple-touch-icon.png');
+// The owner-supplied logos and mobile icons use `npm run branding:prepare`.
 await writeFile('public/images/README.txt', 'Photography: Villa Archway by The Lit Stays. Source URLs and provenance are documented in scripts/image-sources.json and README.md.\n');

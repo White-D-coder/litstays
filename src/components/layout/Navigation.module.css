@@ -1,6 +1,9 @@
 .header :global(.desktop-navigation) a { white-space: nowrap; font-size: 13px; }
 .header :global(.desktop-navigation) { gap: clamp(14px, 1.4vw, 24px); }
-.header { gap: 22px; }
+.header { gap: 22px; --brand-logo-width: 126px; }
+.header:global(.is-scrolled) { --brand-logo-width: 110px; }
+.menuBrand { display: block; --brand-logo-width: 140px; }
+.footer { --brand-logo-width: 174px; }
 .header :global(.nav-enquire) { font-size: 14px; gap: 14px; padding-inline: 15px; margin-left: 0; }
 .footer :global(.footer-main) { flex-wrap: wrap; gap: 28px; padding-block: 35px; }
 .footer :global(.footer-main) nav { flex-wrap: wrap; font-size: 14px; gap: 14px 22px; }
@@ -12,16 +15,14 @@
   .header :global(.nav-enquire) { margin-left: auto; }
 }
 @media (max-width: 600px) {
-  .header { gap: 13px; }
+  .header { gap: 13px; --brand-logo-width: 106px; }
+  .header:global(.is-scrolled) { --brand-logo-width: 94px; }
+  .footer { --brand-logo-width: 132px; }
   .header :global(.nav-enquire) { font-size: 13px; padding-inline: 0; gap: 8px; }
   .footer :global(.footer-main) nav { justify-content: flex-start; gap: 14px 20px; }
   .footer :global(.footer-bottom) > a { margin-left: 0; }
 }
 @media (max-width: 360px) {
   .header { gap: 8px; }
-  .header :global(.wordmark) { gap: 7px; }
-  .header :global(.wordmark) > span { font-size: 22px; }
-  .header :global(.wordmark) > svg { width: 20px; }
-  .header :global(.wordmark-sub) { display: none; }
   .header :global(.nav-enquire) { font-size: 13px; gap: 6px; white-space: nowrap; }
 }

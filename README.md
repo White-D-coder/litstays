@@ -61,6 +61,8 @@ The featured property is **Villa Archway**, one of the brand's host-published li
 
 The owner subsequently supplied screenshots confirming Villa Archway's capacity of up to 20 guests, check-in from 1:00 PM, check-out by 11:00 AM, and the FAQ content for Villa Archway, Villa Avante, and Villa Aurania. The FAQs reproduce the supplied meal options, prices, pet policy, pool differences, Wi-Fi, parking, and celebration/decorating policy.
 
+Official logo exports are preserved in `public/Logo Exports/PNGS/`. Navigation uses the white horizontal logo over photographs and the brown variant over ivory; the footer and mobile menu use the sand variant. `BrandMark` uses the supplied arch artwork throughout the site. Run `npm run branding:prepare` (Python with Pillow) to rebuild the trimmed logos in `public/brand/`, browser favicons, Apple touch icon and web app icons. The icon symbol is extracted from `Artboard 2 copy.png`; the original artwork and colours stay intact.
+
 Remaining business information: official WhatsApp/email, exact arrival address, nightly rates, any owner-defined minimum stay, and the dedicated calendar plus server credentials. These are not invented or published as guessed values.
 
 ## Source map
@@ -82,6 +84,7 @@ Remaining business information: official WhatsApp/email, exact arrival address, 
 | `server/availability-service.ts`, `availability-api.ts` | Private Google Calendar access, cache, public endpoint |
 | `scripts/serve.mjs`, `dev.mjs` | Production and development runtime |
 | `scripts/prepare-images.mjs` | Reproducible responsive WebP preparation |
+| `scripts/prepare-branding.py`, `src/components/ui/BrandLogo.tsx` | Official PNG logo variants, browser and mobile icons |
 | `tests/` | Calendar edge cases and browser interaction checks |
 
 ## Performance and limits
