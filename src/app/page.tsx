@@ -17,8 +17,8 @@ export default function Home() {
       <div className="page-surface">
         <IntroductionSection/>
         <VillaSpacesSection/>
-        <FactsSection/>
         <ExperienceSection/>
+        <FactsSection/>
         <GallerySection/>
         <FAQSection/>
         <AvailabilitySection/>

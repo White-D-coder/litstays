@@ -1,0 +1,25 @@
+.header :global(.desktop-navigation) a { white-space: nowrap; font-size: 13px; }
+.header :global(.desktop-navigation) { gap: clamp(14px, 1.4vw, 24px); }
+.header { gap: 22px; }
+.header :global(.nav-enquire) { font-size: 14px; gap: 14px; padding-inline: 15px; margin-left: 0; }
+.footer :global(.footer-main) { flex-wrap: wrap; gap: 28px; padding-block: 35px; }
+.footer :global(.footer-main) nav { flex-wrap: wrap; font-size: 14px; gap: 14px 22px; }
+.footer :global(.footer-social), .footer :global(.footer-social) > span { font-size: 14px; }
+.footer :global(.footer-bottom) { flex-wrap: wrap; font-size: 13px; gap: 15px 25px; line-height: 1.8; }
+@media (max-width: 1280px) {
+  .header :global(.desktop-navigation) { display: none; }
+  .header :global(.menu-toggle) { display: flex; }
+  .header :global(.nav-enquire) { margin-left: auto; }
+}
+@media (max-width: 600px) {
+  .header { gap: 13px; }
+  .header :global(.nav-enquire) { font-size: 13px; padding-inline: 0; gap: 8px; }
+  .footer :global(.footer-main) nav { justify-content: flex-start; gap: 14px 20px; }
+  .footer :global(.footer-bottom) > a { margin-left: 0; }
+}
+@media (max-width: 360px) {
+  .header :global(.wordmark) > span { font-size: 24px; }
+  .header :global(.wordmark) > svg { width: 23px; }
+  .header :global(.wordmark-sub) { display: none; }
+  .header :global(.nav-enquire) { font-size: 13px; gap: 6px; }
+}

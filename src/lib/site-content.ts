@@ -1,3 +1,5 @@
+import { villas } from './villas';
+
 export type PropertyFact = { label: string; value: string; detail: string };
 export type Photo = { id: string; alt: string; caption: string; category: string };
 
@@ -40,6 +42,8 @@ export const navigation = [
   { label: 'The bungalow', href: '#bungalow' },
   { label: 'The experience', href: '#experience' },
   { label: 'The gallery', href: '#gallery' },
+  ...villas.map(villa => ({ label: villa.name, href: `/villas/${villa.slug}/` })),
+  { label: 'Our Story', href: '/our-story/' },
 ] as const;
 
 export const photos: Photo[] = [

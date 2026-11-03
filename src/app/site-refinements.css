@@ -1,5 +1,5 @@
 /* Compact section rhythm, static inset dividers, and the final site polish. */
-:root { --section-space: clamp(44px, 4.5vw, 68px); --inset-rule: rgba(14,31,13,.2); }
+:root { --section-space: clamp(44px, 4.5vw, 68px); --inset-rule: rgba(var(--ink-rgb),.2); }
 .introduction { padding-block: var(--section-space); }
 .facts,.gallery { padding-block: var(--section-space); }
 .experience,.experience-photo { min-height: 590px; }
@@ -10,7 +10,7 @@
   content: ''; position: absolute; bottom: 0; left: 16px; right: 16px;
   height: 1px; background: var(--inset-rule); pointer-events: none;
 }
-.moment::after { background: rgba(221,222,207,.24); }
+.moment::after { background: rgba(var(--ivory-rgb),.24); }
 .moment button { padding-block: 19px; }
 .facts-inventory > div { padding-block: 15px; }
 
@@ -28,12 +28,12 @@
 .location-retreat-intro > span { display: block; font-size: 8px; letter-spacing: .15em; margin-top: 15px; color: var(--muted); }
 .location-landscape { position: relative; height: clamp(360px, 32vw, 475px); overflow: hidden; background: var(--sage); border-radius: 3px; }
 .location-landscape > img { object-position: center 60%; }
-.location-landscape-label { position: absolute; bottom: 25px; left: 27px; font-size: 8px; letter-spacing: .14em; color: #f3efdf; text-shadow: 0 1px 8px #0e1f0d; }
-.location-arrival-card { position: absolute; right: 24px; bottom: 24px; width: min(340px, 45%); padding: 27px 30px; background: var(--forest); color: #eeeade; border-radius: 3px; overflow: hidden; }
-.location-arrival-card .eyebrow { font-size: 8px; color: #aeb8a1; }
+.location-landscape-label { position: absolute; bottom: 25px; left: 27px; font-size: 8px; letter-spacing: .14em; color: var(--ivory); text-shadow: 0 1px 8px var(--forest); }
+.location-arrival-card { position: absolute; right: 24px; bottom: 24px; width: min(340px, 45%); padding: 27px 30px; background: var(--forest); color: var(--ivory); border-radius: 3px; overflow: hidden; }
+.location-arrival-card .eyebrow { font-size: 8px; color: var(--on-dark); }
 .location-arrival-card h3 { font-size: 35px; line-height: 1.1; margin-block: 16px 12px; max-width: 12ch; }
-.location-arrival-card > p { font-size: 11px; color: #c4c9b8; line-height: 1.8; }
-.location-arrival-card > .text-link { margin-top: 13px; color: #eeeade; }
+.location-arrival-card > p { font-size: 11px; color: var(--on-dark); line-height: 1.8; }
+.location-arrival-card > .text-link { margin-top: 13px; color: var(--ivory); }
 .location-watermark { width: 140px; height: 150px; position: absolute; bottom: -25px; right: -30px; opacity: .07; pointer-events: none; }
 
 /* The illustration is anchored beside “asked”, rather than below the title. */
@@ -54,7 +54,7 @@
 .availability-intro h2 { font-size: clamp(46px, 4.3vw, 66px); margin-bottom: 20px; }
 .availability-intro > .availability-demo-note { margin-top: 22px; padding-left: 0; }
 .availability-intro > p.availability-small-print { margin-top: 15px; }
-.availability-calendar { min-height: 0; padding: 28px; background: #f7f4e9; border: 1px solid rgba(14,31,13,.13); border-radius: 10px; box-shadow: 0 14px 36px rgba(14,31,13,.11); }
+.availability-calendar { min-height: 0; padding: 28px; background: var(--ivory); border: 1px solid rgba(var(--ink-rgb),.13); border-radius: 10px; box-shadow: 0 14px 36px rgba(var(--ink-rgb),.11); }
 .calendar-top { margin-bottom: 22px; }
 .calendar-source { font-size: 9px; }
 .calendar-month-nav > button { border-radius: 50%; width: 36px; height: 36px; }
@@ -63,8 +63,8 @@
 .calendar-week > [role=gridcell],.calendar-day { height: 40px; }
 .calendar-day { font-size: 13px; font-weight: 500; border-radius: 4px; }
 .calendar-day:disabled { opacity: .45; }
-.calendar-day.is-selected { color: #f7f4e9; }
-.calendar-selection { padding: 15px; background: #e9eadc; border-radius: 5px; gap: 16px; }
+.calendar-day.is-selected { color: var(--ivory); }
+.calendar-selection { padding: 15px; background: var(--sand); border-radius: 5px; gap: 16px; }
 .calendar-selection strong { font-size: 25px; }
 .calendar-legend { font-size: 9px; gap: 14px; margin-block: 18px; }
 .calendar-status { font-size: 11px; min-height: 22px; margin-top: 14px; }
@@ -80,8 +80,8 @@
 .booking-signature > svg { width: 30px; height: 35px; }
 .form-row { gap: 18px; }
 .booking-form label { margin-bottom: 16px; font-size: 10px; }
-.booking-form input,.booking-form textarea { padding: 10px 12px; margin-top: 7px; background: rgba(243,239,223,.045); border: 1px solid rgba(221,222,207,.24); border-radius: 4px; font-size: 12px; line-height: 1.6; }
-.booking-form input:focus,.booking-form textarea:focus { background: rgba(243,239,223,.07); }
+.booking-form input,.booking-form textarea { padding: 10px 12px; margin-top: 7px; background: rgba(var(--ivory-rgb),.045); border: 1px solid rgba(var(--ivory-rgb),.24); border-radius: 4px; font-size: 12px; line-height: 1.6; }
+.booking-form input:focus,.booking-form textarea:focus { background: rgba(var(--ivory-rgb),.07); }
 .booking-form input[type=date] { min-height: 44px; }
 .booking-form textarea { min-height: 65px; }
 .guests-row > span { margin-top: 0; }

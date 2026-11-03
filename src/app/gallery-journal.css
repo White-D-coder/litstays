@@ -1,6 +1,6 @@
 /* Photo order and timing: src/lib/gallery-slides.ts.
    Only the photographs dissolve; captions stay outside the animated layers. */
-.gallery-journal { --journal-ivory: #f3efdf; }
+.gallery-journal { --journal-ivory: var(--ivory); }
 .gallery-journal-slide { display: block; position: absolute; inset: 0; opacity: 1; }
 .gallery-journal-slide.is-incoming { z-index: 1; opacity: 0; transition: opacity var(--journal-crossfade, 1400ms) cubic-bezier(.4, 0, .2, 1); }
 .gallery-journal-slide.is-incoming.is-fading { opacity: 1; }

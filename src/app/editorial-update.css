@@ -39,25 +39,25 @@ h1 em,h2 em,h3 em { font-weight: 400; display: inline; max-width: none; white-sp
 .villa-book-hint { font-size: 6px; margin-top: 3px; }
 
 /* Swap the two sections' palettes, preserving the existing content and controls. */
-.experience { background: var(--ivory); color: var(--forest); }
+.experience { background: var(--ivory); color:var(--ink); }
 .experience-story .eyebrow,.experience-intro,.moment-number,.moment-plus,.moment-description p { color: var(--muted); }
 .experience-story h2 { max-width: 18ch; font-size: clamp(42px, 4.1vw, 62px); }
 .moment::after { background: var(--inset-rule); }
 .experience { margin-top: 24px; margin-bottom: clamp(36px, 4vw, 60px); }
 .moment button:focus-visible { outline-width: 1px; outline-offset: 4px; border-radius: 3px; }
-.facts { background: var(--forest); color: #f3efdf; }
+.facts { background: var(--forest); color: var(--ivory); }
 .facts-layout { column-gap: 7%; row-gap: 26px; }
 .facts-sheet h2 { font-size: clamp(45px, 4.2vw, 64px); line-height: 1.05; max-width: 18ch; }
 .facts-sheet h2 em { font-size: 1em; display: inline; max-width: none; }
-.facts-sheet > .eyebrow,.facts-sheet-footer > p,.facts-portrait > .image-caption { color: #bbc5ae; }
+.facts-sheet > .eyebrow,.facts-sheet-footer > p,.facts-portrait > .image-caption { color: var(--on-dark); }
 .facts-inventory dt { display: flex; align-items: center; gap: 20px; }
-.facts-inventory dt > svg { width: 60px; height: 60px; flex-shrink: 0; color: #e5e8d6; }
-.facts-inventory dt > .fact-label { display: block; font-size: 14px; color: #f3efdf; margin: 0; }
-.fact-label > span { display: block; font-size: 10px; color: #b7c1aa; margin-top: 4px; }
+.facts-inventory dt > svg { width: 60px; height: 60px; flex-shrink: 0; color: var(--ivory); }
+.facts-inventory dt > .fact-label { display: block; font-size: 14px; color: var(--ivory); margin: 0; }
+.fact-label > span { display: block; font-size: 10px; color: var(--on-dark); margin-top: 4px; }
 .facts-inventory > div { padding-block: 13px; }
-.facts-inventory > div::after { background: rgba(243,239,223,.2); }
+.facts-inventory > div::after { background: rgba(var(--ivory-rgb),.2); }
 .facts-inventory dd { font-size: 36px; }
-.facts-sheet-footer > .text-link { color: #f3efdf; }
+.facts-sheet-footer > .text-link { color: var(--ivory); }
 
 /* The current gallery uses its three-frame layout from gallery-journal.css. */
 .gallery-heading h2 { font-size: clamp(47px, 5vw, 76px); }
@@ -107,7 +107,7 @@ h1 em,h2 em,h3 em { font-weight: 400; display: inline; max-width: none; white-sp
   .villa-tabs > button { padding: 8px 4px; font-size: 9px; gap: 4px; }
   .villa-panel { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr; }
   .villa-photo { aspect-ratio: auto; }
-  .villa-story { padding: 17px 14px; min-height: 0; gap: 12px; background: linear-gradient(90deg,#d9d6c6,#f3efe3 7%,#eeeadd); }
+  .villa-story { padding: 17px 14px; min-height: 0; gap: 12px; background: linear-gradient(90deg,var(--sand),var(--ivory) 7%,var(--sand)); }
   .villa-story h3 { font-size: 28px; margin-bottom: 13px; }
   .villa-story-main > p { font-size: 12px; line-height: 1.6; }
   .villa-story-kicker { font-size: 6px; letter-spacing: .1em; }

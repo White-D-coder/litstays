@@ -44,7 +44,7 @@ test('gallery refresh changes the frame arrangement while captions remain fixed 
   await photo.hover();
   await expect(photo.locator('img')).toHaveCSS('transform', 'none');
   await expect(caption).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
-  await expect(caption).toHaveCSS('color', 'rgb(14, 31, 13)');
+  await expect(caption).toHaveCSS('color', 'rgb(45, 27, 19)');
   await expect(caption).toHaveCSS('transform', 'none');
   expect(await caption.boundingBox()).toEqual(before);
 });

@@ -1,0 +1,50 @@
+.section { position: relative; display: grid; grid-template-columns: 1.05fr 1fr; gap: 9%; align-items: center; overflow: hidden; padding-block: 90px; background: var(--ink); color: var(--ivory); }
+.visual { min-width: 0; }
+.photograph { position: relative; height: clamp(560px, 46vw, 700px); overflow: hidden; border-radius: 260px 260px 3px 3px; background: var(--sand); }
+.photograph > img { object-fit: cover; transition: transform 1.4s cubic-bezier(.22, 1, .36, 1); }
+.visual:hover img { transform: scale(1.045); }
+.content { min-width: 0; padding-block: 12px; }
+.content h2 { font-size: clamp(54px, 5.1vw, 79px); line-height: 1.02; letter-spacing: -.035em; }
+.meals { display: flex; flex-wrap: wrap; gap: 8px 14px; list-style: none; padding: 0; margin: 27px 0 0; font-size: 15px; color: var(--sand); }
+.meals > li + li::before { content: '/'; margin-right: 14px; opacity: .55; }
+.packages { list-style: none; padding: 0; margin: 36px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 28px 32px; }
+.packages > li { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding-top: 17px; border-top: 1px solid rgba(var(--ivory-rgb), .3); transition: border-color .35s ease; }
+.packages > li:hover { border-color: var(--ivory); }
+.packages > li > span { font-size: 16px; line-height: 1.5; }
+.packages strong { display: flex; align-items: baseline; gap: 3px; font: 400 43px/1 var(--font-serif), Georgia, serif; letter-spacing: -.02em; white-space: nowrap; }
+.currency { font: 400 .5em/1 var(--font-sans), sans-serif; letter-spacing: 0; }
+.priceNote { margin-top: 27px; color: var(--sand); font-size: 14px; line-height: 1.8; }
+.content > :global(div[data-theme]) { margin-top: 21px; }
+.terms { margin-top: 16px; max-width: 48ch; }
+.terms > summary { display: inline-flex; align-items: center; gap: 18px; min-height: 44px; cursor: pointer; list-style: none; color: var(--sand); font-size: 14px; }
+.terms > summary::-webkit-details-marker { display: none; }
+.terms > summary > span { font-size: 23px; line-height: 1; transition: transform .3s ease; }
+.terms[open] > summary > span { transform: rotate(45deg); }
+.terms > p { padding-top: 8px; color: var(--sand); font-size: 15px; line-height: 1.85; }
+@media (max-width: 1100px) {
+  .section { gap: 6%; }
+  .photograph { height: 620px; }
+  .content h2 { font-size: 60px; }
+  .packages { gap: 26px; }
+}
+@media (max-width: 800px) {
+  .section { grid-template-columns: 1fr; gap: 40px; padding-block: 65px; }
+  .visual, .content { max-width: 610px; width: 100%; margin-inline: auto; }
+  .photograph { height: 500px; }
+  .photograph > img { object-position: center 55%; }
+  .content { padding: 0; }
+  .content h2 { font-size: 68px; }
+  .packages { gap: 30px 40px; }
+}
+@media (max-width: 600px) {
+  .section { padding-block: 44px 40px; gap: 32px; }
+  .photograph { height: 390px; }
+  .content h2 { font-size: clamp(49px, 12.5vw, 64px); }
+  .meals { font-size: 14px; gap: 6px 10px; margin-top: 21px; }
+  .meals > li + li::before { margin-right: 10px; }
+  .packages { margin-top: 28px; gap: 25px 24px; }
+  .packages > li > span { font-size: 15px; }
+  .packages strong { font-size: 39px; }
+  .priceNote { margin-top: 23px; }
+}
+@media (prefers-reduced-motion: reduce) { .photograph > img, .packages > li, .terms > summary > span { transition: none; } }

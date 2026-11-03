@@ -34,14 +34,14 @@
   line-height: 1.5;
   transition: color 300ms ease, background 300ms ease;
 }
-.villa-tabs > button:hover { background: rgba(14, 31, 13, .06); }
+.villa-tabs > button:hover { background: rgba(var(--ink-rgb),.06); }
 .villa-tabs > button[aria-selected="true"] { color: var(--ivory); background: var(--forest); }
 .villa-tab-dot { height: 4px; width: 4px; border-radius: 50%; background: currentColor; opacity: .35; transition: opacity 300ms ease; }
 .villa-tabs > button[aria-selected="true"] .villa-tab-dot { opacity: 1; }
 
 .villa-book-track[data-scroll-book="true"] { height: calc(var(--villa-book-height) + 40vh); }
 .villa-book-track[data-scroll-book="true"] .villa-explorer { position: sticky; top: 90px; }
-.villa-stage { display: grid; position: relative; isolation: isolate; overflow: hidden; border-radius: 2px 10px 10px 2px; background: #eeeadd; perspective: 1800px; box-shadow: 0 12px 30px rgba(14,31,13,.1), 0 2px 0 #d0d0bc; }
+.villa-stage { display: grid; position: relative; isolation: isolate; overflow: hidden; border-radius: 2px 10px 10px 2px; background: var(--sand); perspective: 1800px; box-shadow: 0 12px 30px rgba(var(--ink-rgb),.1), 0 2px 0 var(--sage); }
 .villa-panel {
   grid-area: 1 / 1;
   display: grid;
@@ -53,7 +53,7 @@
 .villa-panel.is-active { opacity: 1; z-index: 1; pointer-events: auto; }
 .villa-photo { position: relative; overflow: hidden; min-width: 0; }
 .villa-photo img { object-fit: cover; object-position: center; transform: none; }
-.villa-story { position: relative; overflow: hidden; padding: var(--villa-copy-padding); color: var(--forest); display: flex; flex-direction: column; justify-content: center; gap: 23px; background: linear-gradient(90deg,#d9d6c6 0,#f3efe3 5%,#eeeadd 100%); }
+.villa-story { position: relative; overflow: hidden; padding: var(--villa-copy-padding); color:var(--ink); display: flex; flex-direction: column; justify-content: center; gap: 23px; background: linear-gradient(90deg,var(--sand) 0,var(--ivory) 5%,var(--sand) 100%); }
 .villa-story-kicker { font-size: 8px; letter-spacing: .14em; line-height: 1.7; color: var(--muted); }
 .villa-story h3 { font-size: clamp(36px, 3.4vw, 52px); line-height: 1.05; letter-spacing: -.02em; margin-bottom: 20px; }
 .villa-story-main > p { font-size: 14px; line-height: 1.8; color: var(--muted); max-width: 32ch; }
@@ -65,8 +65,8 @@
 .villa-turn-sheet { position: absolute; inset: 0 0 0 auto; width: 50%; z-index: 3; transform-origin: left center; transform-style: preserve-3d; pointer-events: none; }
 .villa-turn-sheet.turn-forward { animation: villa-page-forward 1000ms cubic-bezier(.4,0,.2,1) both; }
 .villa-turn-sheet.turn-backward { animation: villa-page-backward 1000ms cubic-bezier(.4,0,.2,1) both; }
-.villa-sheet-front,.villa-sheet-back { position: absolute; inset: 0; backface-visibility: hidden; overflow: hidden; box-shadow: -12px 0 25px rgba(14,31,13,.15); }
-.villa-sheet-back { transform: rotateY(180deg); background: #eeeadd; }
+.villa-sheet-front,.villa-sheet-back { position: absolute; inset: 0; backface-visibility: hidden; overflow: hidden; box-shadow: -12px 0 25px rgba(var(--ink-rgb),.15); }
+.villa-sheet-back { transform: rotateY(180deg); background: var(--sand); }
 .villa-sheet-story { width: 100%; height: 100%; }
 .villa-mobile-sheet-image,.villa-mobile-under-image { display: none; }
 .villa-book-hint { display: none; font: 7px var(--font-sans),sans-serif; letter-spacing: .14em; margin-top: 7px; opacity: .7; }
@@ -101,7 +101,7 @@
   .villa-tab-dot { width: 3px; height: 3px; flex-shrink: 0; }
   .villa-panel { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
   .villa-photo { aspect-ratio: 1.35; }
-  .villa-story { padding: 25px; min-height: 270px; gap: 17px; background: linear-gradient(180deg,#dedacc,#f3efe3 8%,#eeeadd); }
+  .villa-story { padding: 25px; min-height: 270px; gap: 17px; background: linear-gradient(180deg,var(--sand),var(--ivory) 8%,var(--sand)); }
   .villa-story h3 { font-size: 39px; margin-bottom: 16px; }
   .villa-story-main > p { max-width: 42ch; font-size: 13px; }
   .villa-story-note { font-size: 22px; }

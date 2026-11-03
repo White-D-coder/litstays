@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   icons: { icon: '/icon.svg', apple: '/apple-touch-icon.png' },
 };
 
-export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#0E1F0D', colorScheme: 'light' };
+export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#2C3B28', colorScheme: 'light' };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="en" className={`${serif.variable} ${sans.variable}`}><body><HeadingSelection/><a href="#main" className="skip-link">Skip to content</a>{children}</body></html>;
