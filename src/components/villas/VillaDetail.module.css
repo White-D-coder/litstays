@@ -108,19 +108,22 @@
 .stayFacts dd { font: 400 49px/1 var(--font-serif), Georgia, serif; letter-spacing: -.025em; }
 .stayFacts .outdoorFact { font-size: 36px; line-height: 1.15; }
 .quote { min-width: 0; padding-left: 36px; border-left: 1px solid var(--rule); }
+/* Share price baselines and note rows even when a note wraps. */
+.rates { row-gap: 0; }
+.rates > div { display: grid; grid-template-rows: subgrid; grid-row: span 3; }
+.rates dd { display: grid; grid-template-rows: subgrid; grid-row: span 2; }
 .rates > div:only-child { grid-column: 1 / -1; }
-.price { display: flex; align-items: baseline; gap: 4px; font: 400 51px/1 var(--font-serif), Georgia, serif; letter-spacing: -.03em; white-space: nowrap; }
+.price { display: flex; align-items: baseline; align-self: baseline; gap: 4px; font: 400 51px/1 var(--font-serif), Georgia, serif; letter-spacing: -.03em; white-space: nowrap; }
 .rates > div + div .price { font-size: 39px; }
 .currency { font: 400 .45em/1 var(--font-sans), sans-serif; letter-spacing: 0; }
-.priceRequest { display: block; font: 400 36px/1.15 var(--font-serif), Georgia, serif; letter-spacing: -.025em; }
-.deposit { margin-top: 9px; color: var(--muted); font-size: 14px; line-height: 1.6; }
-.quoteNote { margin-top: 17px; color: var(--muted); font-size: 14px; line-height: 1.7; }
+.priceRequest { display: block; align-self: baseline; font: 400 36px/1.15 var(--font-serif), Georgia, serif; letter-spacing: -.025em; }
+.deposit, .quoteNote { margin: 9px 0 0; color: var(--muted); font: 400 14px/1.6 var(--font-sans), sans-serif; letter-spacing: normal; }
 @media (max-width: 1100px) {
   .overviewIntro { gap: 17px 35px; }
   .overviewIntro h2 { font-size: clamp(55px, 6vw, 67px); }
   .overviewDescription { font-size: 17px; }
   .staySummary { gap: 25px; }
-  .stayFacts, .rates { gap: 20px; }
+  .stayFacts, .rates { column-gap: 20px; }
   .quote { padding-left: 25px; }
   .stayFacts .outdoorFact { font-size: 32px; }
   .price { font-size: 44px; }
@@ -150,7 +153,7 @@
   .overviewDescription { font-size: 16px; line-height: 1.75; }
   .staySummary { gap: 20px; padding-block: 21px; margin-top: 24px; }
   .stayFacts { padding-bottom: 20px; }
-  .stayFacts, .rates { gap: 22px; }
+  .stayFacts, .rates { column-gap: 22px; }
   .stayFacts dt, .rates dt { font-size: 14px; }
   .stayFacts dd { margin-top: 10px; font-size: 43px; }
   .stayFacts .outdoorFact { font-size: 31px; }
@@ -158,6 +161,5 @@
   .price { gap: 3px; font-size: 44px; }
   .rates > div + div .price { font-size: 35px; }
   .priceRequest { font-size: 33px; }
-  .deposit { margin-top: 8px; }
-  .quoteNote { margin-top: 15px; }
+  .deposit, .quoteNote { margin-top: 8px; }
 }

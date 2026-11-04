@@ -5,7 +5,7 @@ import { site } from '../src/lib/site-content';
 test('villa navigation opens the shared detail page with its own quotation and home links', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/');
-  await page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Villa Avante' }).click();
+  await page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Avante' }).click();
   await expect(page).toHaveURL(/\/villas\/villa-avante\/$/);
   await expect(page).toHaveTitle(/Villa Avante — 2BHK Balinese villa/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Villa Avante');
@@ -24,7 +24,7 @@ test('villa navigation opens the shared detail page with its own quotation and h
   await expect(food.getByRole('list', { name: 'Included meals' }).getByRole('listitem')).toHaveCount(4);
   await expect(food).toContainText('High tea');
   const nav = page.getByRole('navigation', { name: 'Main navigation', exact: true });
-  await expect(nav.getByRole('link', { name: 'Villa Avante' })).toHaveAttribute('aria-current', 'page');
+  await expect(nav.getByRole('link', { name: 'Avante' })).toHaveAttribute('aria-current', 'page');
   await expect(nav.getByRole('link', { name: 'The gallery' })).toHaveAttribute('href', '/#gallery');
   await expect(page.locator('header').getByRole('link', { name: 'Plan your stay' })).toHaveAttribute('href', site.instagramMessage);
   await nav.getByRole('link', { name: 'The gallery' }).click();
@@ -51,7 +51,7 @@ test('villa navigation works on mobile and detail pages have no horizontal overf
   await page.goto('/');
   await page.getByRole('button', { name: 'Open navigation menu' }).click();
   const menu = page.getByRole('dialog', { name: 'Site navigation' });
-  await menu.getByRole('link', { name: 'Villa Avante' }).click();
+  await menu.getByRole('link', { name: 'Avante' }).click();
   await expect(page).toHaveURL(/\/villas\/villa-avante\/$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Villa Avante');
   for (const width of [320, 390, 768, 900, 1024, 1440]) {
@@ -83,7 +83,7 @@ test('registered villas have matching static routes and unknown properties retur
 test('Aurania has its own amenities and pricing and clearly states it has no pool', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/');
-  await page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Villa Aurania' }).click();
+  await page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Aurania' }).click();
   await expect(page).toHaveURL(/\/villas\/villa-aurania\/$/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Villa Aurania');
   await expect(page.locator('#home')).toContainText(/without pool/i);
@@ -186,11 +186,11 @@ test('Aurania and Archway open their own complete collections on mobile', async 
 test('Archway has a separate navigation entry, confirmed details and pricing on request', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/');
-  await page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Villa Archway' }).click();
+  await page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Archway' }).click();
   await expect(page).toHaveURL(/\/villas\/villa-archway\/$/);
   await expect(page).toHaveTitle(/Villa Archway — 3BHK/);
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Villa Archway');
-  await expect(page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Villa Archway' })).toHaveAttribute('aria-current', 'page');
+  await expect(page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Archway' })).toHaveAttribute('aria-current', 'page');
   await expect(page.locator('#villa-details')).toContainText('20 guests');
   const amenities = page.getByRole('region', { name: 'The comforts.' });
   await expect(amenities).toContainText('Four bathrooms');
@@ -437,7 +437,7 @@ test('villa content scrolls over the pinned hero and the navigation changes with
   }
 });
 
-test('Our Story has company and founder content, navigation, villa links and a sitemap entry', async ({ page, request }) => {
+test('Our Story has About us, Owner and Staff sections, navigation, villa links and a sitemap entry', async ({ page, request }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto('/');
   await page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Our Story' }).click();
@@ -445,8 +445,17 @@ test('Our Story has company and founder content, navigation, villa links and a s
   await expect(page).toHaveTitle('Our Story | The LIT Stays');
   await expect(page.getByRole('heading', { level: 1 })).toHaveText('Some placesstay with you.');
   await expect(page.getByRole('heading', { name: 'Hardik Panchal' })).toBeVisible();
+  const about = page.getByRole('region', { name: 'About us', exact: true });
+  const owner = page.getByRole('region', { name: 'Owner', exact: true });
+  const staff = page.getByRole('region', { name: 'Staff', exact: true });
+  await expect(about).toContainText('within one private compound');
+  await expect(owner).toContainText('Founder');
+  await expect(staff.getByRole('listitem')).toHaveCount(3);
+  const pageNavigation = page.getByRole('navigation', { name: 'On this page' });
+  await expect(pageNavigation.getByRole('link', { name: 'Owner', exact: true })).toHaveAttribute('href', '#owner');
+  await expect(pageNavigation.getByRole('link', { name: 'Staff', exact: true })).toHaveAttribute('href', '#staff');
   await expect(page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Our Story' })).toHaveAttribute('aria-current', 'page');
-  const collection = page.getByRole('region', { name: 'Find your kind of stay.' });
+  const collection = page.getByRole('navigation', { name: 'Find your kind of stay.' });
   for (const villa of villas) await expect(collection.getByRole('link', { name: new RegExp(villa.name) })).toHaveAttribute('href', `/villas/${villa.slug}/`);
   await expect(page.locator('form')).toHaveCount(0);
   for (const width of [320, 390, 768, 1024]) {
@@ -456,7 +465,7 @@ test('Our Story has company and founder content, navigation, villa links and a s
   await page.getByRole('button', { name: 'Open navigation menu' }).click();
   const menu = page.getByRole('dialog', { name: 'Site navigation' });
   await expect(menu.getByRole('link', { name: 'Our Story' })).toHaveAttribute('aria-current', 'page');
-  await menu.getByRole('link', { name: 'Villa Aurania' }).click();
+  await menu.getByRole('link', { name: 'Aurania' }).click();
   await expect(page).toHaveURL(/\/villas\/villa-aurania\/$/);
   const sitemap = await request.get('/sitemap.xml');
   expect(await sitemap.text()).toContain('/our-story/');

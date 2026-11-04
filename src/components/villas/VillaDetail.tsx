@@ -61,11 +61,13 @@ export function VillaDetail({ villa }: { villa: Villa }) {
             <dl className={styles.stayFacts}><div><dt>Bedrooms</dt><dd>{String(villa.bedrooms).padStart(2, '0')}</dd></div><div><dt>Your outdoors</dt><dd className={styles.outdoorFact}>{villa.hasPool ? 'Private pool' : 'Private Jacuzzi'}</dd></div></dl>
             <aside className={styles.quote} aria-label={`${villa.name} stay quotation`}>
               <dl className={styles.rates}>
-                <div><dt>Villa stay</dt><dd>{villa.stayPrice !== undefined ? <span className={styles.price}><span className={styles.currency}>₹</span>{villa.stayPrice.toLocaleString('en-IN')}</span> : <span className={styles.priceRequest}>Price on request</span>}</dd></div>
-                {villa.refundableDeposit !== undefined && <div><dt>Extra deposit</dt><dd><span className={styles.price}><span className={styles.currency}>₹</span>{villa.refundableDeposit.toLocaleString('en-IN')}</span></dd><p className={styles.deposit}>Refundable on checkout.</p></div>}
+                <div><dt>Villa stay</dt><dd>
+                  {villa.stayPrice !== undefined ? <span className={styles.price}><span className={styles.currency}>₹</span>{villa.stayPrice.toLocaleString('en-IN')}</span> : <span className={styles.priceRequest}>Price on request</span>}
+                  {villa.priceIncludes && <p className={styles.quoteNote}>Stay & amenities included. Food extra.</p>}
+                  {villa.stayPrice === undefined && <p className={styles.quoteNote}>Share your dates for a quotation.</p>}
+                </dd></div>
+                {villa.refundableDeposit !== undefined && <div><dt>Extra deposit</dt><dd><span className={styles.price}><span className={styles.currency}>₹</span>{villa.refundableDeposit.toLocaleString('en-IN')}</span><p className={styles.deposit}>Refundable on checkout.</p></dd></div>}
               </dl>
-              {villa.priceIncludes && <p className={styles.quoteNote}>Stay & amenities included. Food extra.</p>}
-              {villa.stayPrice === undefined && <p className={styles.quoteNote}>Share your dates for a quotation.</p>}
             </aside>
           </div>
         </section>

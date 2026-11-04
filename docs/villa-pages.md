@@ -71,4 +71,4 @@ The introduction places its two-line heading beside a short description, followe
 
 ## Our Story
 
-`/our-story/` is linked in navigation and the sitemap. The page introduces the company, includes the founder Hardik Panchal, and links to all three villas. `src/lib/our-story.ts` holds the editable company paragraphs and founder details. It uses confirmed facts only; expand the founder biography when supplied. The founder graphic is an HP brand monogram, not a portrait.
+`/our-story/` is linked in navigation and the sitemap. The page has three sections in order: About us, Owner, and Staff, with anchor links at the top and links to all three villas at the end. `src/lib/our-story.ts` holds the editable company paragraphs, founder details and collective team introduction. Personal histories and staff identities can be added when supplied. Hardik Panchal’s profile uses an HP brand monogram; the team section uses a real property photograph.

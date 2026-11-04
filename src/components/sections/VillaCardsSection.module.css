@@ -1,0 +1,38 @@
+.section { padding-bottom: 64px; background: var(--ivory); }
+
+.villaCards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2vw, 30px); margin: 0; padding: 0; list-style: none; }
+.villaCards > li { min-width: 0; }
+.villaCard { position: relative; display: flex; align-items: flex-end; width: 100%; min-width: 0; aspect-ratio: 4 / 5; min-height: 360px; overflow: hidden; isolation: isolate; border-radius: 24px; background: var(--forest); color: var(--ivory); }
+.villaCardImage { object-fit: cover; object-position: center; }
+.villaCardShade { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 25%, rgba(var(--ink-rgb), .2) 45%, rgba(var(--ink-rgb), .9)); }
+.villaCardCopy { position: relative; z-index: 1; width: 100%; padding: clamp(22px, 2.3vw, 36px); }
+.villaCardLocation { margin-bottom: 10px; font-size: 10px; line-height: 1.5; letter-spacing: .12em; text-transform: uppercase; }
+.villaCardCopy h3 { font-size: clamp(30px, 3vw, 48px); line-height: 1.05; letter-spacing: -.025em; }
+.villaCardFacts { margin-top: 12px; font-size: 12px; line-height: 1.6; color: var(--on-dark); }
+.villaCardFacts > span { padding-inline: 5px; }
+.villaCardLink { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 26px; padding-top: 18px; font-size: 12px; line-height: 1.5; }
+.villaCardLink > svg { flex-shrink: 0; transition: transform 250ms var(--ease); }
+.villaCard:focus-visible { outline-color: var(--ivory); outline-offset: -7px; }
+@media (hover: hover) {
+  .villaCard:hover .villaCardLink > svg { transform: translate(2px, -2px); }
+}
+
+@media (max-width: 1100px) {
+  .villaCard { min-height: 330px; border-radius: 20px; }
+  .villaCardCopy { padding: 22px; }
+  .villaCardFacts { font-size: 11px; }
+}
+
+@media (max-width: 760px) {
+  .section { padding-bottom: 42px; }
+  .villaCards { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(240px, 82%); gap: 16px; padding-bottom: 14px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: var(--sage) transparent; }
+  .villaCards > li { scroll-snap-align: start; }
+  .villaCard { min-height: 350px; }
+  .villaCardCopy h3 { font-size: 38px; }
+  .villaCardFacts { font-size: 12px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .villaCardLink > svg { transition: none; }
+  .villaCard:hover .villaCardLink > svg { transform: none; }
+}

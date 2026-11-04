@@ -3,6 +3,7 @@ import { Footer } from '@/components/layout/Footer';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { IntroductionSection, FactsSection } from '@/components/sections/PropertySections';
 import { VillaSpacesSection } from '@/components/sections/VillaSpacesSection';
+import { VillaCardsSection } from '@/components/sections/VillaCardsSection';
 import { ExperienceSection } from '@/components/sections/ExperienceSection';
 import { GallerySection } from '@/components/sections/GallerySection';
 import { BookingSection } from '@/components/sections/BookingSection';
@@ -17,8 +18,9 @@ export default function Home() {
       <div className="page-surface">
         <IntroductionSection/>
         <VillaSpacesSection/>
-        <ExperienceSection/>
+        <VillaCardsSection/>
         <FactsSection/>
+        <ExperienceSection/>
         <GallerySection/>
         <FAQSection/>
         <AvailabilitySection/>
