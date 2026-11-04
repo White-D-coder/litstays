@@ -40,7 +40,7 @@ test('mobile navigation traps focus, closes with Escape and follows anchors', as
   await expect(menu).not.toBeVisible();
   await expect(toggle).toBeFocused();
   await toggle.click();
-  await menu.getByRole('link', { name: 'The gallery' }).click();
+  await menu.getByRole('link', { name: 'Gallery' }).click();
   await expect(menu).not.toBeVisible();
   await expect(page).toHaveURL(/#gallery$/);
 });

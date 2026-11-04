@@ -25,9 +25,9 @@ test('villa navigation opens the shared detail page with its own quotation and h
   await expect(food).toContainText('High tea');
   const nav = page.getByRole('navigation', { name: 'Main navigation', exact: true });
   await expect(nav.getByRole('link', { name: 'Avante' })).toHaveAttribute('aria-current', 'page');
-  await expect(nav.getByRole('link', { name: 'The gallery' })).toHaveAttribute('href', '/#gallery');
+  await expect(nav.getByRole('link', { name: 'Gallery' })).toHaveAttribute('href', '/#gallery');
   await expect(page.locator('header').getByRole('link', { name: 'Plan your stay' })).toHaveAttribute('href', site.instagramMessage);
-  await nav.getByRole('link', { name: 'The gallery' }).click();
+  await nav.getByRole('link', { name: 'Gallery' }).click();
   await expect(page).toHaveURL(/\/#gallery$/);
 });
 
@@ -443,7 +443,7 @@ test('Our Story has About us, Owner and Staff sections, navigation, villa links 
   await page.getByRole('navigation', { name: 'Main navigation', exact: true }).getByRole('link', { name: 'Our Story' }).click();
   await expect(page).toHaveURL(/\/our-story\/$/);
   await expect(page).toHaveTitle('Our Story | The LIT Stays');
-  await expect(page.getByRole('heading', { level: 1 })).toHaveText('Some placesstay with you.');
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('A place for your people.');
   await expect(page.getByRole('heading', { name: 'Hardik Panchal' })).toBeVisible();
   const about = page.getByRole('region', { name: 'About us', exact: true });
   const owner = page.getByRole('region', { name: 'Owner', exact: true });

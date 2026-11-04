@@ -6,9 +6,11 @@ import { Arrow } from '../ui/Icons';
 import { BrandLogo } from '../ui/BrandLogo';
 import styles from './Navigation.module.css';
 
+const navbarOrder = ['/our-story/', '/villas/villa-avante/', '/villas/villa-aurania/', '/villas/villa-archway/', '#gallery'];
 const navbarLinks = navigation
-  .filter(link => link.href !== '#bungalow' && link.href !== '#experience')
-  .map(link => ({ ...link, label: link.label.replace(/^Villa /, '') }));
+  .filter(link => navbarOrder.includes(link.href))
+  .sort((a, b) => navbarOrder.indexOf(a.href) - navbarOrder.indexOf(b.href))
+  .map(link => ({ ...link, label: link.href === '#gallery' ? 'Gallery' : link.label.replace(/^Villa /, '') }));
 
 export function Navbar({ homePath = '', currentPath, light = false, enquiryHref = '#enquire' }: { homePath?: string; currentPath?: string; light?: boolean; enquiryHref?: string }) {
   const [scrolled, setScrolled] = useState(false);

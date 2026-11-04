@@ -17,7 +17,7 @@
 .gallery-mosaic.gallery-journal > .journal-tile-4 { grid-area: e; }
 .gallery-mosaic.gallery-journal > .journal-tile-5 { grid-area: f; }
 .gallery-journal .gallery-item { position: relative; gap: 0; justify-content: flex-start; }
-.gallery-journal .gallery-image { flex: 1; min-height: 0; overflow: hidden; border-radius: 10px; }
+.gallery-journal .gallery-image { flex: 1; min-height: 0; overflow: hidden; border-radius: 24px; }
 .gallery-journal .gallery-image-shade { display: none; }
 .gallery-journal .gallery-journal-caption {
   position: static;
@@ -44,6 +44,9 @@
 .gallery-journal .gallery-item:hover .gallery-expand { background: var(--forest); color: var(--ivory); }
 .gallery-journal .gallery-item:focus-visible { outline-offset: 6px; }
 
+@media (max-width: 1100px) {
+  .gallery-journal .gallery-image { border-radius: 20px; }
+}
 @media (max-width: 1100px) and (min-width: 901px) {
   .gallery-journal .gallery-journal-caption { height: 110px; }
   .gallery-journal .gallery-journal-title { font-size: 25px; }
@@ -68,7 +71,6 @@
 }
 @media (max-width: 500px) {
   .gallery-mosaic.gallery-journal { height: 1450px; gap: 20px 14px; }
-  .gallery-journal .gallery-image { border-radius: 7px; }
   .gallery-journal .gallery-journal-caption { height: 107px; padding-top: 11px; }
   .gallery-journal .gallery-item-featured .gallery-journal-caption { height: 110px; }
   .gallery-journal .journal-tile-5 .gallery-journal-caption { height: 84px; }

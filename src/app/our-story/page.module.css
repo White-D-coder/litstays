@@ -1,169 +1,162 @@
 .page { background: var(--ivory); color: var(--ink); }
 .page > section { scroll-margin-top: 12px; }
-.about { padding-block: 155px 90px; }
-.sectionTop { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-.label { display: flex; align-items: center; gap: 16px; font-size: 13px; line-height: 1.5; }
-.label > span { color: var(--sage); font-size: 11px; }
+.about { padding-block: 140px 80px; }
+.sectionTop, .staffTop { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.sectionLabel { display: flex; align-items: center; gap: 14px; font-size: 13px; line-height: 1.5; }
+.sectionLabel > span { color: var(--sage); font-size: 10px; }
 .pageNavigation { display: flex; gap: 28px; font-size: 12px; line-height: 1.6; color: var(--muted); }
-.pageNavigation a:hover { color: var(--ink); }
-.introRow { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, .8fr); align-items: end; gap: 8%; margin-top: 42px; }
-.introRow h1 { font-size: clamp(76px, 8.7vw, 140px); line-height: .94; letter-spacing: -.045em; }
-.introRow h1 em { color: var(--forest); }
-.introCopy { padding-bottom: 8px; }
-.introCopy > p { max-width: 31ch; color: var(--muted); font-size: 18px; line-height: 1.85; }
-.textLink { display: inline-flex; align-items: center; justify-content: space-between; gap: 28px; min-height: 44px; font-size: 12px; line-height: 1.5; }
-.introCopy .textLink { margin-top: 24px; }
-.textLink > svg { flex-shrink: 0; width: 19px; height: 19px; }
-.landscape { position: relative; height: clamp(380px, 35vw, 540px); margin-top: 48px; overflow: hidden; border-radius: 24px; background: var(--sand); }
-.landscape > img { object-fit: cover; object-position: center 48%; }
-.landscapeShade { position: absolute; inset: 35% 0 0; background: linear-gradient(transparent, rgba(var(--forest-rgb), .65)); }
-.landscapeCaption { position: absolute; inset: auto 40px 32px; display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; color: var(--ivory); }
-.landscapeCaption > p { font: 400 44px/1 var(--font-serif), Georgia, serif; letter-spacing: -.02em; }
-.landscapeCaption > span { padding-bottom: 4px; font-size: 9px; line-height: 1.6; letter-spacing: .12em; }
-.company { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: start; gap: 12%; padding-top: 65px; }
-.eyebrow { font-size: 9px; line-height: 1.7; letter-spacing: .13em; }
-.company h2 { margin-top: 22px; font-size: clamp(45px, 4.2vw, 65px); line-height: 1.03; letter-spacing: -.03em; }
-.companyCopy { padding-top: 3px; }
-.companyCopy > p { max-width: 44ch; color: var(--muted); font-size: 17px; line-height: 1.9; }
-.companyCopy > p + p { margin-top: 18px; }
-.companyCopy > .companyFootnote { margin-top: 26px; font-size: 12px; color: var(--forest); }
-.owner { padding-block: 65px 75px; background: var(--forest); color: var(--ivory); }
-.owner .label > span, .owner .eyebrow { color: var(--sand); }
-.ownerGrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); align-items: center; gap: clamp(50px, 9vw, 140px); margin-top: 42px; }
-.ownerVisual { min-width: 0; max-width: 470px; width: 100%; margin-inline: auto; }
-.ownerMonogram { position: relative; display: grid; place-items: center; height: 470px; overflow: hidden; isolation: isolate; border-radius: 240px 240px 22px 22px; background: var(--sand); color: var(--forest); }
-.ownerMark { position: absolute; width: 77%; height: 83%; opacity: .13; }
-.initials { position: relative; padding-bottom: 10px; font: 300 clamp(130px, 14vw, 205px)/1 var(--font-serif), Georgia, serif; letter-spacing: -.065em; }
-.monogramCaption { position: absolute; bottom: 32px; padding-inline: 20px; font-size: 9px; line-height: 1.6; letter-spacing: .13em; text-align: center; }
-.ownerVisualCaption { display: flex; justify-content: space-between; gap: 20px; margin-top: 18px; color: var(--sand); font-size: 9px; line-height: 1.6; }
-.ownerVisualCaption > span:first-child { letter-spacing: .1em; }
-.ownerCopy { min-width: 0; }
-.ownerCopy h2 { max-width: 9ch; margin-top: 25px; font-size: clamp(62px, 6.6vw, 98px); line-height: .95; letter-spacing: -.035em; }
-.ownerRole { margin-top: 22px; font-size: 13px; line-height: 1.6; color: var(--sand); }
+.pageNavigation > a { padding-block: 10px; }
+.pageNavigation > a:hover { color: var(--ink); }
+.eyebrow { font-size: 9px; line-height: 1.8; letter-spacing: .12em; }
+.hero { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); align-items: center; gap: 7%; margin-top: 30px; }
+.heroCopy { padding-block: 28px; }
+.heroCopy > .eyebrow { color: var(--muted); }
+.heroCopy h1 { margin-top: 25px; font-size: clamp(76px, 7.8vw, 120px); line-height: .94; letter-spacing: -.05em; }
+.heroCopy h1 > em { color: var(--forest); }
+.introduction { max-width: 34ch; margin-top: 30px; color: var(--muted); font-size: 17px; line-height: 1.85; }
+.button { display: inline-flex; align-items: center; justify-content: space-between; gap: 32px; min-height: 50px; margin-top: 28px; padding: 15px 21px; border-radius: 999px; background: var(--forest); color: var(--ivory); font-size: 12px; line-height: 1.5; }
+.button > svg { width: 18px; height: 18px; flex-shrink: 0; }
+.brandNote { display: flex; align-items: center; gap: 16px; margin-top: 42px; }
+.brandNote > svg { width: 35px; height: 45px; color: var(--sage); flex-shrink: 0; }
+.brandNote > p { font: 400 23px/1.1 var(--font-serif), Georgia, serif; }
+.heroVisual { position: relative; min-width: 0; height: 615px; }
+.heroMainPhoto { position: absolute; inset: 0 0 50px 40px; overflow: hidden; border-radius: 250px 250px 20px 20px; background: var(--sand); }
+.heroMainPhoto > img { object-fit: cover; object-position: 56% center; }
+.heroMainPhoto > span { position: absolute; bottom: 24px; right: 22px; padding: 8px 12px; border-radius: 999px; background: var(--ivory); color: var(--ink); font-size: 8px; line-height: 1.6; letter-spacing: .08em; }
+.heroInset { position: absolute; bottom: 0; left: -30px; width: 47%; padding: 9px 9px 0; border-radius: 20px; background: var(--ivory); }
+.heroInset > div { position: relative; height: 210px; overflow: hidden; border-radius: 14px; background: var(--sand); }
+.heroInset img { object-fit: cover; }
+.heroInset > figcaption { padding: 10px 4px 0; font: 400 18px/1.2 var(--font-serif), Georgia, serif; }
+.aboutStory { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: 10%; align-items: start; margin-top: 65px; }
+.aboutStory h2 { font-size: clamp(44px, 4.3vw, 65px); line-height: 1.02; letter-spacing: -.035em; }
+.aboutStory > div { padding-top: 3px; }
+.aboutStory p { max-width: 52ch; color: var(--muted); font-size: 17px; line-height: 1.9; }
+.aboutStory p + p { margin-top: 18px; }
+.owner { padding-block: 55px 65px; background: var(--sand); }
+.ownerGrid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); align-items: center; gap: 10%; margin-top: 35px; }
+.ownerCopy { min-width: 0; padding-block: 10px; }
+.ownerIdentity { display: flex; align-items: center; gap: 18px; }
+.ownerIdentity > span { display: grid; place-items: center; width: 62px; height: 62px; border-radius: 50%; background: var(--forest); color: var(--ivory); font: 400 30px/1 var(--font-serif), Georgia, serif; letter-spacing: -.05em; }
+.ownerIdentity > p { color: var(--muted); }
+.ownerCopy h2 { max-width: 10ch; margin-top: 26px; font-size: clamp(64px, 6.3vw, 94px); line-height: .94; letter-spacing: -.045em; }
+.ownerRole { margin-top: 20px; color: var(--muted); font-size: 13px; line-height: 1.6; }
 .ownerRole > span { padding-inline: 8px; }
-.ownerDescription { max-width: 39ch; margin-top: 28px; color: var(--sand); font-size: 16px; line-height: 1.85; }
-.ownerNote { margin-top: 30px; font: 400 clamp(30px, 3vw, 43px)/1.12 var(--font-serif), Georgia, serif; }
-.ownerCopy .textLink { margin-top: 22px; }
-.staff { padding-block: 80px 65px; }
-.staffHeading { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, .8fr); align-items: end; gap: 10%; margin-top: 30px; }
-.staffHeading h2 { font-size: clamp(53px, 5.8vw, 84px); line-height: .98; letter-spacing: -.035em; }
-.staffHeading h2 em { color: var(--forest); }
-.staffHeading > p { max-width: 35ch; padding-bottom: 4px; color: var(--muted); font-size: 17px; line-height: 1.85; }
-.staffGrid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: center; gap: 8%; margin-top: 45px; }
-.staffPhoto { position: relative; height: 490px; overflow: hidden; border-radius: 22px; background: var(--sand); }
-.staffPhoto > img { object-fit: cover; object-position: center 62%; }
-.staffPhotoCaption { position: absolute; bottom: 22px; left: 22px; display: flex; align-items: center; gap: 18px; padding: 19px 25px; background: var(--ivory); border-radius: 12px; color: var(--forest); }
-.staffPhotoCaption > svg { width: 35px; height: 45px; }
-.staffPhotoCaption > span { font: 400 29px/1.03 var(--font-serif), Georgia, serif; }
-.teamCopy { min-width: 0; }
-.teamCopy > .eyebrow { color: var(--muted); }
-.teamValues { display: grid; gap: 30px; margin: 28px 0 0; padding: 0; list-style: none; }
-.teamValues > li { display: flex; align-items: flex-start; gap: 22px; }
-.valueNumber { flex-shrink: 0; padding-top: 9px; color: var(--sage); font-size: 10px; line-height: 1.5; }
-.teamValues h3 { font-size: 32px; line-height: 1.1; letter-spacing: -.02em; }
-.teamValues p { max-width: 37ch; margin-top: 10px; color: var(--muted); font-size: 15px; line-height: 1.85; }
-.collection { display: flex; justify-content: space-between; align-items: center; gap: 32px; margin-top: 70px; padding: 32px 36px; border-radius: 20px; background: var(--sand); }
-.collection h3 { font-size: 37px; line-height: 1.08; letter-spacing: -.02em; }
+.ownerDescription { max-width: 43ch; margin-top: 26px; color: var(--muted); font-size: 16px; line-height: 1.9; }
+.ownerNote { margin-top: 26px; font: 400 clamp(27px, 2.5vw, 37px)/1.15 var(--font-serif), Georgia, serif; letter-spacing: -.02em; }
+.textLink { display: inline-flex; align-items: center; justify-content: space-between; gap: 28px; min-height: 44px; margin-top: 20px; font-size: 12px; line-height: 1.5; }
+.textLink > svg { width: 18px; height: 18px; flex-shrink: 0; }
+.ownerVisual { min-width: 0; }
+.ownerPhoto { position: relative; height: 490px; overflow: hidden; border-radius: 22px; background: var(--sage); }
+.ownerPhoto > img { object-fit: cover; object-position: 50% center; }
+.ownerVisual > p { margin-top: 18px; font: 400 23px/1.15 var(--font-serif), Georgia, serif; }
+.staff { padding-block: 60px 65px; background: var(--forest); color: var(--ivory); }
+.staff .sectionLabel > span, .staffTop > .eyebrow { color: var(--sand); }
+.staffHeading { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); align-items: end; gap: 13%; margin-top: 38px; }
+.staffHeading h2 { font-size: clamp(57px, 5.5vw, 82px); line-height: .98; letter-spacing: -.035em; }
+.staffHeading > p { max-width: 37ch; padding-bottom: 4px; color: var(--sand); font-size: 16px; line-height: 1.9; }
+.teamCards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 45px 0 0; padding: 0; list-style: none; }
+.teamCards > li { min-width: 0; }
+.teamPhoto { position: relative; aspect-ratio: 1.35; overflow: hidden; border-radius: 18px; background: var(--sage); }
+.teamPhoto > img { object-fit: cover; }
+.teamCardCopy { display: flex; align-items: flex-start; gap: 16px; margin-top: 22px; }
+.valueNumber { flex-shrink: 0; padding-top: 7px; color: var(--sand); font-size: 9px; line-height: 1.6; }
+.teamCardCopy h3 { font-size: clamp(26px, 2.5vw, 36px); line-height: 1.08; letter-spacing: -.025em; }
+.teamCardCopy p { max-width: 36ch; margin-top: 12px; color: var(--sand); font-size: 14px; line-height: 1.9; }
+.collection { display: flex; justify-content: space-between; align-items: center; gap: 40px; margin-top: 65px; padding: 30px 34px; border-radius: 20px; background: var(--ivory); color: var(--ink); }
+.collection .eyebrow { margin-bottom: 10px; color: var(--muted); font-size: 8px; }
+.collection h3 { font-size: 40px; line-height: 1.1; letter-spacing: -.025em; }
 .collection h3 > em { display: block; }
-.collection > nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 20px 30px; }
-.collection a { display: inline-flex; align-items: center; gap: 16px; min-height: 44px; font-size: 13px; line-height: 1.5; }
+.collection > nav { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 16px 28px; }
+.collection a { display: inline-flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; font-size: 13px; line-height: 1.5; }
 .collection a > svg { width: 17px; height: 17px; flex-shrink: 0; }
 @media (max-width: 1100px) {
-  .introRow { grid-template-columns: minmax(0, 1.4fr) minmax(0, .8fr); gap: 6%; }
-  .introCopy > p { font-size: 16px; }
-  .company { gap: 7%; }
+  .hero { gap: 5%; }
+  .heroCopy h1 { font-size: 8vw; }
+  .heroVisual { height: 540px; }
+  .heroMainPhoto { left: 20px; }
+  .heroInset { left: -15px; width: 52%; }
+  .heroInset > div { height: 180px; }
+  .introduction { font-size: 16px; }
   .ownerGrid { gap: 7%; }
-  .ownerMonogram { height: 430px; }
-  .staffHeading { gap: 6%; }
-  .staffHeading h2 { font-size: 61px; }
-  .staffHeading > p { font-size: 16px; }
-  .staffGrid { gap: 6%; }
-  .staffPhoto { height: 470px; }
-  .teamValues { gap: 26px; }
-  .teamValues h3 { font-size: 29px; }
-  .teamValues p { font-size: 14px; }
-  .collection { align-items: flex-start; }
-  .collection > nav { gap: 8px 24px; }
+  .ownerPhoto { height: 450px; }
+  .ownerCopy h2 { font-size: 72px; }
+  .staffHeading { gap: 8%; }
+  .staffHeading h2 { font-size: 65px; }
+  .teamCards { gap: 22px; }
+  .teamCardCopy { gap: 12px; }
+  .teamCardCopy h3 { font-size: 29px; }
+  .collection { gap: 30px; }
+  .collection > nav { gap: 8px 22px; }
 }
-@media (max-width: 800px) {
-  .about { padding-block: 130px 60px; }
-  .introRow { grid-template-columns: 1fr; gap: 26px; margin-top: 32px; }
-  .introRow h1 { font-size: clamp(74px, 12vw, 100px); }
-  .introCopy { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; padding: 0; }
-  .introCopy > p { max-width: 35ch; }
-  .introCopy .textLink { flex-shrink: 0; margin-top: 0; gap: 14px; font-size: 11px; }
-  .landscape { height: 410px; margin-top: 32px; }
-  .landscapeCaption { inset-inline: 28px; bottom: 26px; }
-  .company { grid-template-columns: 1fr; gap: 30px; padding-top: 40px; }
-  .company h2 { font-size: 54px; margin-top: 16px; }
-  .companyCopy > p { max-width: 56ch; }
-  .owner { padding-block: 45px 55px; }
-  .ownerGrid { gap: 35px; }
-  .ownerMonogram { height: 360px; }
-  .ownerVisualCaption { flex-direction: column; gap: 5px; }
-  .ownerCopy h2 { font-size: 60px; }
-  .ownerRole { font-size: 12px; }
-  .ownerDescription { font-size: 15px; margin-top: 22px; }
-  .ownerNote { font-size: 32px; margin-top: 24px; }
-  .staff { padding-block: 55px; }
-  .staffHeading { grid-template-columns: 1fr; gap: 25px; }
-  .staffHeading h2 { font-size: 64px; }
-  .staffHeading > p { max-width: 52ch; }
-  .staffGrid { grid-template-columns: 1fr; gap: 35px; margin-top: 30px; }
-  .staffPhoto { height: 460px; }
-  .teamValues { gap: 25px; }
-  .teamValues h3 { font-size: 32px; }
-  .teamValues p { max-width: 52ch; font-size: 16px; }
-  .collection { flex-direction: column; gap: 20px; margin-top: 45px; padding: 28px; }
+@media (max-width: 760px) {
+  .about { padding-block: 120px 50px; }
+  .sectionTop { flex-wrap: wrap; gap: 15px; }
+  .pageNavigation { gap: 22px; font-size: 11px; }
+  .hero { grid-template-columns: 1fr; gap: 32px; margin-top: 25px; }
+  .heroCopy { padding: 0; }
+  .heroCopy h1 { font-size: clamp(68px, 12vw, 100px); margin-top: 22px; }
+  .introduction { max-width: 43ch; margin-top: 24px; }
+  .button { margin-top: 24px; }
+  .brandNote { margin-top: 25px; }
+  .heroVisual { height: 580px; width: min(100%, 540px); margin-inline: auto; }
+  .heroMainPhoto { inset: 0 0 45px 35px; }
+  .heroInset { left: 0; width: 47%; }
+  .heroInset > div { height: 200px; }
+  .aboutStory { grid-template-columns: 1fr; gap: 25px; margin-top: 42px; }
+  .aboutStory h2 { font-size: 54px; }
+  .aboutStory p { max-width: 55ch; font-size: 16px; }
+  .owner { padding-block: 40px 50px; }
+  .ownerGrid { grid-template-columns: 1fr; gap: 35px; margin-top: 28px; }
+  .ownerCopy h2 { max-width: 11ch; font-size: 76px; }
+  .ownerDescription { max-width: 53ch; }
+  .ownerNote { font-size: 35px; }
+  .ownerPhoto { height: 470px; }
+  .ownerVisual > p { font-size: 25px; }
+  .staff { padding-block: 45px; }
+  .staffTop { align-items: flex-start; gap: 24px; }
+  .staffTop > .eyebrow { max-width: 15ch; text-align: right; font-size: 8px; }
+  .staffHeading { grid-template-columns: 1fr; gap: 25px; margin-top: 30px; }
+  .staffHeading h2 { font-size: 65px; }
+  .staffHeading > p { max-width: 51ch; }
+  .teamCards { grid-template-columns: 1fr; gap: 36px; margin-top: 32px; }
+  .teamCards > li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 25px; }
+  .teamPhoto { aspect-ratio: 1; }
+  .teamCardCopy { margin-top: 0; }
+  .teamCardCopy h3 { font-size: 31px; }
+  .collection { flex-direction: column; align-items: flex-start; gap: 20px; padding: 28px; margin-top: 45px; }
   .collection h3 > em { display: inline; }
-  .collection > nav { width: 100%; justify-content: space-between; gap: 12px 20px; }
-  .collection a { gap: 12px; }
+  .collection > nav { justify-content: space-between; gap: 12px 22px; width: 100%; }
 }
-@media (max-width: 600px) {
-  .about { padding-block: 115px 45px; }
-  .sectionTop { flex-direction: column; align-items: flex-start; gap: 21px; }
-  .label { gap: 12px; font-size: 12px; }
-  .pageNavigation { gap: 25px; font-size: 11px; }
-  .introRow { margin-top: 30px; gap: 24px; }
-  .introRow h1 { font-size: clamp(56px, 14.5vw, 84px); }
-  .introCopy { display: block; }
-  .introCopy > p { max-width: 36ch; font-size: 16px; }
-  .introCopy .textLink { margin-top: 14px; font-size: 12px; gap: 23px; }
-  .landscape { height: 340px; margin-top: 25px; border-radius: 18px; }
-  .landscape > img { object-position: 51% center; }
-  .landscapeCaption { inset: auto 22px 22px; align-items: flex-start; flex-direction: column; gap: 15px; }
-  .landscapeCaption > p { font-size: 36px; }
-  .landscapeCaption > span { font-size: 8px; }
-  .company { gap: 24px; padding-top: 32px; }
-  .company h2 { font-size: clamp(42px, 11vw, 58px); }
-  .companyCopy > p { font-size: 16px; line-height: 1.85; }
-  .companyCopy > .companyFootnote { margin-top: 22px; font-size: 11px; }
-  .owner { padding-block: 35px 45px; }
-  .ownerGrid { grid-template-columns: 1fr; gap: 35px; margin-top: 30px; }
-  .ownerVisual { max-width: 360px; }
-  .ownerMonogram { height: 350px; }
-  .initials { font-size: 160px; }
-  .monogramCaption { font-size: 8px; bottom: 25px; }
-  .ownerVisualCaption { flex-direction: row; }
-  .ownerCopy h2 { margin-top: 20px; max-width: 9ch; font-size: clamp(61px, 16vw, 78px); }
-  .ownerRole { margin-top: 18px; font-size: 13px; }
-  .ownerDescription { max-width: 38ch; font-size: 16px; }
-  .ownerNote { font-size: 36px; }
-  .ownerCopy .textLink { margin-top: 18px; }
-  .staff { padding-block: 40px; }
-  .staffHeading { margin-top: 24px; gap: 23px; }
-  .staffHeading h2 { font-size: clamp(43px, 11.4vw, 61px); }
-  .staffHeading > p { font-size: 16px; }
-  .staffPhoto { height: 390px; border-radius: 18px; }
-  .staffPhotoCaption { bottom: 18px; left: 18px; gap: 14px; padding: 16px 20px; }
-  .staffPhotoCaption > svg { width: 28px; height: 36px; }
-  .staffPhotoCaption > span { font-size: 26px; }
-  .teamValues { margin-top: 24px; gap: 26px; }
-  .teamValues > li { gap: 17px; }
-  .teamValues h3 { font-size: 30px; }
-  .teamValues p { font-size: 15px; }
-  .collection { margin-top: 35px; padding: 25px 22px; border-radius: 16px; }
-  .collection h3 { font-size: 34px; }
-  .collection > nav { flex-direction: column; gap: 6px; }
-  .collection a { width: 100%; justify-content: space-between; }
+@media (max-width: 480px) {
+  .about { padding-top: 110px; }
+  .sectionTop { align-items: flex-start; flex-direction: column; gap: 14px; }
+  .sectionLabel { font-size: 12px; gap: 12px; }
+  .hero { margin-top: 22px; }
+  .heroCopy h1 { font-size: clamp(61px, 15.5vw, 76px); }
+  .eyebrow { font-size: 8px; }
+  .brandNote > p { font-size: 22px; }
+  .heroVisual { height: 420px; }
+  .heroMainPhoto { inset: 0 0 35px 22px; border-radius: 180px 180px 18px 18px; }
+  .heroMainPhoto > span { bottom: 18px; right: 16px; font-size: 7px; padding: 7px 10px; }
+  .heroInset { width: 52%; padding: 7px 7px 0; border-radius: 16px; }
+  .heroInset > div { height: 140px; border-radius: 10px; }
+  .heroInset > figcaption { font-size: 15px; }
+  .aboutStory h2 { font-size: 47px; }
+  .ownerIdentity > span { width: 54px; height: 54px; font-size: 28px; }
+  .ownerCopy h2 { font-size: clamp(58px, 15.5vw, 74px); margin-top: 24px; }
+  .ownerRole { font-size: 12px; }
+  .ownerDescription { margin-top: 22px; }
+  .ownerNote { font-size: 29px; }
+  .ownerPhoto { height: 360px; border-radius: 18px; }
+  .ownerVisual > p { font-size: 23px; }
+  .staffHeading h2 { font-size: clamp(46px, 12.5vw, 60px); }
+  .teamCards > li { display: block; }
+  .teamPhoto { aspect-ratio: 1.3; border-radius: 16px; }
+  .teamCardCopy { margin-top: 20px; gap: 15px; }
+  .teamCardCopy h3 { font-size: 33px; }
+  .teamCardCopy p { font-size: 15px; }
+  .collection { padding: 24px 22px; border-radius: 16px; }
+  .collection h3 { font-size: 35px; }
+  .collection > nav { flex-direction: column; gap: 5px; }
+  .collection a { width: 100%; }
 }

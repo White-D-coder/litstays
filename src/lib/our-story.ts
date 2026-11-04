@@ -15,9 +15,21 @@ export const ourStory = {
   staff: {
     introduction: 'A memorable stay is about more than a beautiful villa. It’s also about the people who help you feel welcome, comfortable and at ease.',
     values: [
-      { title: 'A warm welcome', description: 'Helping you find your feet, settle in and start enjoying your time away.' },
-      { title: 'Care in the details', description: 'The rooms, the little comforts, the spaces you share. Thoughtful preparation makes a difference.' },
-      { title: 'A personal touch', description: 'A familiar face and a helping hand, so your stay feels a little more like home.' },
+      {
+        title: 'A warm welcome',
+        description: 'Helping you find your feet, settle in and start enjoying your time away.',
+        photo: { src: '/archway/optimized/archway-45-1920.webp', alt: 'Warm lights and potted palms along the villa entrance passage' },
+      },
+      {
+        title: 'Care in the details',
+        description: 'The rooms, the little comforts, the spaces you share. Thoughtful preparation makes a difference.',
+        photo: { src: '/archway/optimized/archway-59-1920.webp', alt: 'The LIT Stays towels and toiletries carefully arranged for guests' },
+      },
+      {
+        title: 'A personal touch',
+        description: 'A familiar face and a helping hand, so your stay feels a little more like home.',
+        photo: { src: '/archway/optimized/archway-3-1920.webp', alt: 'Fresh drinks, cushions and little comforts prepared in a villa bedroom' },
+      },
     ],
   },
 };
