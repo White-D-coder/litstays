@@ -5,9 +5,9 @@
 .heroMedia > img { object-fit: cover; object-position: var(--hero-position, center); }
 .heroFallback { position: absolute; width: 320px; height: 350px; right: 10%; top: 25%; opacity: .12; }
 .heroTopShade { position: absolute; inset: 0 0 40%; z-index: 1; background: linear-gradient(to bottom, rgba(var(--ink-rgb), .58), rgba(var(--ink-rgb), .14) 75%, transparent); pointer-events: none; }
-.heroTitle { position: absolute; top: 15%; inset-inline: 3%; z-index: 2; text-align: center; pointer-events: none; }
+.heroTitle { position: absolute; top: 14%; inset-inline: 3%; z-index: 5; text-align: center; pointer-events: none; }
 .heroTitle > p { max-width: none; margin-bottom: 21px; font-size: 14px; letter-spacing: .16em; }
-.hero h1 { font-family: var(--font-sans), sans-serif; font-size: clamp(100px, 23vw, 390px); font-weight: 600; line-height: .82; letter-spacing: -.075em; }
+.hero h1 { font-family: var(--font-sans), sans-serif; font-size: clamp(64px, 18vw, 280px); font-weight: 600; line-height: .82; letter-spacing: -.075em; color: transparent; -webkit-text-fill-color: transparent; -webkit-text-stroke: clamp(1.5px, .16vw, 2.5px) var(--villa-title-outline, var(--forest)); filter: drop-shadow(0 0 1px var(--ivory)) drop-shadow(0 0 1px var(--ivory)); }
 .srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .heroForeground { z-index: 3; mask-image: var(--hero-mask); mask-size: cover; mask-position: var(--hero-position, center); mask-repeat: no-repeat; pointer-events: none; }
 .heroShade { position: absolute; inset: 35% 0 0; z-index: 4; background: linear-gradient(to bottom, transparent, rgba(var(--ink-rgb), .12) 25%, rgba(var(--ink-rgb), .7) 78%, rgba(var(--ink-rgb), .78)); pointer-events: none; }
@@ -38,7 +38,6 @@
   .comfortContent h2 { font-size: 58px; }
 }
 @media (max-width: 800px) {
-  .heroTitle { top: 18%; }
   .stayBar { width: min(100%, 660px); padding: 20px 22px; }
   .heroFacts { gap: 8px 12px; }
   .heroFacts > span + span { padding-left: 12px; }
@@ -53,7 +52,6 @@
   .heroForeground { mask-position: var(--hero-mobile-position, center); }
   .heroTitle { inset-inline: 3%; }
   .heroTitle > p { font-size: 13px; letter-spacing: .1em; margin-bottom: 23px; }
-  .hero h1 { font-size: 23vw; }
   .heroInner { padding-bottom: 24px; }
   .stayBar { flex-direction: column; gap: 15px; padding: 18px; border-radius: 8px; }
   .heroFacts { justify-content: center; font-size: 14px; gap: 9px 12px; }
@@ -68,8 +66,7 @@
   .amenityList summary { font-size: 15px; min-height: 64px; }
 }
 @media (max-height: 650px) and (min-width: 700px) {
-  .heroTitle { top: 21%; }
-  .hero h1 { font-size: min(22vw, 40svh); }
+  .hero h1 { font-size: min(18vw, 31svh); }
   .heroTitle > p { margin-bottom: 10px; }
   .stayBar { padding-block: 14px; }
   .discover { margin-top: 12px; }

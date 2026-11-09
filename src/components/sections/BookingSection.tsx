@@ -14,7 +14,7 @@ function formatDate(value: string) {
   return new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }).format(new Date(`${value}T12:00:00`));
 }
 function enquiryMessage(data: Enquiry) {
-  return `Hello The Lit Stays, I’d love to enquire about Villa Archway.${availabilityMode === 'demo' ? '\nI selected these dates in the preview calendar; please confirm actual availability.' : ''}\n\nName: ${data.name}\nContact: ${data.contact}\nCheck-in: ${formatDate(data.checkIn)}\nCheck-out: ${formatDate(data.checkOut)}\nGuests: ${data.guests}${data.message ? `\n\n${data.message}` : ''}\n\nPlease share availability, pricing and any details for our stay. Thank you!`;
+  return `Hello The LIT Stays, I’d love to enquire about Villa Archway.${availabilityMode === 'demo' ? '\nI selected these dates in the preview calendar; please confirm actual availability.' : ''}\n\nName: ${data.name}\nContact: ${data.contact}\nCheck-in: ${formatDate(data.checkIn)}\nCheck-out: ${formatDate(data.checkOut)}\nGuests: ${data.guests}${data.message ? `\n\n${data.message}` : ''}\n\nPlease share availability, pricing and any details for our stay. Thank you!`;
 }
 
 export function BookingSection() {

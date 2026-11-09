@@ -32,7 +32,7 @@ export function VillaEnquiry({ villa }: { villa: Villa }) {
       villa.priceIncludes || '',
     ].filter(Boolean).join('\n');
     const food = villa.food ? `\n\nOptional in-house food: ${formatRupees(villa.food.minPrice)}–${formatRupees(villa.food.maxPrice)} per person, including ${villa.food.meals.join(', ').toLowerCase()}.` : '';
-    setMessage(`Hello The Lit Stays, I’d like to enquire about ${villa.name} — ${villa.bedrooms}BHK ${villa.style}.\n\nName: ${name}\nPeople: ${guests}\nPreferred date: ${formattedDate}\nLocation: ${villa.location}\nPool: ${villa.hasPool ? 'Swimming pool' : 'Without pool'}\n\n${pricing}${food}\n\nPlease confirm availability and the quotation for our group and date. Thank you!`);
+    setMessage(`Hello The LIT Stays, I’d like to enquire about ${villa.name} — ${villa.bedrooms}BHK ${villa.style}.\n\nName: ${name}\nPeople: ${guests}\nPreferred date: ${formattedDate}\nLocation: ${villa.location}\nPool: ${villa.hasPool ? 'Swimming pool' : 'Without pool'}\n\n${pricing}${food}\n\nPlease confirm availability and the quotation for our group and date. Thank you!`);
     requestAnimationFrame(() => preview.current?.focus());
   }
 

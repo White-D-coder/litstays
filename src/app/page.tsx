@@ -10,6 +10,7 @@ import { BookingSection } from '@/components/sections/BookingSection';
 import { AvailabilitySection } from '@/components/sections/AvailabilitySection';
 import { StayProvider } from '@/components/availability/StayProvider';
 import { FAQSection } from '@/components/sections/FAQSection';
+import { HomeVideosSection } from '@/components/sections/HomeVideosSection';
 
 export default function Home() {
   return <><Navbar/><main id="main">
@@ -22,6 +23,7 @@ export default function Home() {
         <FactsSection/>
         <ExperienceSection/>
         <GallerySection/>
+        <HomeVideosSection/>
         <FAQSection/>
         <AvailabilitySection/>
         <BookingSection/>

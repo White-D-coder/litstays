@@ -21,6 +21,8 @@ export type Villa = {
   location: string;
   introduction: string;
   description: string;
+  // Set only when the owner supplies this villa's outline colour.
+  brandColour?: string;
   heroImage?: { src: string; alt: string; width: number; height: number; position?: string; mobilePosition?: string; mobileScale?: number; responsive?: boolean; foregroundMask?: string; sky?: string };
   photos?: VillaPhoto[];
   brochure: { href: string; filename: string; cover: string; pages: number; previewBase: string };

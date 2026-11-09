@@ -1,0 +1,42 @@
+[
+  {
+    "file": "Avante.pdf",
+    "before_bytes": 4225823,
+    "after_bytes": 4210458,
+    "pages": 18,
+    "recompressed_photos": 0,
+    "max_page_mean_pixel_difference_out_of_255": 0,
+    "original_sha256": "04f20c71a43033683dd33d2518c9beff1938a2028489163acea23b86260e755c",
+    "compressed_sha256": "5e9bbc3cb47e89b965bcc6981a32377f9a76c89d412a9975ed271f6c040823ee"
+  },
+  {
+    "file": "Archway.pdf",
+    "before_bytes": 4613580,
+    "after_bytes": 4596370,
+    "pages": 20,
+    "recompressed_photos": 0,
+    "max_page_mean_pixel_difference_out_of_255": 0,
+    "original_sha256": "a14f194fcbcd3743f2c15271a42782fba13573ff4d5b696ebaa3104d14af4425",
+    "compressed_sha256": "a3986e20a1027b76204fceb7d50652a84ea837674ddd66ae1daad7eef5d13b9f"
+  },
+  {
+    "file": "Villa Aurania.pdf",
+    "before_bytes": 4992493,
+    "after_bytes": 4978888,
+    "pages": 16,
+    "recompressed_photos": 0,
+    "max_page_mean_pixel_difference_out_of_255": 0,
+    "original_sha256": "c868ef5636b553e7afbae3ebb5ed898302c9d807979c312bf0bad67b4e4a8b3f",
+    "compressed_sha256": "586c41ae3f9710903dd91606ee5ad93c67e36772793aaa540aec23b03a519f9d"
+  },
+  {
+    "file": "TLS - Food Package.pdf",
+    "before_bytes": 26652585,
+    "after_bytes": 9603873,
+    "pages": 9,
+    "recompressed_photos": 8,
+    "max_page_mean_pixel_difference_out_of_255": 0.7292,
+    "original_sha256": "3910491fb54eb73b060de88a7ca7a8686edc468c59711ceb51c4894eb076f94c",
+    "compressed_sha256": "3d633a1a600ab9a9367c4104c90e50585512dab21775fa000cbede8ade94cfc3"
+  }
+]

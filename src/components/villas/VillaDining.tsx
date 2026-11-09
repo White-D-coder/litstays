@@ -77,6 +77,15 @@ export function VillaDining() {
         <div className={styles.brochure}>
           <PdfBrochure brochure={foodBrochure} minimal viewLabel="View full menu" />
         </div>
+        <section className={styles.foodRules} aria-labelledby="food-rules-heading">
+          <h3 id="food-rules-heading">Food Rules</h3>
+          <ul>
+            <li>Premium package requires 5+ guests.</li>
+            <li>Menu must be finalised 4 days in advance.</li>
+            <li>Full advance payment confirms the food package.</li>
+            <li>Food is charged separately.</li>
+          </ul>
+        </section>
         <details className={styles.terms}>
           <summary>Dining details <span aria-hidden="true">+</span></summary>
           <p>Premium packages for 5 or more guests. Finalise your menu at least 4 days before check-in and let us know of any allergies or dietary preferences. Full advance payment confirms your food package. Food is charged separately from your stay.</p>

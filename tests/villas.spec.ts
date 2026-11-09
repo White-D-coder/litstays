@@ -25,10 +25,10 @@ test('villa navigation opens the shared detail page with its own quotation and h
   await expect(food).toContainText('High tea');
   const nav = page.getByRole('navigation', { name: 'Main navigation', exact: true });
   await expect(nav.getByRole('link', { name: 'Avante' })).toHaveAttribute('aria-current', 'page');
-  await expect(nav.getByRole('link', { name: 'Gallery' })).toHaveAttribute('href', '/#gallery');
+  await expect(nav.getByRole('link', { name: 'Gallery' })).toHaveCount(0);
   await expect(page.locator('header').getByRole('link', { name: 'Plan your stay' })).toHaveAttribute('href', site.instagramMessage);
-  await nav.getByRole('link', { name: 'Gallery' }).click();
-  await expect(page).toHaveURL(/\/#gallery$/);
+  await page.locator('header').getByRole('link', { name: 'The LIT Stays home' }).click();
+  await expect(page).toHaveURL(/\/#home$/);
 });
 
 test('villa pages offer direct contact without enquiry forms or unrelated calendar requests', async ({ page }) => {
@@ -206,6 +206,16 @@ test('every villa hero keeps its title and stay controls readable across viewpor
       await page.setViewportSize({ width, height: 900 });
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${villa.name} fits at ${width}px`).toBe(true);
       const title = await page.getByRole('heading', { level: 1 }).boundingBox();
+      await expect(page.getByRole('heading', { level: 1 })).toHaveCSS('-webkit-text-fill-color', 'rgba(0, 0, 0, 0)');
+      await expect(page.getByRole('heading', { level: 1 })).toHaveCSS('-webkit-text-stroke-color', 'rgb(44, 59, 40)');
+      const lettering = await page.locator('#villa-heading').evaluate(element => {
+        const range = document.createRange();
+        range.selectNode(element.lastChild!);
+        const box = range.getBoundingClientRect();
+        return { left: box.left, right: box.right };
+      });
+      expect(lettering.left).toBeGreaterThanOrEqual(0);
+      expect(lettering.right).toBeLessThanOrEqual(width);
       const bar = page.getByLabel(`${villa.name} at a glance`);
       const control = await bar.getByRole('link', { name: 'Plan your stay' }).boundingBox();
       expect(title!.x).toBeGreaterThanOrEqual(0);
@@ -400,6 +410,14 @@ test('all three villas share brochure-priced dining, deferred food PDFs and redu
     for (const price of ['₹1,400', '₹1,650', '₹1,600', '₹1,900']) await expect(dining).toContainText(price);
     await expect(dining.getByRole('list', { name: 'Included meals' }).getByRole('listitem')).toHaveCount(4);
     await expect(dining).toContainText('Premium packages for 5 or more guests.');
+    const rules = dining.getByRole('region', { name: 'Food Rules', exact: true });
+    await expect(rules.getByRole('listitem')).toHaveText([
+      'Premium package requires 5+ guests.',
+      'Menu must be finalised 4 days in advance.',
+      'Full advance payment confirms the food package.',
+      'Food is charged separately.',
+    ]);
+    await expect(rules.locator('p')).toHaveCount(0);
     expect(pdfRequests).toEqual([]);
     const view = dining.getByRole('button', { name: 'View Food packages brochure' });
     await view.click();

@@ -20,7 +20,7 @@ export function IntroductionSection() {
         <div className="intro-copy">
           <IntroFade as="p" className="intro-lead" delay={.2} duration={.9}>Some days call for a change of scenery.<br />Others, simply a change of pace.</IntroFade>
           <IntroFade as="p" delay={.32} duration={1}>Leave the full calendars behind. Come for the unhurried mornings, the conversations that wander, and the pleasure of having nowhere else to be.</IntroFade>
-          <IntroFade className="intro-signature" delay={.4}><BrandMark /><span>This is <em>The Lit Stays.</em></span></IntroFade>
+          <IntroFade className="intro-signature" delay={.4}><BrandMark /><span>This is <em>The LIT Stays.</em></span></IntroFade>
         </div>
       </div>
     </section>

@@ -4,7 +4,7 @@ export type PropertyFact = { label: string; value: string; detail: string };
 export type Photo = { id: string; alt: string; caption: string; category: string };
 
 export const site = {
-  name: 'The Lit Stays',
+  name: 'The LIT Stays',
   url: 'https://the-lit-stays-retreat.keyursatra.chatgpt.site',
   instagram: 'https://www.instagram.com/the_lit_stays/',
   instagramMessage: 'https://ig.me/m/the_lit_stays',
@@ -41,7 +41,6 @@ export const site = {
 export const navigation = [
   { label: 'The bungalow', href: '#bungalow' },
   { label: 'The experience', href: '#experience' },
-  { label: 'The gallery', href: '#gallery' },
   ...villas.map(villa => ({ label: villa.name, href: `/villas/${villa.slug}/` })),
   { label: 'Our Story', href: '/our-story/' },
 ] as const;

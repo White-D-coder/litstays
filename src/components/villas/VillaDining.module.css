@@ -97,6 +97,10 @@
 .brochure > :global(div[data-theme]) > button { gap: 24px; }
 .brochure > :global(div[data-theme]) > a { gap: 16px; }
 
+.foodRules { margin-top: 25px; color: var(--muted); font-size: 15px; line-height: 1.85; }
+.foodRules h3 { font: inherit; font-weight: 500; color: var(--ink); }
+.foodRules ul { margin: 10px 0 0; padding-left: 20px; list-style: disc; }
+
 .terms { margin-top: 25px; border-bottom: 1px solid var(--rule); }
 .terms > summary {
   display: flex;

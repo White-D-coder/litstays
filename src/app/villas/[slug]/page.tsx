@@ -14,7 +14,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const villa = getVilla((await params).slug);
   if (!villa) notFound();
-  const title = `${villa.name} — ${villa.bedrooms}BHK ${villa.style} | The Lit Stays`;
+  const title = `${villa.name} — ${villa.bedrooms}BHK ${villa.style} | The LIT Stays`;
   return {
     title,
     description: `${villa.name} in ${villa.location}. ${villa.description}`,

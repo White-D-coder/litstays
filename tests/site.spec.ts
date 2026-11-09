@@ -1,5 +1,36 @@
 import { test, expect } from '@playwright/test';
 
+test('review changes keep the photo journal, remove Gallery navigation and show five vertical homepage videos', async ({ page, request }) => {
+  // Keep this layout check independent of YouTube's network/player availability.
+  await page.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({ contentType: 'text/html', body: '<title>Video frame</title>' }));
+  await page.goto('/');
+  await expect(page.locator('nav').getByRole('link', { name: /gallery/i })).toHaveCount(0);
+  await expect(page.locator('#gallery')).toHaveCount(1);
+  await expect(page.locator('.experience-photo-label')).toHaveCount(0);
+  await expect(page.locator('#gallery').getByRole('link', { name: 'Follow on Instagram' })).toHaveAttribute('href', 'https://www.instagram.com/the_lit_stays/');
+  const videos = page.locator('#videos iframe');
+  await expect(videos).toHaveCount(5);
+  const ids = ['ZkFFq16fB2I', 'sp49A-K0TmQ', '9ndnJAIcA1Y', '5RSpQchGXyk', 'CCMzu5EdfyA'];
+  for (const [index, id] of ids.entries()) await expect(videos.nth(index)).toHaveAttribute('src', `https://www.youtube-nocookie.com/embed/${id}`);
+  for (const width of [320, 390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    for (const video of await videos.all()) {
+      const box = await video.boundingBox();
+      expect(box!.width / box!.height).toBeCloseTo(9 / 16, 2);
+    }
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+  const cards = page.locator('#villas');
+  await expect(cards.locator('img').nth(0)).toHaveAttribute('src', /avante-38-/);
+  await expect(cards.locator('img').nth(1)).toHaveAttribute('src', /aurania-8788-/);
+  await expect(cards.locator('img').nth(2)).toHaveAttribute('src', /archway-53-/);
+  await expect(cards.locator('img').nth(1)).toHaveCSS('object-fit', 'cover');
+  await expect(cards.locator('img').nth(2)).toHaveCSS('object-fit', 'cover');
+  expect((await request.get('/gallery/')).status()).toBe(404);
+  await page.goto('/our-story/');
+  await expect(page.locator('iframe[src*="youtube"]')).toHaveCount(0);
+});
+
 test('all requested breakpoints render without overflow or broken images', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
@@ -29,7 +60,7 @@ test('hero photograph remains stationary as the following surface rises', async 
   expect((await page.locator('#introduction').boundingBox())?.y).toBeLessThan(900);
 });
 
-test('mobile navigation traps focus, closes with Escape and follows anchors', async ({ page }) => {
+test('mobile navigation traps focus, closes with Escape and opens villa pages', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
   const toggle = page.getByRole('button', { name: 'Open navigation menu' });
@@ -40,9 +71,10 @@ test('mobile navigation traps focus, closes with Escape and follows anchors', as
   await expect(menu).not.toBeVisible();
   await expect(toggle).toBeFocused();
   await toggle.click();
-  await menu.getByRole('link', { name: 'Gallery' }).click();
+  await expect(menu.getByRole('link', { name: 'Gallery' })).toHaveCount(0);
+  await menu.getByRole('link', { name: 'Avante' }).click();
   await expect(menu).not.toBeVisible();
-  await expect(page).toHaveURL(/#gallery$/);
+  await expect(page).toHaveURL(/\/villas\/villa-avante\/$/);
 });
 
 test('gallery is navigable by keyboard and returns focus to its trigger', async ({ page }) => {

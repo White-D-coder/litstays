@@ -1,0 +1,5 @@
+/* REVIEW ONLY. Shared forest is provisional until villa brand colours are confirmed.
+   Injected for screenshots; this file is not imported by the application. */
+#home [class*="heroTitle"] { z-index: 5; top: 14%; }
+#villa-heading { color: transparent; -webkit-text-fill-color: transparent; -webkit-text-stroke: clamp(1.5px, .16vw, 2.5px) #2C3B28; font-size: clamp(64px, 18vw, 280px); filter: drop-shadow(0 0 1px #F7F1E2) drop-shadow(0 0 1px #F7F1E2); }
+nextjs-portal { display:none; }
