@@ -18,7 +18,7 @@ export function VillaDetail({ villa }: { villa: Villa }) {
     '--hero-mobile-position': villa.heroImage?.mobilePosition || 'center',
     '--hero-mask': villa.heroImage?.foregroundMask ? `url("${villa.heroImage.foregroundMask}")` : 'none',
     '--hero-sky': villa.heroImage?.sky || 'var(--forest)',
-    '--villa-title-outline': villa.brandColour || 'var(--forest)',
+    '--villa-title-outline': villa.brandColour || '#fff',
   } as CSSProperties;
   const comfortPhoto = villa.photos?.[2];
   const [opening, ...closing] = villa.introduction.split('. ');

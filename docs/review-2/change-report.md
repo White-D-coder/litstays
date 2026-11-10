@@ -2,12 +2,12 @@ The 4 November 2026 review changes were implemented locally against clean Git ba
 
 Implemented changes:
 
-- Homepage: Archway now uses the supplied night exterior (`archway-53`); Aurania uses the supplied wider exterior (`aurania-8788`). Only these homepage images use `contain` so the full structures remain visible. Existing card dimensions, copy, links, Avante photograph, and villa detail photographs remain intact.
+- Homepage: Archway now uses the supplied night exterior (`archway-53`); Aurania uses the supplied wider exterior (`aurania-8788`). Following the card-image correction, all three photographs use the same edge-to-edge `cover` treatment as Avante; responsive cropping fills the existing portrait frames without a hard image boundary or empty background band. Existing card dimensions, copy, links, Avante photograph, and villa detail photographs remain intact.
 - Removed only “THE PLEASURE OF TAKING YOUR TIME” from the experience photograph.
 - Added a photo-journal Instagram link using the configured `https://www.instagram.com/the_lit_stays/`. The existing footer and Our Story Instagram destinations remain intact.
 - Added all five owner-supplied YouTube videos to the homepage, in responsive 9:16 players with controls, lazy loading, no autoplay, and direct YouTube links. No video section was added to Our Story. The two landscape source videos are contained by YouTube within vertical players; their source footage is not cropped or edited.
 - Removed Gallery entries from desktop, mobile and footer navigation. The baseline had no standalone `/gallery/` route or sitemap entry; `/gallery/` returns 404. The homepage journal, its `#gallery` anchor and all villa-specific galleries remain available.
-- After the owner approved the mock-up layout, applied the outline-only villa hero titles across Avante, Archway and Aurania. The fill is transparent, the title sits above the foreground mask, and the complete lettering fits desktop and mobile. **Forest green is provisional:** each villa can receive its owner-confirmed `brandColour` in `src/lib/villas.ts` without further layout changes.
+- After the owner approved the mock-up layout, applied the outline-only villa hero titles across Avante, Archway and Aurania. The fill is transparent, the title sits above the foreground mask, and the complete lettering fits desktop and mobile. Following the owner’s readability correction, the titles use a crisp white outline, the site’s existing Cormorant Garamond serif font and a subtle dark shadow. The responsive font sizes are unchanged.
 - Added the exact four Food Rules as visible bullet points on all three villa pages through `VillaDining`. Existing package prices, meal lists, dining details and PDF controls remain intact.
 - Normalised user-facing “The Lit Stays” text, metadata, accessible labels and enquiry greetings to “The LIT Stays”. No other wording was changed.
 
@@ -24,7 +24,6 @@ Total PDF payload fell from 40.48 MB to 23.39 MB (42.2%). The villa PDFs were al
 
 Inputs still required:
 
-- The three villa brand colour codes. The owner approved the outline layout and said colours would follow; no per-villa colours have been invented.
 - Approved lifestyle/model photographs, their captions and alt text. The existing journal already reads typed `Photo` records from `src/lib/site-content.ts`; add approved photographs there and reference them in the six-photo sets in `src/lib/gallery-slides.ts`. Supply local responsive WebP variants at 480, 960, 1440 and 1920px for each photo ID, following the existing loader. All added photos appear in the existing lightbox and dynamic photo count. No stock or generated photographs were added.
 - Approved additional questions and answers. Append them to the typed array in `src/lib/faqs.ts`; the existing FAQ maps the first four entries into the initial group and the remainder into `FAQMore`. Existing answers, disclosure behaviour and animations remain intact. No FAQ code change or placeholder content was necessary.
 
@@ -34,7 +33,7 @@ Files and components changed:
 | --- | --- |
 | `src/app/page.tsx` | Compose the homepage-only video section |
 | `src/components/sections/HomeVideosSection.tsx`, `HomeVideosSection.module.css` (new) | Five responsive vertical YouTube players |
-| `src/components/sections/VillaCardsSection.tsx`, `VillaCardsSection.module.css` | Local homepage photo overrides and full-structure image fitting |
+| `src/components/sections/VillaCardsSection.tsx`, `VillaCardsSection.module.css` | Local homepage photo overrides and consistent edge-to-edge image fitting |
 | `src/components/sections/ExperienceSection.tsx` | Remove the specified overlay label |
 | `src/components/sections/GallerySection.tsx` | Approved Instagram link beside the existing journal controls |
 | `src/components/layout/Navbar.tsx`, `src/lib/site-content.ts` | Remove Gallery navigation; uppercase LIT |
@@ -44,7 +43,7 @@ Files and components changed:
 | `public/Avante.pdf`, `public/Archway.pdf`, `public/Villa Aurania.pdf`, `public/TLS - Food Package.pdf` | Validated PDF optimization at the existing paths |
 | `scripts/serve.mjs` | Owner-approved static `.pdf` MIME mapping to `application/pdf`; no API or routing logic changed |
 | `scripts/compress-pdfs.py` (new) | Reproducible compression candidates and content/render validation; requires the already-available PyMuPDF and Pillow |
-| `tests/site.spec.ts`, `tests/villas.spec.ts` | Updated navigation checks and coverage for embeds, Food Rules, full-structure images and outlined title bounds |
+| `tests/site.spec.ts`, `tests/villas.spec.ts` | Updated navigation checks and coverage for embeds, Food Rules, card image fitting and outlined title bounds |
 | `docs/review-2/` (new) | This report, review-only CSS, screenshots and validation receipts |
 
 Validation:
@@ -61,3 +60,7 @@ Review images: [Avante desktop](avante-hero-desktop.jpg), [Archway desktop](arch
 No regressions caused by the requested edits have been identified. The pre-existing production PDF MIME issue was resolved by the explicitly approved static file-type mapping change; its production checks now pass. Each of the five embedded videos began muted playback after clicking YouTube’s accessible “Play video” button, with `readyState: 4`, `paused: false`, advancing playback time and no player errors. See [video-playback-validation.json](video-playback-validation.json). No hosted deployment was made; changes remain in this checkout for review.
 
 The final compressed villa PDFs passed View, Download and modal checks on the development server, and the exact Food Rules passed on all three villas (2 targeted checks). The owner-approved, implemented production MIME fix is recorded in [pdf-mime-fix.diff](pdf-mime-fix.diff); it changes only the static file-type map. Production rerun: `LITSTAYS_BASE_URL=http://localhost:3030 npm run test:e2e -- tests/villas.spec.ts --grep 'each villa brochure previews|all three villas share brochure-priced'` — 2 passed. No production PDF verification blocker remains.
+
+Card-image follow-up (10 November 2026): removed the `contain` override that caused Aurania and Archway photographs to stop halfway down their cards. All three images now fill their unchanged card frames using the existing `cover` styling. The supplied image sources, text, gradients, links and card dimensions remain intact. Production build, targeted ESLint and both homepage checks pass, including image loading and overflow checks at 320–1920px. Desktop and mobile crops were visually inspected: [desktop cards](cards-desktop.jpg), [Aurania mobile](cards-mobile-aurania.jpg), [Archway mobile](cards-mobile-archway.jpg).
+
+Hero-title readability follow-up (10 November 2026): the owner requested white lettering and a different font while retaining the existing font size. Changed only the villa hero typography to the existing Cormorant Garamond serif, white outline and subtle dark shadow. The transparent fill, hero imagery, responsive font-size rules and rest of each page remain intact. Production build and targeted ESLint pass. Both hero checks pass across all three villas, including 320, 390, 768, 1024 and 1440px widths, exact preserved font sizes, complete title bounds and pinned-hero behaviour. Latest previews: [desktop white serif title](archway-white-title-desktop.jpg), [mobile white serif title](archway-white-title-mobile.jpg). White supersedes the earlier provisional forest outline; villa colour codes are no longer required for the current requested treatment.
