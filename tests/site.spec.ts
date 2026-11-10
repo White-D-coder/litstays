@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('review changes keep the photo journal, remove Gallery navigation and show five vertical homepage videos', async ({ page, request }) => {
+test('review changes keep the photo journal and display separate film and Shorts carousels', async ({ page, request }) => {
   // Keep this layout check independent of YouTube's network/player availability.
   await page.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({ contentType: 'text/html', body: '<title>Video frame</title>' }));
   await page.goto('/');
@@ -8,18 +8,36 @@ test('review changes keep the photo journal, remove Gallery navigation and show 
   await expect(page.locator('#gallery')).toHaveCount(1);
   await expect(page.locator('.experience-photo-label')).toHaveCount(0);
   await expect(page.locator('#gallery').getByRole('link', { name: 'Follow on Instagram' })).toHaveAttribute('href', 'https://www.instagram.com/the_lit_stays/');
-  const videos = page.locator('#videos iframe');
-  await expect(videos).toHaveCount(5);
+  const section = page.locator('#videos');
+  const films = section.getByRole('list', { name: 'LIT Stays videos', exact: true });
+  const shorts = section.getByRole('list', { name: 'LIT Stays shorts', exact: true });
+  await expect(films.getByRole('listitem')).toHaveCount(2);
+  await expect(shorts.getByRole('listitem')).toHaveCount(3);
+  await expect(section.locator('iframe')).toHaveCount(0);
+  await expect(section.locator('hr')).toHaveCount(0);
+  expect(await section.evaluate(element => getComputedStyle(element, '::before').opacity)).toBe('0.4');
   const ids = ['ZkFFq16fB2I', 'sp49A-K0TmQ', '9ndnJAIcA1Y', '5RSpQchGXyk', 'CCMzu5EdfyA'];
-  for (const [index, id] of ids.entries()) await expect(videos.nth(index)).toHaveAttribute('src', `https://www.youtube-nocookie.com/embed/${id}`);
+  for (const [index, id] of ids.entries()) {
+    const card = section.getByRole('listitem').nth(index);
+    await card.getByRole('link', { name: /^Play / }).click();
+    await expect(card.locator('iframe')).toHaveAttribute('src', `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`);
+    await expect(section.locator('iframe')).toHaveCount(1);
+  }
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
-    for (const video of await videos.all()) {
-      const box = await video.boundingBox();
-      expect(box!.width / box!.height).toBeCloseTo(9 / 16, 2);
-    }
+    const film = await films.getByRole('listitem').first().boundingBox();
+    const short = await shorts.getByRole('listitem').first().boundingBox();
+    expect(film!.width / film!.height).toBeCloseTo(16 / 9, 2);
+    expect(short!.width / short!.height).toBeCloseTo(9 / 16, 2);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
+  await page.setViewportSize({ width: 390, height: 900 });
+  await section.getByRole('button', { name: 'Show videos 1', exact: true }).click();
+  await expect(section.getByRole('button', { name: 'Next videos', exact: true })).toBeEnabled();
+  await section.getByRole('button', { name: 'Next videos', exact: true }).click();
+  await expect(section.getByRole('button', { name: 'Show videos 2', exact: true })).toHaveAttribute('aria-current', 'true');
+  await section.getByRole('button', { name: 'Previous videos', exact: true }).click();
+  await expect(section.getByRole('button', { name: 'Show videos 1', exact: true })).toHaveAttribute('aria-current', 'true');
   const cards = page.locator('#villas');
   await expect(cards.locator('img').nth(0)).toHaveAttribute('src', /avante-38-/);
   await expect(cards.locator('img').nth(1)).toHaveAttribute('src', /aurania-8788-/);
