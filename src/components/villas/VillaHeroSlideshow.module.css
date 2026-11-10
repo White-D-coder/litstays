@@ -1,10 +1,12 @@
 .slideshow { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 .slide { position: absolute; inset: 0; opacity: 1; }
-.slide > img { object-fit: cover; object-position: var(--slide-position, center); }
+.slide > picture { position: absolute; inset: 0; }
+.slide img { object-fit: cover; object-position: var(--slide-position, center); }
 .incoming { z-index: 1; opacity: 0; transition: opacity var(--hero-fade-duration, 1200ms) ease-in-out; }
 .fading { opacity: 1; }
 .pause { position: absolute; right: var(--gutter); bottom: 22px; z-index: 6; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid rgba(255, 255, 255, .6); border-radius: 50%; background: rgba(var(--ink-rgb), .3); color: #fff; cursor: pointer; }
 .pause svg { width: 18px; height: 18px; }
+.homePause { bottom: 112px; }
 .pause:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
-@media (max-width: 600px) { .slide > img { object-position: var(--slide-mobile-position, center); } }
+@media (max-width: 600px) { .slide img { object-position: var(--slide-mobile-position, center); } }
 @media (prefers-reduced-motion: reduce) { .incoming { transition: none; } .pause { display: none; } }

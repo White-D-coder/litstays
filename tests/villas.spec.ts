@@ -212,7 +212,7 @@ test('every villa hero keeps its title and stay controls readable across viewpor
         family: getComputedStyle(element).fontFamily,
         size: parseFloat(getComputedStyle(element).fontSize),
       }));
-      expect(font.family).toMatch(/serif/i);
+      expect(font.family).toMatch(/sans-serif/i);
       expect(font.size).toBeCloseTo(Math.min(280, Math.max(64, width * .18)), 1);
       const lettering = await page.locator('#villa-heading').evaluate(element => {
         const range = document.createRange();

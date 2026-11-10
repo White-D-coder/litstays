@@ -14,7 +14,7 @@ import villaImageLoader from '@/lib/villa-image-loader';
 import styles from './VillaDetail.module.css';
 import { VillaHeroSlideshow, type HeroSlide } from './VillaHeroSlideshow';
 
-const heroFont = localFont({ src: '../../../public/fonts/instrument-serif.woff2', weight: '400', style: 'normal', variable: '--font-villa-hero', display: 'swap' });
+const heroFont = localFont({ src: '../../../public/fonts/montserrat-latin-600.woff2', weight: '600', style: 'normal', variable: '--font-villa-hero', display: 'swap' });
 
 export function VillaDetail({ villa }: { villa: Villa }) {
   const photoStyle = {

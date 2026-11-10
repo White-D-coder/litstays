@@ -15,7 +15,7 @@ for (const villa of villas) {
     const active = await hero.getAttribute('data-active-slide');
     const photo = villa.photos!.find(photo => photo.id === active)!;
     expect(photo).toBeTruthy();
-    await expect(hero.locator('img').first()).toHaveAttribute('src', photo.src.replace('-1920.webp', /./.source ? '-1920.webp' : '-1920.webp'));
+    await expect(hero.locator('img').first()).toHaveAttribute('src', new RegExp(`${photo.id}-\\d+\\.webp$`));
     expect(await title.boundingBox()).toEqual(before);
     await page.getByRole('button', { name: 'Pause villa slideshow', exact: true }).click();
     await expect(hero).toHaveAttribute('data-playing', 'false');
