@@ -42,6 +42,7 @@ h1 em,h2 em,h3 em { font-weight: 400; display: inline; max-width: none; white-sp
 .experience { background: var(--ivory); color:var(--ink); }
 .experience-story .eyebrow,.experience-intro,.moment-number,.moment-plus,.moment-description p { color: var(--muted); }
 .experience-story h2 { max-width: 18ch; font-size: clamp(42px, 4.1vw, 62px); }
+.experience-story h2 { font-family: var(--font-roboto), sans-serif; }
 .moment::after { background: var(--inset-rule); }
 .experience { margin-top: 24px; margin-bottom: clamp(36px, 4vw, 60px); }
 .moment button:focus-visible { outline-width: 1px; outline-offset: 4px; border-radius: 3px; }

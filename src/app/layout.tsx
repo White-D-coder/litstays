@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { Roboto } from 'next/font/google';
 import localFont from 'next/font/local';
 import { site } from '@/lib/site-content';
 import './globals.css';
@@ -16,6 +17,7 @@ import { HeadingSelection } from '@/components/ui/HeadingSelection';
 
 const serif = localFont({ src: '../../public/fonts/cormorant-garamond.woff2', style: 'normal', weight: '300 700', variable: '--font-serif', display: 'swap', preload: true });
 const sans = localFont({ src: '../../public/fonts/manrope.woff2', weight: '400 700', variable: '--font-sans', display: 'swap', preload: true });
+const roboto = Roboto({ subsets: ['latin'], weight: '400', variable: '--font-roboto', display: 'swap', preload: false });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -42,5 +44,5 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#2C3B28', colorScheme: 'light' };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en" className={`${serif.variable} ${sans.variable}`}><body><HeadingSelection/><a href="#main" className="skip-link">Skip to content</a>{children}</body></html>;
+  return <html lang="en" className={`${serif.variable} ${sans.variable} ${roboto.variable}`}><body><HeadingSelection/><a href="#main" className="skip-link">Skip to content</a>{children}</body></html>;
 }
