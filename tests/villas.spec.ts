@@ -206,8 +206,8 @@ test('every villa hero keeps its title and stay controls readable across viewpor
       await page.setViewportSize({ width, height: 900 });
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `${villa.name} fits at ${width}px`).toBe(true);
       const title = await page.getByRole('heading', { level: 1 }).boundingBox();
-      await expect(page.getByRole('heading', { level: 1 })).toHaveCSS('-webkit-text-fill-color', 'rgba(0, 0, 0, 0)');
-      await expect(page.getByRole('heading', { level: 1 })).toHaveCSS('-webkit-text-stroke-color', 'rgb(255, 255, 255)');
+      await expect(page.getByRole('heading', { level: 1 })).toHaveCSS('-webkit-text-fill-color', 'rgb(255, 255, 255)');
+      await expect(page.getByRole('heading', { level: 1 })).toHaveCSS('-webkit-text-stroke-width', '0px');
       const font = await page.locator('#villa-heading').evaluate(element => ({
         family: getComputedStyle(element).fontFamily,
         size: parseFloat(getComputedStyle(element).fontSize),

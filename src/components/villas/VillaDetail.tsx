@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import localFont from 'next/font/local';
 import type { CSSProperties } from 'react';
 import { Navbar } from '../layout/Navbar';
 import { Footer } from '../layout/Footer';
@@ -11,6 +12,9 @@ import { VillaDining } from './VillaDining';
 import { VillaBrochureBook } from './VillaBrochureBook';
 import villaImageLoader from '@/lib/villa-image-loader';
 import styles from './VillaDetail.module.css';
+import { VillaHeroSlideshow, type HeroSlide } from './VillaHeroSlideshow';
+
+const heroFont = localFont({ src: '../../../public/fonts/instrument-serif.woff2', weight: '400', style: 'normal', variable: '--font-villa-hero', display: 'swap' });
 
 export function VillaDetail({ villa }: { villa: Villa }) {
   const photoStyle = {
@@ -18,8 +22,11 @@ export function VillaDetail({ villa }: { villa: Villa }) {
     '--hero-mobile-position': villa.heroImage?.mobilePosition || 'center',
     '--hero-mask': villa.heroImage?.foregroundMask ? `url("${villa.heroImage.foregroundMask}")` : 'none',
     '--hero-sky': villa.heroImage?.sky || 'var(--forest)',
-    '--villa-title-outline': villa.brandColour || '#fff',
   } as CSSProperties;
+  const heroSlides: HeroSlide[] = villa.heroImage ? [
+    { id: `${villa.slug}-hero`, ...villa.heroImage },
+    ...(villa.photos || []).filter(photo => photo.src !== villa.heroImage?.src).slice(0, 4),
+  ] : [];
   const comfortPhoto = villa.photos?.[2];
   const [opening, ...closing] = villa.introduction.split('. ');
 
@@ -27,20 +34,13 @@ export function VillaDetail({ villa }: { villa: Villa }) {
     <Navbar homePath="/" currentPath={`/villas/${villa.slug}/`} enquiryHref={site.instagramMessage} />
     <main id="main" className={styles.page}>
       <div id="nav-sentinel" className={styles.navSentinel} aria-hidden="true" />
-      <section className={styles.hero} id="home" aria-labelledby="villa-heading" style={photoStyle}>
-        <div className={styles.heroMedia}>
-          {villa.heroImage
-            ? <Image src={villa.heroImage.src} alt={villa.heroImage.alt} fill sizes="(max-aspect-ratio: 3/2) 150svh, 100vw" loader={villaImageLoader} unoptimized={!villa.heroImage.responsive} loading="eager" fetchPriority="high" />
-            : <BrandMark className={styles.heroFallback} />}
-        </div>
+      <section className={`${styles.hero} ${heroFont.variable}`} id="home" aria-labelledby="villa-heading" style={photoStyle}>
+        {heroSlides.length ? <VillaHeroSlideshow name={villa.name} slides={heroSlides} /> : <BrandMark className={styles.heroFallback} />}
         <div className={styles.heroTopShade} />
         <div className={styles.heroTitle}>
           <p aria-hidden="true">THE LIT STAYS · VILLA</p>
           <h1 id="villa-heading"><span className={styles.srOnly}>Villa </span>{villa.name.replace(/^Villa /, '')}</h1>
         </div>
-        {villa.heroImage?.foregroundMask && <div className={`${styles.heroMedia} ${styles.heroForeground}`} aria-hidden="true">
-          <Image src={villa.heroImage.src} alt="" fill sizes="(max-aspect-ratio: 3/2) 150svh, 100vw" loader={villaImageLoader} unoptimized={!villa.heroImage.responsive} loading="eager" />
-        </div>}
         <div className={styles.heroShade} />
         <div className={`${styles.heroInner} section-padding`}>
           <div className={styles.stayBar} aria-label={`${villa.name} at a glance`}>
