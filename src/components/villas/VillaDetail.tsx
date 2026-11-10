@@ -14,7 +14,7 @@ import villaImageLoader from '@/lib/villa-image-loader';
 import styles from './VillaDetail.module.css';
 import { VillaHeroSlideshow, type HeroSlide } from './VillaHeroSlideshow';
 
-const heroFont = localFont({ src: '../../../public/fonts/montserrat-latin-600.woff2', weight: '600', style: 'normal', variable: '--font-villa-hero', display: 'swap' });
+const montserrat = localFont({ src: '../../../public/fonts/montserrat-latin-600.woff2', weight: '600', style: 'normal', variable: '--font-villa-hero', display: 'swap' });
 
 export function VillaDetail({ villa }: { villa: Villa }) {
   const photoStyle = {
@@ -34,7 +34,7 @@ export function VillaDetail({ villa }: { villa: Villa }) {
     <Navbar homePath="/" currentPath={`/villas/${villa.slug}/`} enquiryHref={site.instagramMessage} />
     <main id="main" className={styles.page}>
       <div id="nav-sentinel" className={styles.navSentinel} aria-hidden="true" />
-      <section className={`${styles.hero} ${heroFont.variable}`} id="home" aria-labelledby="villa-heading" style={photoStyle}>
+      <section className={`${styles.hero} ${montserrat.variable}`} id="home" aria-labelledby="villa-heading" style={photoStyle}>
         {heroSlides.length ? <VillaHeroSlideshow name={villa.name} slides={heroSlides} /> : <BrandMark className={styles.heroFallback} />}
         <div className={styles.heroTopShade} />
         <div className={styles.heroTitle}>

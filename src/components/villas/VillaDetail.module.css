@@ -5,7 +5,7 @@
 .heroMedia > img { object-fit: cover; object-position: var(--hero-position, center); }
 .heroFallback { position: absolute; width: 320px; height: 350px; right: 10%; top: 25%; opacity: .12; }
 .heroTopShade { position: absolute; inset: 0 0 40%; z-index: 1; background: linear-gradient(to bottom, rgba(var(--ink-rgb), .58), rgba(var(--ink-rgb), .14) 75%, transparent); pointer-events: none; }
-.heroTitle { position: absolute; top: 14%; inset-inline: 3%; z-index: 5; text-align: center; pointer-events: none; }
+.heroTitle { position: absolute; top: 50%; transform: translateY(-50%); inset-inline: 3%; z-index: 5; text-align: center; pointer-events: none; }
 .heroTitle > p { max-width: none; margin-bottom: 21px; font-size: 14px; letter-spacing: .16em; }
 .hero h1 { font-family: var(--font-villa-hero), sans-serif; font-size: clamp(64px, 18vw, 280px); font-weight: 600; line-height: .82; letter-spacing: -.04em; color: #fff; -webkit-text-fill-color: #fff; -webkit-text-stroke: 0; filter: drop-shadow(0 2px 3px rgba(var(--ink-rgb), .65)); }
 .srOnly { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

@@ -27,13 +27,12 @@ export function VillaHeroSlideshow({ name, slides, variant = 'villa' }: { name: 
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState<number[]>([]);
   const [visible, setVisible] = useState(false);
-  const [paused, setPaused] = useState(false);
   const frame = useRef<HTMLDivElement>(null);
   const incomingRef = useRef<number | null>(null);
   const paintFrames = useRef<number[]>([]);
   const tabVisible = useSyncExternalStore(subscribeVisibility, () => !document.hidden, () => false);
   const reduced = useSyncExternalStore(subscribeMotion, () => window.matchMedia('(prefers-reduced-motion: reduce)').matches, () => true);
-  const playing = visible && tabVisible && !reduced && !paused && slides.length > 1;
+  const playing = visible && tabVisible && !reduced && slides.length > 1;
 
   useEffect(() => {
     // The hero is pinned behind the page; its document-flow sentinel tells us
@@ -116,9 +115,5 @@ export function VillaHeroSlideshow({ name, slides, variant = 'villa' }: { name: 
         </picture>
       </div>)}
     </div>
-    {slides.length > 1 && <button type="button" className={`${styles.pause}${variant === 'home' ? ` ${styles.homePause}` : ''}`} aria-controls={`${variant}-hero-slides`}
-      aria-label={`${paused ? 'Play' : 'Pause'} ${variant} slideshow`} onClick={() => setPaused(current => !current)}>
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">{paused ? <path d="M8 5v14l11-7z" /> : <path d="M7 5h3v14H7zm7 0h3v14h-3z" />}</svg>
-    </button>}
   </>;
 }

@@ -11,11 +11,11 @@
 .allVideos { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; margin-top: 28px; padding: 12px 22px; border: 1px solid var(--ink); border-radius: 999px; color: var(--ivory); background: var(--ink); font-size: 13px; line-height: 1.5; white-space: nowrap; }
 .allShorts { color: var(--ink); background: transparent; }
 .carousel { position: relative; min-width: 0; padding-inline: 24px; padding-bottom: 32px; }
-.track { position: relative; display: flex; gap: 20px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; margin: 0; padding: 0 0 14px; list-style: none; }
+.track { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; min-width: 0; margin: 0; padding: 0; list-style: none; }
 .track::-webkit-scrollbar { display: none; }
-.card { position: relative; flex: 0 0 min(560px, 66%); min-width: 0; aspect-ratio: 16 / 9; overflow: hidden; scroll-snap-align: start; border-radius: 20px; background: var(--forest); box-shadow: 0 9px 15px rgba(var(--ink-rgb), .12); }
-.shortsTrack { justify-content: space-between; gap: 26px; }
-.shortCard { flex-basis: clamp(180px, 28%, 230px); aspect-ratio: 9 / 16; }
+.card { position: relative; min-width: 0; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 20px; background: var(--forest); box-shadow: 0 9px 15px rgba(var(--ink-rgb), .12); }
+.shortsTrack { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
+.shortCard { aspect-ratio: 9 / 16; }
 .cover, .player { display: block; position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .cover > img { object-fit: cover; }
 .cover:focus-visible { outline: 3px solid var(--ivory); outline-offset: -6px; }
@@ -26,14 +26,10 @@
 .shortPlay svg { width: 22px; height: 22px; }
 .caption { position: absolute; left: 20px; right: 16px; bottom: 18px; color: #fff; font-size: 14px; line-height: 1.45; }
 .shortCard .caption { bottom: 55px; font-size: 13px; }
-.arrow { position: absolute; z-index: 2; top: calc(50% - 38px); display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--sand); border-radius: 50%; background: var(--ivory); color: var(--ink); box-shadow: 0 4px 8px rgba(var(--ink-rgb), .12); cursor: pointer; }
-.previous { left: 0; }
-.next { right: 0; }
-.arrow:disabled { opacity: .45; cursor: default; }
-.backIcon { transform: rotate(180deg); }
-.dots { position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: center; gap: 12px; }
-.dots button { position: relative; width: 28px; height: 28px; padding: 0; border: 0; background: transparent; cursor: pointer; }
-.dots button::before { content: ''; position: absolute; inset: 8px; border-radius: 50%; background: var(--sand); }
-.dots button[aria-current='true']::before { background: var(--ink); }
-@media (max-width: 1000px) { .row { grid-template-columns: 190px minmax(0, 1fr); gap: 24px; } .card { flex-basis: 85%; } .shortCard { flex-basis: 43%; } .intro p { font-size: 21px; } }
-@media (max-width: 700px) { .section::before { top: -80px; right: -110px; width: 330px; } .heading { margin-bottom: 32px; } .row { grid-template-columns: minmax(0, 1fr); gap: 24px; } .row + .row { margin-top: 42px; } .intro p { margin-top: 12px; } .allVideos { margin-top: 18px; } .carousel { padding-inline: 17px; } .card { flex-basis: 94%; border-radius: 15px; } .shortCard { flex-basis: 65%; } .track { gap: 16px; } .arrow { width: 36px; height: 36px; } .play { width: 48px; height: 48px; } .shortPlay { width: 30px; height: 30px; } .caption { left: 14px; font-size: 12px; } }
+.player { opacity: 0; pointer-events: none; }
+.playerVisible { opacity: 1; pointer-events: auto; }
+.sourceLink { position: absolute; z-index: 2; right: 9px; top: 9px; display: grid; place-items: center; width: 32px; height: 32px; color: #fff; border-radius: 50%; background: rgba(var(--ink-rgb), .4); font-size: 20px; }
+@media (max-width: 1000px) { .row { grid-template-columns: 190px minmax(0, 1fr); gap: 24px; } .intro p { font-size: 21px; } }
+@media (max-width: 700px) { .section::before { top: -80px; right: -110px; width: 330px; } .heading { margin-bottom: 32px; } .row { grid-template-columns: minmax(0, 1fr); gap: 24px; } .row + .row { margin-top: 42px; } .intro p { margin-top: 12px; } .allVideos { margin-top: 18px; } .carousel { padding-inline: 17px; } .card { border-radius: 15px; } .track { grid-template-columns: minmax(0, 1fr); gap: 20px; } .shortsTrack { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; } .play { width: 48px; height: 48px; } .shortPlay { width: 30px; height: 30px; } .caption { left: 14px; font-size: 12px; } }
+
+@media (max-width: 480px) { .shortsTrack { grid-template-columns: minmax(0, 1fr); max-width: 280px; margin-inline: auto; gap: 20px; } }
