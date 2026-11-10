@@ -106,7 +106,7 @@ export function VillaHeroSlideshow({ name, slides }: { name: string; slides: Her
         data-hero-slide={slides[index].id} aria-hidden={index !== active}
         style={{ '--slide-position': slides[index].position || 'center', '--slide-mobile-position': slides[index].mobilePosition || slides[index].position || 'center' } as CSSProperties}
         onTransitionEnd={event => { if (event.target === event.currentTarget && event.propertyName === 'opacity' && index === incomingRef.current && fading) complete(); }}>
-        <Image src={slides[index].src} alt={slides[index].alt} fill sizes="100vw"
+        <Image src={slides[index].src} alt={slides[index].alt} fill sizes="(max-aspect-ratio: 3/2) 150svh, 100vw"
           loader={villaImageLoader} unoptimized={!slides[index].responsive} loading="eager"
           fetchPriority={index === 0 ? 'high' : 'auto'}
           onLoad={event => { void loaded(index, event.currentTarget); }}
