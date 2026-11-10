@@ -14,7 +14,7 @@
 .track { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; min-width: 0; margin: 0; padding: 0; list-style: none; }
 .track::-webkit-scrollbar { display: none; }
 .card { position: relative; min-width: 0; aspect-ratio: 16 / 9; overflow: hidden; border-radius: 20px; background: var(--forest); box-shadow: 0 9px 15px rgba(var(--ink-rgb), .12); }
-.shortsTrack { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; }
+.shortsTrack { grid-template-columns: repeat(3, minmax(0, 1fr)); width: 100%; gap: 18px; }
 .shortCard { aspect-ratio: 9 / 16; }
 .cover, .player { display: block; position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 .cover > img { object-fit: cover; }
@@ -32,4 +32,4 @@
 @media (max-width: 1000px) { .row { grid-template-columns: 190px minmax(0, 1fr); gap: 24px; } .intro p { font-size: 21px; } }
 @media (max-width: 700px) { .section::before { top: -80px; right: -110px; width: 330px; } .heading { margin-bottom: 32px; } .row { grid-template-columns: minmax(0, 1fr); gap: 24px; } .row + .row { margin-top: 42px; } .intro p { margin-top: 12px; } .allVideos { margin-top: 18px; } .carousel { padding-inline: 17px; } .card { border-radius: 15px; } .track { grid-template-columns: minmax(0, 1fr); gap: 20px; } .shortsTrack { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; } .play { width: 48px; height: 48px; } .shortPlay { width: 30px; height: 30px; } .caption { left: 14px; font-size: 12px; } }
 
-@media (max-width: 480px) { .shortsTrack { grid-template-columns: minmax(0, 1fr); max-width: 280px; margin-inline: auto; gap: 20px; } }
+@media (max-width: 480px) { .shortsTrack { grid-template-columns: minmax(0, 1fr); gap: 20px; } }

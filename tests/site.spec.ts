@@ -1,8 +1,17 @@
 import { test, expect } from '@playwright/test';
 
-test('review changes keep the photo journal and display separate film and Shorts carousels', async ({ page, request }) => {
+test('review changes keep the photo journal and display complete film and Shorts cards with hover playback', async ({ page, request }) => {
   // Keep this layout check independent of YouTube's network/player availability.
   await page.route('https://www.youtube-nocookie.com/embed/**', route => route.fulfill({ contentType: 'text/html', body: '<title>Video frame</title>' }));
+  await page.route('https://www.youtube.com/iframe_api', route => route.fulfill({ contentType: 'text/javascript', body: `
+    window.YT = { Player: class {
+      constructor(frame, options) { this.frame = frame; this.options = options; queueMicrotask(() => options.events.onReady({target: this})); }
+      mute() { this.frame.dataset.muted = 'true'; }
+      playVideo() { this.frame.dataset.playback = 'playing'; this.options.events.onStateChange({target: this, data: 1}); }
+      pauseVideo() { this.frame.dataset.playback = 'paused'; this.options.events.onStateChange({target: this, data: 2}); }
+      destroy() {}
+    }}; window.onYouTubeIframeAPIReady();
+  ` }));
   await page.goto('/');
   await expect(page.locator('nav').getByRole('link', { name: /gallery/i })).toHaveCount(0);
   await expect(page.locator('#gallery')).toHaveCount(1);
@@ -19,9 +28,12 @@ test('review changes keep the photo journal and display separate film and Shorts
   const ids = ['ZkFFq16fB2I', 'sp49A-K0TmQ', '9ndnJAIcA1Y', '5RSpQchGXyk', 'CCMzu5EdfyA'];
   for (const [index, id] of ids.entries()) {
     const card = section.getByRole('listitem').nth(index);
-    await card.getByRole('link', { name: /^Play / }).click();
-    await expect(card.locator('iframe')).toHaveAttribute('src', `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`);
-    await expect(section.locator('iframe')).toHaveCount(1);
+    await card.hover();
+    await expect(card.locator('iframe')).toHaveAttribute('src', new RegExp(`/embed/${id}\\?enablejsapi=1`));
+    await expect(card.locator('iframe')).toHaveAttribute('data-playback', 'playing');
+    await expect(card.locator('iframe')).toHaveAttribute('data-muted', 'true');
+    await page.mouse.move(0, 0);
+    await expect(card.locator('iframe')).toHaveAttribute('data-playback', 'paused');
   }
   for (const width of [320, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
@@ -29,15 +41,20 @@ test('review changes keep the photo journal and display separate film and Shorts
     const short = await shorts.getByRole('listitem').first().boundingBox();
     expect(film!.width / film!.height).toBeCloseTo(16 / 9, 2);
     expect(short!.width / short!.height).toBeCloseTo(9 / 16, 2);
+    const filmRow = await films.boundingBox();
+    const shortsRow = await shorts.boundingBox();
+    expect(shortsRow!.x).toBeCloseTo(filmRow!.x, 0);
+    expect(shortsRow!.x + shortsRow!.width).toBeCloseTo(filmRow!.x + filmRow!.width, 0);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
-  await page.setViewportSize({ width: 390, height: 900 });
-  await section.getByRole('button', { name: 'Show videos 1', exact: true }).click();
-  await expect(section.getByRole('button', { name: 'Next videos', exact: true })).toBeEnabled();
-  await section.getByRole('button', { name: 'Next videos', exact: true }).click();
-  await expect(section.getByRole('button', { name: 'Show videos 2', exact: true })).toHaveAttribute('aria-current', 'true');
-  await section.getByRole('button', { name: 'Previous videos', exact: true }).click();
-  await expect(section.getByRole('button', { name: 'Show videos 1', exact: true })).toHaveAttribute('aria-current', 'true');
+  await expect(section.getByRole('button', { name: /(?:Previous|Next) (?:videos|shorts)/ })).toHaveCount(0);
+  await page.setViewportSize({ width: 1440, height: 900 });
+  const firstShort = await shorts.getByRole('listitem').nth(0).boundingBox();
+  const secondShort = await shorts.getByRole('listitem').nth(1).boundingBox();
+  expect(secondShort!.x - firstShort!.x - firstShort!.width).toBeLessThanOrEqual(20);
+  const listBounds = await films.boundingBox();
+  const secondFilm = await films.getByRole('listitem').nth(1).boundingBox();
+  expect(secondFilm!.x + secondFilm!.width).toBeLessThanOrEqual(listBounds!.x + listBounds!.width + 1);
   const cards = page.locator('#villas');
   await expect(cards.locator('img').nth(0)).toHaveAttribute('src', /avante-38-/);
   await expect(cards.locator('img').nth(1)).toHaveAttribute('src', /aurania-8788-/);

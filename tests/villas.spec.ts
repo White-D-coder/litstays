@@ -212,7 +212,7 @@ test('every villa hero keeps its title and stay controls readable across viewpor
         family: getComputedStyle(element).fontFamily,
         size: parseFloat(getComputedStyle(element).fontSize),
       }));
-      expect(font.family).toMatch(/sans-serif/i);
+      expect(font.family).toMatch(/montserrat/i);
       expect(font.size).toBeCloseTo(Math.min(280, Math.max(64, width * .18)), 1);
       const lettering = await page.locator('#villa-heading').evaluate(element => {
         const range = document.createRange();
@@ -226,6 +226,8 @@ test('every villa hero keeps its title and stay controls readable across viewpor
       const control = await bar.getByRole('link', { name: 'Plan your stay' }).boundingBox();
       expect(title!.x).toBeGreaterThanOrEqual(0);
       expect(title!.x + title!.width).toBeLessThanOrEqual(width);
+      const titleGroup = await page.locator('#villa-heading').locator('..').boundingBox();
+      expect(titleGroup!.y + titleGroup!.height / 2).toBeCloseTo(450, 0);
       expect(control!.y).toBeGreaterThan(title!.y + title!.height);
       expect(control!.y + control!.height).toBeLessThanOrEqual(900);
       await expect(bar).toContainText(villa.hasPool ? 'Private swimming pool' : 'Jacuzzi · without pool');

@@ -4,6 +4,7 @@
   min-height: 0;
 }
 .hero-sticky > picture { position: absolute; inset: 0; }
+.hero-photo { filter: none; }
 .hero-content {
   position: relative;
   z-index: 1;
@@ -19,7 +20,7 @@
 .hero h1 { max-width: none; margin-inline: auto; font-size: clamp(64px, 6.5vw, 112px); }
 .hero-description { max-width: none; margin: 24px auto 0; font-size: clamp(12px, 1.05vw, 16px); }
 .hero-shade {
-  background: linear-gradient(0deg, rgba(var(--forest-rgb),.65), rgba(var(--forest-rgb),.42) 50%, rgba(var(--forest-rgb),.4));
+  background: rgba(var(--forest-rgb), .1);
 }
 .hero-booking { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; width: 100%; max-width: 1040px; margin: 30px auto 0; text-align: left; animation-delay: .33s; }
 .hero-booking label { min-width: 0; color: var(--ivory); font-size: clamp(12px, 1.1vw, 16px); font-weight: 500; line-height: 1.5; }

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { villas } from '../src/lib/villas';
 
 for (const villa of villas) {
-  test(`${villa.name} hero crossfades its own photos and can be paused`, async ({ page }) => {
+  test(`${villa.name} hero crossfades its own photos without playback buttons`, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     await page.goto(`/villas/${villa.slug}/`);
     const hero = page.getByRole('region', { name: `${villa.name} hero slideshow`, exact: true });
@@ -17,11 +17,7 @@ for (const villa of villas) {
     expect(photo).toBeTruthy();
     await expect(hero.locator('img').first()).toHaveAttribute('src', new RegExp(`${photo.id}-\\d+\\.webp$`));
     expect(await title.boundingBox()).toEqual(before);
-    await page.getByRole('button', { name: 'Pause villa slideshow', exact: true }).click();
-    await expect(hero).toHaveAttribute('data-playing', 'false');
-    await page.waitForTimeout(5400);
-    await expect(hero).toHaveAttribute('data-active-slide', active!);
-    await page.getByRole('button', { name: 'Play villa slideshow', exact: true }).click();
+    await expect(page.getByRole('button', { name: /(?:Pause|Play) villa slideshow/ })).toHaveCount(0);
     await expect(hero).toHaveAttribute('data-playing', 'true');
   });
 }
@@ -33,12 +29,23 @@ test('villa hero stays static with reduced motion and stops while covered by pag
   await expect(hero).toHaveAttribute('data-playing', 'false');
   await page.waitForTimeout(5400);
   await expect(hero).toHaveAttribute('data-active-slide', 'villa-avante-hero');
-  await expect(page.getByRole('button', { name: 'Pause villa slideshow' })).toBeHidden();
+  await expect(page.getByRole('button', { name: /(?:Pause|Play) villa slideshow/ })).toHaveCount(0);
   await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.evaluate(() => window.scrollTo({ top: innerHeight + 300, behavior: 'instant' }));
   await expect(hero).toHaveAttribute('data-playing', 'false');
   await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
   await expect(hero).toHaveAttribute('data-playing', 'true');
+});
+
+test('homepage hero cycles photographs without the green image filter or playback controls', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/');
+  const hero = page.getByRole('region', { name: 'LIT Stays hero slideshow', exact: true });
+  await expect(hero).toHaveAttribute('data-active-slide', 'home-aerial');
+  await expect(hero).toHaveCSS('filter', 'none');
+  await expect(page.locator('.hero-shade')).toHaveCSS('background-color', 'rgba(44, 59, 40, 0.1)');
+  await expect(page.getByRole('button', { name: /(?:Pause|Play) home slideshow/ })).toHaveCount(0);
+  await expect(hero).toHaveAttribute('data-active-slide', 'home-avante', { timeout: 10000 });
 });
 
 test('a failed next hero photo is skipped without clearing the current image', async ({ page }) => {
