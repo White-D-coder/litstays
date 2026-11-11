@@ -3,32 +3,29 @@
 import { getImageProps } from 'next/image';
 import { useRef } from 'react';
 import { LazyMotion, domAnimation, m, useReducedMotion, useScroll, useTransform } from 'motion/react';
-import imageLoader from '@/lib/image-loader';
+import villaImageLoader from '@/lib/villa-image-loader';
 import { useStay } from '../availability/StayProvider';
 import { addDays, dateInZone } from '@/lib/availability-rules';
 import { site } from '@/lib/site-content';
 import { VillaHeroSlideshow as HeroSlideshow, type HeroSlide } from '../villas/VillaHeroSlideshow';
 
 const slides: HeroSlide[] = [
-  { id: 'home-aerial', src: '/images/aerial-1920.webp', mobileSrc: '/images/aerial-mobile-1920.webp', alt: 'Villa Archway nestled in trees beneath the green hills of Virar, its arched windows glowing in the evening', position: 'center 59%', mobilePosition: '58% center', responsive: true },
-  { id: 'home-avante', src: '/avante/optimized/avante-38-1920.webp', alt: 'Villa Avante’s illuminated entrance and balconies beneath an evening sky', responsive: true },
-  { id: 'home-aurania', src: '/aurania/optimized/aurania-8788-1920.webp', alt: 'Villa Aurania’s red-roofed exterior and entrance veranda', responsive: true },
-  { id: 'home-archway', src: '/archway/optimized/archway-53-1920.webp', alt: 'Villa Archway’s arched facade and balconies illuminated at night', responsive: true },
+  { id: 'home-archway', src: '/lifestyle/archway-family.webp', alt: 'A family arriving at Villa Archway beneath its palm trees', responsive: true },
+  { id: 'home-avante', src: '/lifestyle/avante-family.webp', alt: 'A family sharing a moment outside Villa Avante', responsive: true },
+  { id: 'home-aurania', src: '/lifestyle/aurania-family.webp', alt: 'A family walking beside Villa Aurania’s veranda', responsive: true },
 ];
 
 export function HeroSection() {
   const { dates, setDates, guests, setGuests } = useStay();
   const today = dateInZone(Date.now(), 'Asia/Kolkata');
-  const mobile = getImageProps({ src: 'aerial-mobile.jpg', width: 480, height: 854, alt: '', sizes: '100vw', loader: imageLoader }).props;
-  const desktop = getImageProps({ src: 'aerial.jpg', width: 1920, height: 1432, alt: '', sizes: '100vw', loader: imageLoader }).props;
+  const preload = getImageProps({ src: slides[0].src, width: 1536, height: 1024, alt: '', sizes: '100vw', loader: villaImageLoader }).props;
   const ref = useRef<HTMLElement>(null);
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
   const opacity = useTransform(scrollYProgress, [0, .55], [1, 0]);
   const y = useTransform(scrollYProgress, [0, .7], [0, -65]);
   return <section id="home" className="hero" ref={ref} aria-labelledby="hero-heading">
-    <link rel="preload" as="image" imageSrcSet={mobile.srcSet} imageSizes="100vw" media="(max-width: 600px)" fetchPriority="high"/>
-    <link rel="preload" as="image" imageSrcSet={desktop.srcSet} imageSizes="100vw" media="(min-width: 601px)" fetchPriority="high"/>
+    <link rel="preload" as="image" imageSrcSet={preload.srcSet} imageSizes="100vw" fetchPriority="high"/>
     <div id="nav-sentinel"/>
     <div className="hero-sticky">
       <HeroSlideshow name="LIT Stays" slides={slides} variant="home" />

@@ -1,7 +1,7 @@
 import { villas } from './villas';
 
 export type PropertyFact = { label: string; value: string; detail: string };
-export type Photo = { id: string; alt: string; caption: string; category: string };
+export type Photo = { id: string; src: string; alt: string; caption: string; category: string };
 
 export const site = {
   name: 'The LIT Stays',
@@ -46,15 +46,15 @@ export const navigation = [
 ] as const;
 
 export const photos: Photo[] = [
-  { id: 'living', alt: 'Sunlit living room with curved windows, neutral sofas and a low timber table at Villa Archway', caption: 'Room for good company', category: 'The living spaces' },
-  { id: 'bedroom', alt: 'Warm bedroom opening onto a green view through a large arched window', caption: 'Nowhere to rush to', category: 'The bedrooms' },
-  { id: 'pool', alt: 'Blue private swimming pool beside warm stone walls and greenery', caption: 'Take the afternoon off', category: 'The outdoors' },
-  { id: 'exterior', alt: 'Villa Archway’s illuminated facade with arches and balconies at dusk', caption: 'A warm arrival', category: 'The architecture' },
-  { id: 'dining', alt: 'Round dining table set in front of an arched window with views of trees', caption: 'Stay for one more conversation', category: 'The dining space' },
-  { id: 'balcony', alt: 'Two woven chairs and a small round table on a balcony surrounded by trees', caption: 'Your morning, unhurried', category: 'The little corners' },
-  { id: 'terrace', alt: 'Open rooftop terrace with warm wall lights beneath the evening sky', caption: 'Let the evening linger', category: 'The terrace' },
-  { id: 'games', alt: 'Pool table and indoor games in a bright room with a woodland view', caption: 'A little friendly competition', category: 'Time together' },
-  { id: 'arrival', alt: 'Villa Archway’s entrance passage with arched windows and potted plants', caption: 'Leave the everyday at the door', category: 'The arrival' },
+  { id: 'living', src: '/lifestyle/living-family.webp', alt: 'An Indian family relaxing together in Villa Archway’s living room', caption: 'Room for good company', category: 'The living spaces' },
+  { id: 'bedroom', src: '/lifestyle/bedroom-lifestyle.webp', alt: 'A guest enjoys a quiet moment with a book in Villa Archway’s bedroom', caption: 'Nowhere to rush to', category: 'The bedrooms' },
+  { id: 'pool', src: '/lifestyle/pool-family.webp', alt: 'A family enjoys Villa Archway’s private swimming pool together', caption: 'Take the afternoon off', category: 'The outdoors' },
+  { id: 'exterior', src: '/lifestyle/archway-family.webp', alt: 'A family arrives at Villa Archway’s illuminated facade', caption: 'A warm arrival', category: 'The architecture' },
+  { id: 'dining', src: '/lifestyle/dining-family.webp', alt: 'A family shares a meal at Villa Archway’s dining table', caption: 'Stay for one more conversation', category: 'The dining space' },
+  { id: 'balcony', src: '/lifestyle/balcony-lifestyle.webp', alt: 'A guest enjoys a quiet cup of tea on Villa Archway’s balcony', caption: 'Your morning, unhurried', category: 'The little corners' },
+  { id: 'terrace', src: '/lifestyle/terrace-couple.webp', alt: 'A couple enjoys the evening on Villa Archway’s rooftop terrace', caption: 'Let the evening linger', category: 'The terrace' },
+  { id: 'games', src: '/lifestyle/games-family.webp', alt: 'A family plays pool together in Villa Archway’s games room', caption: 'A little friendly competition', category: 'Time together' },
+  { id: 'arrival', src: '/lifestyle/arrival-couple.webp', alt: 'A couple walks along Villa Archway’s entrance passage', caption: 'Leave the everyday at the door', category: 'The arrival' },
 ];
 
 export const moments = [

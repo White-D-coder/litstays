@@ -6,8 +6,9 @@ import styles from './VillaCardsSection.module.css';
 
 // Homepage selections only: detail-page heroes and their foreground masks stay paired.
 const homepageImages: Record<string, { src: string; alt: string }> = {
-  'villa-archway': { src: '/archway/optimized/archway-53-1920.webp', alt: 'Villa Archway’s complete illuminated facade, balconies and entrance at night' },
-  'villa-aurania': { src: '/aurania/optimized/aurania-8788-1920.webp', alt: 'Villa Aurania’s complete red-roofed exterior and entrance veranda' },
+  'villa-archway': { src: '/lifestyle/archway-family.webp', alt: 'An Indian family arrives at the real Villa Archway at golden hour' },
+  'villa-aurania': { src: '/lifestyle/aurania-family.webp', alt: 'An Indian family walks together beside Villa Aurania’s red-roofed veranda' },
+  'villa-avante': { src: '/lifestyle/avante-family.webp', alt: 'An Indian family shares a moment at the entrance of Villa Avante' },
 };
 
 export function VillaCardsSection() {

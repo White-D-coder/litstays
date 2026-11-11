@@ -108,7 +108,7 @@ export function IntroSlideshow() {
         aria-hidden={index !== active}
         onTransitionEnd={event => { if (event.target === event.currentTarget && event.propertyName === 'opacity' && index === incomingRef.current && fading) complete(); }}
       >
-        <Image className="intro-slide-image" src={`${introSlides[index].id}.jpg`} alt={introSlides[index].alt} fill sizes="(max-width: 800px) 85vw, 40vw" loading={index === incoming ? 'eager' : 'lazy'} onLoad={() => onLoaded(index)} onError={() => { if (index === incomingRef.current) discardIncoming(); }} />
+        <Image className="intro-slide-image" src={introSlides[index].src} alt={introSlides[index].alt} fill sizes="(max-width: 800px) 85vw, 40vw" loading={index === incoming ? 'eager' : 'lazy'} unoptimized onLoad={() => onLoaded(index)} onError={() => { if (index === incomingRef.current) discardIncoming(); }} />
       </div>)}
     </div>
   </div>;

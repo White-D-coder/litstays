@@ -123,7 +123,7 @@ export function GalleryMosaic({ paused, onSelect }: { paused: boolean; onSelect:
               return <span key={scene} aria-hidden={isIncoming}
                 className={`gallery-journal-slide${isIncoming ? ' is-incoming' : ''}${isIncoming && fading ? ' is-fading' : ''}`}
                 onTransitionEnd={event => { if (event.target === event.currentTarget && event.propertyName === 'opacity' && isIncoming && fading) complete(); }}>
-                <Image src={`${photo.id}.jpg`} alt={photo.alt} fill sizes={slot === 0 ? '(max-width: 900px) 90vw, 60vw' : slot === 5 ? '(max-width: 900px) 90vw, 30vw' : '(max-width: 900px) 44vw, 30vw'} loading={isIncoming ? 'eager' : 'lazy'}
+                <Image src={photo.src} alt={photo.alt} fill sizes={slot === 0 ? '(max-width: 900px) 90vw, 60vw' : slot === 5 ? '(max-width: 900px) 90vw, 30vw' : '(max-width: 900px) 44vw, 30vw'} loading={isIncoming ? 'eager' : 'lazy'} unoptimized
                   onLoad={() => onLoaded(scene, slot)} onError={() => { if (isIncoming) discardIncoming(); }} />
                 <span className="gallery-photo-wash" />
                 <span className="gallery-image-shade" />
