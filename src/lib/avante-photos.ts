@@ -1,6 +1,6 @@
 import type { VillaPhoto } from './villas';
 
-// Curated opening views, followed by every photograph supplied in public/avante.
+// Curated room/property views, including all 49 owner-supplied photographs.
 const views: [number, string, string, string][] = [
   [15, 'The pool', 'An afternoon by the water', 'Villa Avante’s blue swimming pool, outdoor table and palm-framed courtyard in daylight'],
   [1, 'The bedrooms', 'A slower start', 'A warm bedroom with a large window overlooking trees and a low bed'],
@@ -33,9 +33,16 @@ const views: [number, string, string, string][] = [
   [28, 'The terrace', 'Catch the last light', 'The open rooftop terrace and seating in warm late-afternoon light'],
   [29, 'The terrace', 'A little room to breathe', 'The spacious rooftop terrace with seating and hills in the distance'],
   [30, 'The terrace', 'Under an open sky', 'Villa Avante’s rooftop terrace lit for the evening beneath a blue sky'],
+  [31, 'The terrace', 'The last light of day', 'Villa Avante’s open rooftop terrace in the evening light'],
   [32, 'The arrival', 'Step into a slower pace', 'The sunlit entrance passage with potted palms, arched windows and a green walkway'],
   [33, 'The arrival', 'A softer welcome', 'The entrance passage and potted plants illuminated by warm lights at dusk'],
+  [34, 'The arrival', 'A garden welcome', 'The quiet garden corner and walkway beside Villa Avante'],
+  [35, 'The arrival', 'Follow the green path', 'The tiled entrance path alongside Villa Avante’s garden'],
+  [36, 'The arrival', 'A little green on the way in', 'The entrance walkway framed by garden greenery'],
+  [37, 'The arrival', 'Come on in', 'The entrance passage leading toward Villa Avante’s courtyard'],
   [40, 'The arrival', 'The neighbourhood at dusk', 'Villa Avante alongside the neighbouring villa with illuminated gates and balconies'],
+  [39, 'The architecture', 'A closer look at the villa', 'Villa Avante’s full facade and entrance in daylight'],
+  [41, 'The architecture', 'A view of the villas', 'Villa Avante and the neighbouring villa seen together from the street'],
   [42, 'The essentials', 'A little peace of mind', 'A first-aid kit provided at Villa Avante'],
   [43, 'The essentials', 'The little essentials', 'A first-aid case with its supplies visible'],
   [44, 'The essentials', 'One less thing to pack', 'Towels and a tray of toiletries arranged for guests'],

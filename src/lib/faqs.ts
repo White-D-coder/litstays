@@ -1,52 +1,31 @@
 export type FAQBlock = { type: 'paragraph'; text: string } | { type: 'list'; items: string[] };
 export type FAQItem = { question: string; answer: FAQBlock[] };
 
-// Transcribed from the property information screenshots supplied by the owner.
+const paragraph = (text: string): FAQBlock => ({ type: 'paragraph', text });
+const list = (...items: string[]): FAQBlock => ({ type: 'list', items });
+
+// Owner-provided answers.
 export const faqs: FAQItem[] = [
-  {
-    question: 'What are the check-in & check-out timings?',
-    answer: [{ type: 'paragraph', text: 'Check-in is from 1:00 PM onwards, and check-out is by 11:00 AM. Early check-in or late check-out may be accommodated subject to availability and additional charges.' }],
-  },
-  {
-    question: 'How many guests are allowed?',
-    answer: [
-      { type: 'paragraph', text: 'The guest capacity depends on the villa booked:' },
-      { type: 'list', items: ['Villa Archway (3BHK): Up to 20 guests', 'Villa Avante (2BHK): Up to 15 guests', 'Villa Aurania (2BHK): Up to 15 guests'] },
-    ],
-  },
-  {
-    question: 'Are meals included?',
-    answer: [
-      { type: 'paragraph', text: 'Yes, we offer optional meal packages that include Lunch, Evening Snacks, Dinner, and Breakfast.' },
-      { type: 'paragraph', text: 'Our meal package options are:' },
-      { type: 'list', items: ['₹1,400 per person – Veg Classic', '₹1,650 per person – Veg Premium', '₹1,600 per person – Non-Veg Classic', '₹1,900 per person – Non-Veg Premium'] },
-      { type: 'paragraph', text: 'All meals are freshly prepared and served at the villa. Meal preferences and the final guest count must be confirmed at least 4 days prior to check-in to ensure the best service. Please also inform us of any dietary preferences or allergies in advance.' },
-    ],
-  },
-  {
-    question: 'Are pets allowed?',
-    answer: [{ type: 'paragraph', text: 'Yes, pets are welcome at The LIT Stays. Guests are requested to clean up after their pets and ensure they don’t soil the property. Any damage or excessive cleaning may incur additional charges.' }],
-  },
-  {
-    question: 'Do the villas have a private pool?',
-    answer: [
-      { type: 'paragraph', text: 'Our amenities vary by villa:' },
-      { type: 'list', items: ['Villa Archway – Private Swimming Pool.', 'Villa Avante – Private Swimming Pool.', 'Villa Aurania – Private Jacuzzi & Rain Dance Area (No Swimming Pool).'] },
-    ],
-  },
-  {
-    question: 'Is Wi-Fi available?',
-    answer: [{ type: 'paragraph', text: 'Yes, complimentary high-speed Wi-Fi is available throughout the property.' }],
-  },
-  {
-    question: 'Is parking available?',
-    answer: [{ type: 'paragraph', text: 'Yes, complimentary parking is available. Each villa is provided with dedicated parking space outside the property, allowing guests to park their vehicles conveniently during their stay.' }],
-  },
-  {
-    question: 'Can I celebrate birthdays or special occasions?',
-    answer: [
-      { type: 'paragraph', text: 'Absolutely! The LIT Stays is a perfect venue for birthdays, anniversaries, family gatherings, and other special occasions.' },
-      { type: 'paragraph', text: 'For decorations, only our approved decoration vendor is permitted. Outside decorators are not allowed. To maintain the condition of the villa, sticking tapes, adhesives, nails, or any other materials on walls, windows, curtains, or furniture is strictly prohibited. Any damage caused may result in additional charges.' },
-    ],
-  },
+  { question: 'What are the check-in & check-out timings?', answer: [paragraph('Check-in is from 1:00 PM onwards, and check-out is by 11:00 AM. Early check-in or late check-out may be accommodated subject to availability and additional charges.')] },
+  { question: 'How many guests are allowed?', answer: [paragraph('The guest capacity depends on the villa booked:'), list('Villa Archway (3BHK): Up to 20 guests', 'Villa Avante (2BHK): Up to 15 guests', 'Villa Aurania (2BHK): Up to 15 guests')] },
+  { question: 'Are meals included?', answer: [paragraph('Yes, we offer optional meal packages that include Lunch, Evening Snacks, Dinner, and Breakfast.'), paragraph('Our meal package options are:'), list('₹1,400 per person – Veg Classic', '₹1,650 per person – Veg Premium', '₹1,600 per person – Non-Veg Classic', '₹1,900 per person – Non-Veg Premium'), paragraph('All meals are freshly prepared and served at the villa. Meal preferences and the final guest count must be confirmed at least 4 days prior to check-in to ensure the best service. Please also inform us of any dietary preferences or allergies in advance.')] },
+  { question: 'Are pets allowed?', answer: [paragraph('Yes, pets are welcome at The LIT Stays. We simply request pet owners to be responsible and ensure that their pets do not poop or urinate anywhere within the property premises. Guests are expected to clean up after their pets and maintain the cleanliness of the villa and surrounding areas. Any damage or excessive cleaning required may attract additional charges.')] },
+  { question: 'Do the villas have a private pool?', answer: [paragraph('Our amenities vary by villa:'), list('Villa Archway – Private Swimming Pool', 'Villa Avante – Private Swimming Pool', 'Villa Aurania – Private Jacuzzi & Rain Dance Area (No Swimming Pool)')] },
+  { question: 'Is Wi-Fi available?', answer: [paragraph('Yes, complimentary high-speed Wi-Fi is available throughout the property.')] },
+  { question: 'Is parking available?', answer: [paragraph('Yes, complimentary parking is available. Each villa is provided with dedicated parking space outside the property, allowing guests to park their vehicles conveniently during their stay.')] },
+  { question: 'Can I celebrate birthdays or special occasions?', answer: [paragraph('Absolutely! The LIT Stays is a perfect venue for birthdays, anniversaries, family gatherings, and other special occasions.'), paragraph('For decorations, only our approved decoration vendor is permitted. Outside decorators are not allowed. To maintain the condition of the villa, sticking tapes, adhesives, nails, or any other materials on walls, windows, curtains, or furniture is strictly prohibited. Any damage caused may result in additional charges.')] },
+  { question: 'What is the cancellation policy?', answer: [list('14 days or more before check-in: 100% refund of the advance amount', '7 to 13 days before check-in: 50% refund of the advance amount', 'Less than 7 days before check-in: No refund of the advance amount'), paragraph('Requests for rescheduling or changing booking dates are reviewed on a case-by-case basis and are solely at the discretion of the management. Approval for a date change cannot be guaranteed.')] },
+  { question: 'Which locations do you offer?', answer: [paragraph('Currently, all our luxury Balinese-inspired villas are located in Virar East, Maharashtra, offering a peaceful getaway close to Mumbai.')] },
+  { question: 'How can I contact your team?', answer: [paragraph('You can reach us through the contact details provided on the OTA booking platform through which you made your reservation or Instagram. Our hospitality team is always happy to assist you before, during, and after your stay.'), paragraph('For any urgent queries or assistance, you may also contact the owner directly: Hardik Panchal (Founder): +91 86557 50771')] },
+  { question: 'Is a security deposit required?', answer: [paragraph('Yes, a refundable security deposit is required and varies by villa:'), list('₹10,000 for Archway', '₹8,000 for Avante', '₹3,000 for Aurania'), paragraph('The deposit is collected at check-in and refunded after property inspection, usually within 45 minutes of check-out, provided there are no damages or policy violations.')] },
+  { question: 'Can day visits or additional guests be accommodated?', answer: [paragraph('Any additional guests or visitors must be informed and approved by the management in advance. Additional charges may apply.')] },
+  { question: 'Is loud music allowed?', answer: [paragraph('Guests may enjoy music responsibly. However, all guests are expected to comply with local noise regulations and maintain a respectful environment for neighboring properties.')] },
+  { question: 'Do you provide housekeeping during the stay?', answer: [paragraph('Basic housekeeping assistance is available. Additional extra ordinary cleaning requests during the stay may be subject to availability and charges.')] },
+  { question: 'Are outside food and beverages allowed?', answer: [paragraph('Yes, guests may bring their own food and beverages. Alternatively, they may opt for our in-house meal packages.')] },
+  { question: 'Is the entire villa private?', answer: [paragraph('Yes, when you book a villa, it is reserved exclusively for your group. You will have private access to all amenities associated with that villa.')] },
+  { question: 'Are unmarried couples allowed?', answer: [paragraph('Yes, unmarried couples are welcome. All guests must carry a valid government-issued photo ID at the time of check-in.')] },
+  { question: 'Are there any restrictions on decorations?', answer: [paragraph('Yes. Decorations are permitted only through our approved decoration vendor. Sticking tapes, adhesives, nails, or any materials on walls, windows, curtains, or furniture is strictly prohibited.')] },
+  { question: 'Is alcohol allowed at the property?', answer: [paragraph('Yes, guests may consume alcohol responsibly within the property premises. Any unlawful, disruptive, or unsafe behavior will not be tolerated.')] },
+  { question: 'Is the villa suitable for corporate outings or photoshoots?', answer: [paragraph('Yes, corporate gatherings, content shoots, and photoshoots can be accommodated. Please discuss your requirements with the management before confirming your booking.')] },
+  { question: 'What amenities are available at the villa?', answer: [paragraph('Amenities vary by villa and may include a private swimming pool, jacuzzi, rain dance area, Wi-Fi, parking, indoor games, outdoor seating, air-conditioned bedrooms, a fully equipped kitchen, air hockey, poker table, dart, fooseball, table tennis, pool table, ludo, chess, UNO universe cards, playing cards, drinking cards, couple cards, etc.')] },
 ];

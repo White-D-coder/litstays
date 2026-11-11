@@ -3,9 +3,9 @@ import { mkdir, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 
 const collection = process.argv[2];
-if (!['aurania', 'archway'].includes(collection)) throw new Error('Use: node scripts/prepare-villa-images.mjs aurania|archway');
-const source = path.resolve('public', collection);
-const destination = path.join(source, 'optimized');
+if (!['aurania', 'archway', 'avante'].includes(collection)) throw new Error('Use: node scripts/prepare-villa-images.mjs aurania|archway|avante [source-directory]');
+const source = path.resolve(process.argv[3] || path.join('public', collection));
+const destination = path.resolve('public', collection, 'optimized');
 const sizes = [480, 960, 1440, 1920];
 // Aurania's three HEIC files show property maintenance rather than guest
 // spaces; preserve them outside the guest gallery. Archway's (1) files are

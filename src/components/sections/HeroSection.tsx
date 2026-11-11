@@ -10,9 +10,11 @@ import { site } from '@/lib/site-content';
 import { VillaHeroSlideshow as HeroSlideshow, type HeroSlide } from '../villas/VillaHeroSlideshow';
 
 const slides: HeroSlide[] = [
-  { id: 'home-archway', src: '/lifestyle/archway-family.webp', alt: 'A family arriving at Villa Archway beneath its palm trees', responsive: true },
-  { id: 'home-avante', src: '/lifestyle/avante-family.webp', alt: 'A family sharing a moment outside Villa Avante', responsive: true },
-  { id: 'home-aurania', src: '/lifestyle/aurania-family.webp', alt: 'A family walking beside Villa Aurania’s veranda', responsive: true },
+  { id: 'home-property-1', src: '/home-hero/home-property-1-1920.webp', alt: 'Villa and surrounding greenery viewed from above', responsive: true },
+  { id: 'home-property-2', src: '/home-hero/home-property-2-1920.webp', alt: 'The villa facade and gardens in daylight', responsive: true },
+  { id: 'home-property-3', src: '/home-hero/home-property-3-1920.webp', alt: 'Aerial view of the villa courtyard', responsive: true },
+  { id: 'home-property-4', src: '/home-hero/home-property-4-1920.webp', alt: 'The villa glowing at dusk among the trees', responsive: true },
+  { id: 'home-property-5', src: '/home-hero/home-property-5-1920.webp', alt: 'The villa and treetops in evening light', responsive: true },
 ];
 
 export function HeroSection() {
